@@ -201,17 +201,17 @@
 
         .search-form {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.4rem;
             align-items: center;
-            margin-top: 0.75rem;
+            margin-top: 0.5rem;
         }
 
         .search-submit {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 2.5rem;
-            height: 2.5rem;
+            width: 2.25rem;
+            height: 2.25rem;
             border-radius: 999px;
             border: 1px solid var(--line);
             background: var(--bg-2);
@@ -321,7 +321,7 @@
                 left: 0;
                 height: 100vh;
                 width: min(90vw, 360px);
-                padding: 1.5rem 1.25rem 3rem;
+                padding: 1.15rem 1.1rem 2.3rem;
                 border-right: 1px solid var(--line);
                 background: var(--bg-0);
                 box-shadow: var(--shadow-elevation-medium);
@@ -329,7 +329,7 @@
                 z-index: 200;
                 transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
                 overflow-y: auto;
-                gap: 1.5rem;
+                gap: 1.1rem;
             }
 
             .sidebar.is-open {
@@ -564,12 +564,16 @@
         .sidebar {
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 1.35rem;
             position: sticky;
             top: 4rem;
             height: calc(100vh - 8rem);
             overflow-y: auto;
             align-self: start;
+        }
+
+        .sidebar .card {
+            padding: 1.1rem 1.2rem;
         }
 
         /* Hide scrollbar but keep functionality */
@@ -587,46 +591,46 @@
         }
 
         .hero-card h1 {
-            font-size: clamp(2rem, 5vw, 2.5rem);
-            margin-bottom: 0.25rem;
+            font-size: clamp(2rem, 5vw, 2.35rem);
+            margin-bottom: 0.1rem;
         }
 
         .hero-card .role {
-            font-size: clamp(1rem, 2vw, 1.15rem);
+            font-size: clamp(1rem, 2vw, 1.1rem);
             color: var(--accent);
             font-weight: 500;
-            margin-bottom: 1rem;
+            margin-bottom: 0.65rem;
         }
 
         .hero-card .intro {
             color: var(--muted);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.1rem;
         }
 
         .hero-contact {
-            margin: 1rem 0;
+            margin: 0.75rem 0 0.5rem;
             font-size: 0.9rem;
             color: var(--muted);
         }
 
         .hero-contact p {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.35rem;
         }
 
         .contact-links {
             display: flex;
             justify-content: center;
-            gap: 0.75rem;
+            gap: 0.5rem;
             flex-wrap: wrap;
-            margin-top: 0.75rem;
+            margin-top: 0.5rem;
         }
 
         .contact-link {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 2.25rem;
-            height: 2.25rem;
+            width: 2.1rem;
+            height: 2.1rem;
             border-radius: 999px;
             background-color: var(--bg-2);
             color: var(--accent);
@@ -653,11 +657,11 @@
 
         .hero-actions {
             display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 0.75rem;
+            flex-wrap: nowrap;
         }
-        
+
         .btn {
             display: inline-flex;
             align-items: center;
@@ -687,6 +691,17 @@
             border-color: var(--muted);
         }
         
+        .hero-actions .btn {
+            flex: 1 1 auto;
+            justify-content: center;
+            padding: 0.45rem 0.75rem;
+            min-width: 0;
+        }
+
+        .hero-actions .btn span {
+            white-space: nowrap;
+        }
+
         .main-nav ul {
             list-style: none;
         }
@@ -695,7 +710,7 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            padding: 0.5rem 1rem;
+            padding: 0.45rem 0.9rem;
             border-radius: 10px;
             color: var(--muted);
             transition: color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
@@ -739,32 +754,68 @@
             transform: scaleX(1);
         }
         
-        .theme-switcher h3 {
-            margin-bottom: 0.75rem;
-            font-size: 1rem;
+        .theme-switcher {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        
+        .theme-switcher__label {
+            display: inline-flex;
+            align-items: center;
         }
         
         .theme-options {
-            display: flex;
-            gap: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
             background-color: var(--bg-1);
-            padding: 0.5rem;
+            padding: 0.35rem;
             border-radius: 999px;
         }
         
-        .theme-options button {
-            padding: 0.5rem 1rem;
+        .theme-option {
+            width: 2.15rem;
+            height: 2.15rem;
             border-radius: 999px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            opacity: 0.7;
-            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid transparent;
+            opacity: 0.85;
+            transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
         }
         
-        .theme-options button.active {
-            background-color: var(--accent);
-            color: var(--accent-ink);
+        .theme-option:hover {
+            transform: translateY(-1px);
             opacity: 1;
+        }
+        
+        .theme-option svg {
+            width: 1.1rem;
+            height: 1.1rem;
+        }
+        
+        .theme-option.active {
+            opacity: 1;
+            box-shadow: 0 0 0 2px var(--bg-0), 0 0 0 3px currentColor;
+        }
+        
+        .theme-option[data-theme="gold-dark"] {
+            background: linear-gradient(145deg, #d7b56d, #b88a3c);
+            color: #41351b;
+        }
+        
+        .theme-option[data-theme="green-dark"] {
+            background: linear-gradient(145deg, #7ad06a, #4fa54c);
+            color: #163216;
+        }
+        
+        .theme-option[data-theme="light"] {
+            background: linear-gradient(145deg, #7fb6ff, #005fcc);
+            color: #e6f0ff;
         }
 
         /* -------------------------------------------------------------------------- */
@@ -998,7 +1049,7 @@
             background-color: var(--bg-0);
             border: 1px solid var(--line);
             color: var(--text);
-            padding: 0.5rem 0.75rem;
+            padding: 0.45rem 0.7rem;
             border-radius: 8px;
             font-size: 0.9rem;
             margin-top: 0;
@@ -1191,6 +1242,26 @@
         <symbol id="icon-github" viewBox="0 0 24 24">
             <path fill="currentColor" d="M12 .5a12 12 0 0 0-3.79 23.4c.6.1.82-.26.82-.58v-2.05c-3.34.72-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.09-.74.08-.73.08-.73 1.2.08 1.83 1.24 1.83 1.24 1.07 1.85 2.82 1.32 3.5 1 .11-.78.42-1.32.76-1.62-2.66-.3-5.46-1.33-5.46-5.9a4.62 4.62 0 0 1 1.23-3.2 4 4 0 0 1 .11-3.16s1-.32 3.28 1.23a11.43 11.43 0 0 1 6 0c2.28-1.55 3.28-1.23 3.28-1.23a4 4 0 0 1 .11 3.16 4.62 4.62 0 0 1 1.23 3.2c0 4.58-2.81 5.59-5.49 5.89.43.37.82 1.1.82 2.22v3.29c0 .32.21.69.82.58A12 12 0 0 0 12 .5Z"></path>
         </symbol>
+        <symbol id="icon-sun" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 3v2"></path>
+            <path d="M12 19v2"></path>
+            <path d="M5 12H3"></path>
+            <path d="M21 12h-2"></path>
+            <path d="m5.6 5.6 1.4 1.4"></path>
+            <path d="m17 17 1.4 1.4"></path>
+            <path d="m5.6 18.4 1.4-1.4"></path>
+            <path d="m17 7 1.4-1.4"></path>
+        </symbol>
+        <symbol id="icon-leaf" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 21c6-6 14-5 14-16 0-1-1-1-1-1-11 0-13 8-13 13 0 0 0 1 0 4Z"></path>
+            <path d="M9 14c2.5 0 5.5-2 7-5"></path>
+        </symbol>
+        <symbol id="icon-sparkle" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m12 4 1.5 4.5L18 10l-4.5 1.5L12 16l-1.5-4.5L6 10l4.5-1.5Z"></path>
+            <path d="m5 4 .5 1.5L7 6l-1.5.5L5 8l-.5-1.5L3 6l1.5-.5Z"></path>
+            <path d="m17 16 .5 1.5L19 18l-1.5.5L17 20l-.5-1.5L15 18l1.5-.5Z"></path>
+        </symbol>
         <symbol id="icon-positions" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <rect x="4" y="7" width="16" height="11" rx="2"></rect>
             <path d="M9 7V5a3 3 0 0 1 3-3h0a3 3 0 0 1 3 3v2"></path>
@@ -1305,11 +1376,20 @@
             </div>
             
             <div class="theme-switcher card">
-                <h3 class="eyebrow">Theme</h3>
+                <span class="theme-switcher__label eyebrow">Theme</span>
                 <div class="theme-options">
-                    <button data-theme="gold-dark" title="Dark mode with gold accents">Gold</button>
-                    <button data-theme="green-dark" title="Dark mode with green accents">Green</button>
-                    <button data-theme="light" title="Light mode">Light</button>
+                    <button class="theme-option" type="button" data-theme="gold-dark" title="Dark mode with gold accents">
+                        <svg class="icon" aria-hidden="true"><use href="#icon-sun"></use></svg>
+                        <span class="sr-only">Gold theme</span>
+                    </button>
+                    <button class="theme-option" type="button" data-theme="green-dark" title="Dark mode with green accents">
+                        <svg class="icon" aria-hidden="true"><use href="#icon-leaf"></use></svg>
+                        <span class="sr-only">Green theme</span>
+                    </button>
+                    <button class="theme-option" type="button" data-theme="light" title="Light mode">
+                        <svg class="icon" aria-hidden="true"><use href="#icon-sparkle"></use></svg>
+                        <span class="sr-only">Light theme</span>
+                    </button>
                 </div>
             </div>
 
@@ -2071,7 +2151,7 @@
             // --------------------------------------------------------------------------
             // THEME SWITCHER
             // --------------------------------------------------------------------------
-            const themeButtons = document.querySelectorAll('.theme-options button');
+            const themeButtons = document.querySelectorAll('.theme-option');
             const currentTheme = localStorage.getItem('theme') || 'gold-dark';
 
             function applyTheme(theme) {
