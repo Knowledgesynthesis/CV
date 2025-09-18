@@ -413,6 +413,117 @@
             }
         }
 
+        .scroll-cubes {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 155;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateY(18px);
+            transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
+        }
+
+        .scroll-cubes.visible {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 1200px) {
+            .scroll-cubes {
+                display: flex;
+            }
+        }
+
+        .scroll-cubes__wrapper {
+            width: min(420px, 72vw);
+            aspect-ratio: 1 / 1;
+            border-radius: 18px;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(140% 120% at 50% 20%,
+                    color-mix(in srgb, var(--accent) 28%, transparent) 0%,
+                    color-mix(in srgb, var(--bg-1) 90%, transparent) 100%);
+            box-shadow: var(--shadow-elevation-medium);
+        }
+
+        @media (max-width: 600px) {
+            .scroll-cubes__wrapper {
+                width: 82vw;
+            }
+        }
+
+        .scroll-cubes__scene {
+            display: grid;
+            width: 100%;
+            height: 100%;
+            column-gap: var(--scroll-cubes-col-gap, 5%);
+            row-gap: var(--scroll-cubes-row-gap, 5%);
+            grid-auto-rows: 1fr;
+            perspective: var(--scroll-cubes-perspective, 1800px);
+            place-content: stretch;
+            touch-action: manipulation;
+        }
+
+        .scroll-cubes__cube {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 1 / 1;
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+        .scroll-cubes__cube::before {
+            content: '';
+            position: absolute;
+            top: -36px;
+            right: -36px;
+            bottom: -36px;
+            left: -36px;
+        }
+
+        .scroll-cubes__face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--scroll-cubes-face, rgba(255, 255, 255, 0.04));
+            border: var(--scroll-cubes-border, 1.5px solid rgba(255, 255, 255, 0.12));
+            box-shadow: var(--scroll-cubes-shadow, none);
+            opacity: 1;
+            will-change: background-color;
+        }
+
+        .scroll-cubes__face--top {
+            transform: translateY(-50%) rotateX(90deg);
+        }
+
+        .scroll-cubes__face--bottom {
+            transform: translateY(50%) rotateX(-90deg);
+        }
+
+        .scroll-cubes__face--left {
+            transform: translateX(-50%) rotateY(-90deg);
+        }
+
+        .scroll-cubes__face--right {
+            transform: translateX(50%) rotateY(90deg);
+        }
+
+        .scroll-cubes__face--back,
+        .scroll-cubes__face--front {
+            transform: rotateY(-90deg) translateX(50%) rotateY(90deg);
+        }
+
         .eyebrow {
             text-transform: uppercase;
             font-size: clamp(0.75rem, 0.5vw + 0.6rem, 0.9rem);
@@ -2147,6 +2258,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const docElement = document.documentElement;
+            const cubePrompt = initializeScrollCubes();
 
             // --------------------------------------------------------------------------
             // THEME SWITCHER
@@ -2160,6 +2272,9 @@
                     btn.classList.toggle('active', btn.dataset.theme === theme);
                 });
                 localStorage.setItem('theme', theme);
+                if (cubePrompt) {
+                    cubePrompt.setPalette(buildCubePalette());
+                }
             }
 
             themeButtons.forEach(button => {
@@ -2369,6 +2484,10 @@
             // SCROLL DOWN INDICATOR
             // --------------------------------------------------------------------------
             const scrollIndicator = document.getElementById('scrollIndicator');
+            const scrollCubes = document.getElementById('scrollCubes');
+            if (scrollCubes) {
+                scrollCubes.setAttribute('aria-hidden', 'true');
+            }
             let indicatorHidden = false;
 
             // Show indicator on mobile/tablet after page load
@@ -2377,8 +2496,18 @@
                     setTimeout(() => {
                         if (!indicatorHidden) {
                             scrollIndicator.classList.add('visible');
+                            if (scrollCubes) {
+                                scrollCubes.classList.add('visible');
+                                scrollCubes.setAttribute('aria-hidden', 'false');
+                            }
                         }
                     }, 1000); // Show after 1 second
+                } else {
+                    scrollIndicator.classList.remove('visible');
+                    if (scrollCubes) {
+                        scrollCubes.classList.remove('visible');
+                        scrollCubes.setAttribute('aria-hidden', 'true');
+                    }
                 }
             }
 
@@ -2389,6 +2518,10 @@
                     entries.forEach(entry => {
                         if (entry.isIntersecting && !indicatorHidden) {
                             scrollIndicator.classList.remove('visible');
+                            if (scrollCubes) {
+                                scrollCubes.classList.remove('visible');
+                                scrollCubes.setAttribute('aria-hidden', 'true');
+                            }
                             indicatorHidden = true;
                             indicatorObserver.disconnect();
                         }
@@ -2682,8 +2815,424 @@
                     targetPanel.focus();
                 }
             }
+
+            // --------------------------------------------------------------------------
+            // SCROLL PROMPT CUBES
+            // --------------------------------------------------------------------------
+            function sanitizeColor(value) {
+                return value ? value.trim() : '';
+            }
+
+            function clampToByte(value) {
+                return Math.max(0, Math.min(255, Math.round(Number(value) || 0)));
+            }
+
+            function parseColor(value) {
+                const color = sanitizeColor(value);
+                if (!color) {
+                    return { r: 0, g: 0, b: 0 };
+                }
+
+                if (color.startsWith('#')) {
+                    let hex = color.slice(1);
+                    if (hex.length === 3) {
+                        hex = hex.split('').map((ch) => ch + ch).join('');
+                    }
+                    const num = parseInt(hex, 16);
+                    if (Number.isNaN(num)) {
+                        return { r: 0, g: 0, b: 0 };
+                    }
+                    return {
+                        r: (num >> 16) & 255,
+                        g: (num >> 8) & 255,
+                        b: num & 255
+                    };
+                }
+
+                const rgbMatch = color.match(/rgba?\(([^)]+)\)/i);
+                if (rgbMatch) {
+                    const parts = rgbMatch[1].split(',').map((part) => part.trim());
+                    return {
+                        r: clampToByte(parts[0]),
+                        g: clampToByte(parts[1]),
+                        b: clampToByte(parts[2])
+                    };
+                }
+
+                return { r: 0, g: 0, b: 0 };
+            }
+
+            function rgbToHex({ r, g, b }) {
+                const toHex = (component) => clampToByte(component).toString(16).padStart(2, '0');
+                return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+            }
+
+            function mixColors(colorA, colorB, weight = 0.5) {
+                const ratio = Math.max(0, Math.min(1, weight));
+                const a = parseColor(colorA);
+                const b = parseColor(colorB);
+                return rgbToHex({
+                    r: a.r + (b.r - a.r) * ratio,
+                    g: a.g + (b.g - a.g) * ratio,
+                    b: a.b + (b.b - a.b) * ratio
+                });
+            }
+
+            function addAlpha(color, alpha = 1) {
+                const { r, g, b } = parseColor(color);
+                const a = Math.max(0, Math.min(1, alpha));
+                return `rgba(${r}, ${g}, ${b}, ${a})`;
+            }
+
+            function buildCubePalette() {
+                const styles = getComputedStyle(docElement);
+                const accent = sanitizeColor(styles.getPropertyValue('--accent')) || '#d7b56d';
+                const accentInk = sanitizeColor(styles.getPropertyValue('--accent-ink')) || '#41351b';
+                const bg1 = sanitizeColor(styles.getPropertyValue('--bg-1')) || '#111318';
+                const bg2 = sanitizeColor(styles.getPropertyValue('--bg-2')) || '#171a21';
+                const text = sanitizeColor(styles.getPropertyValue('--text')) || '#e8eaec';
+
+                const face = mixColors(bg2, accent, 0.22);
+                const border = mixColors(accent, text, 0.35);
+                const shadow = `0 16px 36px ${addAlpha(accent, 0.28)}`;
+                const backdrop = `radial-gradient(140% 120% at 50% 20%, ${addAlpha(accent, 0.45)} 0%, ${addAlpha(bg1, 0.88)} 58%, ${addAlpha(bg2, 1)} 100%)`;
+
+                return {
+                    accent,
+                    accentInk,
+                    face,
+                    border,
+                    ripple: accent,
+                    shadow,
+                    backdrop
+                };
+            }
+
+            function initializeScrollCubes() {
+                const container = document.getElementById('scrollCubes');
+                const wrapper = document.getElementById('scrollCubesWrapper');
+                const scene = wrapper ? wrapper.querySelector('.scroll-cubes__scene') : null;
+
+                if (!container || !wrapper || !scene) {
+                    return null;
+                }
+
+                const CONFIG = {
+                    gridSize: 6,
+                    cubeSize: undefined,
+                    maxAngle: 52,
+                    radius: 3.3,
+                    duration: { enter: 0.28, leave: 0.6 },
+                    easing: 'power3.out',
+                    autoAnimate: true,
+                    rippleOnClick: true,
+                    rippleSpeed: 1.6,
+                    faceColor: '#1a1a2e',
+                    rippleColor: '#d7b56d',
+                    borderStyle: '1.5px solid #d7b56d'
+                };
+
+                wrapper.style.setProperty('--scroll-cubes-col-gap', '4%');
+                wrapper.style.setProperty('--scroll-cubes-row-gap', '4%');
+                wrapper.style.setProperty('--scroll-cubes-perspective', '2000px');
+                scene.style.touchAction = 'manipulation';
+
+                const G = CONFIG.gridSize;
+                scene.style.gridTemplateColumns = CONFIG.cubeSize
+                    ? `repeat(${G}, ${CONFIG.cubeSize}px)`
+                    : `repeat(${G}, 1fr)`;
+                scene.style.gridTemplateRows = CONFIG.cubeSize
+                    ? `repeat(${G}, ${CONFIG.cubeSize}px)`
+                    : `repeat(${G}, 1fr)`;
+
+                if (CONFIG.cubeSize) {
+                    wrapper.style.width = `${G * CONFIG.cubeSize}px`;
+                    wrapper.style.height = `${G * CONFIG.cubeSize}px`;
+                    wrapper.style.aspectRatio = 'unset';
+                }
+
+                const cubes = [];
+                const faces = [];
+
+                for (let r = 0; r < G; r += 1) {
+                    for (let c = 0; c < G; c += 1) {
+                        const cube = document.createElement('div');
+                        cube.className = 'scroll-cubes__cube';
+                        cube.dataset.row = r;
+                        cube.dataset.col = c;
+
+                        ['top', 'bottom', 'left', 'right', 'front', 'back'].forEach((name) => {
+                            const face = document.createElement('div');
+                            face.className = `scroll-cubes__face scroll-cubes__face--${name}`;
+                            cube.appendChild(face);
+                            faces.push(face);
+                        });
+
+                        scene.appendChild(cube);
+                        cubes.push(cube);
+                    }
+                }
+
+                const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+                const activeTweens = new WeakMap();
+
+                function tweenTransform(el, toRX, toRY, dur, easeFn, overwrite = true) {
+                    const startTime = performance.now();
+                    const previous = activeTweens.get(el);
+                    let fromRX = 0;
+                    let fromRY = 0;
+
+                    const match = el.style.transform.match(/rotateX\((-?\d+(?:\.\d+)?)deg\)\s*rotateY\((-?\d+(?:\.\d+)?)deg\)/);
+                    if (match) {
+                        fromRX = parseFloat(match[1]);
+                        fromRY = parseFloat(match[3]);
+                    }
+
+                    if (overwrite && previous) {
+                        previous.cancelled = true;
+                    }
+
+                    const tween = { cancelled: false };
+                    activeTweens.set(el, tween);
+
+                    function step(time) {
+                        if (tween.cancelled) {
+                            return;
+                        }
+
+                        const progress = Math.min(1, (time - startTime) / (dur * 1000));
+                        const eased = easeFn ? easeFn(progress) : progress;
+                        const rx = fromRX + (toRX - fromRX) * eased;
+                        const ry = fromRY + (toRY - fromRY) * eased;
+                        el.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+
+                        if (progress < 1) {
+                            requestAnimationFrame(step);
+                        }
+                    }
+
+                    requestAnimationFrame(step);
+                }
+
+                function tweenBGColor(targetFaces, from, to, dur, delay = 0, easeFn = easeOutCubic) {
+                    const fromRGB = parseColor(from);
+                    const toRGB = parseColor(to);
+                    const start = performance.now() + delay * 1000;
+
+                    function step(time) {
+                        const progress = Math.max(0, Math.min(1, (time - start) / (dur * 1000)));
+                        const eased = easeFn(progress);
+                        const r = Math.round(fromRGB.r + (toRGB.r - fromRGB.r) * eased);
+                        const g = Math.round(fromRGB.g + (toRGB.g - fromRGB.g) * eased);
+                        const b = Math.round(fromRGB.b + (toRGB.b - fromRGB.b) * eased);
+                        targetFaces.forEach((face) => {
+                            face.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+                        });
+                        if (progress < 1) {
+                            requestAnimationFrame(step);
+                        }
+                    }
+
+                    requestAnimationFrame(step);
+                }
+
+                const enterDur = CONFIG.duration.enter;
+                const leaveDur = CONFIG.duration.leave;
+
+                function tiltAt(rowCenter, colCenter) {
+                    cubes.forEach((cube) => {
+                        const r = Number(cube.dataset.row);
+                        const c = Number(cube.dataset.col);
+                        const dist = Math.hypot(r - rowCenter, c - colCenter);
+                        if (dist <= CONFIG.radius) {
+                            const pct = 1 - dist / CONFIG.radius;
+                            const angle = pct * CONFIG.maxAngle;
+                            tweenTransform(cube, -angle, angle, enterDur, easeOutCubic, true);
+                        } else {
+                            tweenTransform(cube, 0, 0, leaveDur, easeOutCubic, true);
+                        }
+                    });
+                }
+
+                function resetAll() {
+                    cubes.forEach((cube) => {
+                        tweenTransform(cube, 0, 0, leaveDur, easeOutCubic, true);
+                    });
+                }
+
+                const rafRef = { id: null };
+                const idleTimerRef = { id: null };
+                const userActiveRef = { val: false };
+
+                function schedule(cb) {
+                    if (rafRef.id) {
+                        cancelAnimationFrame(rafRef.id);
+                    }
+                    rafRef.id = requestAnimationFrame(cb);
+                }
+
+                function onPointerMove(e) {
+                    userActiveRef.val = true;
+                    clearTimeout(idleTimerRef.id);
+
+                    const rect = scene.getBoundingClientRect();
+                    const cellW = rect.width / G;
+                    const cellH = rect.height / G;
+                    const colCenter = (e.clientX - rect.left) / cellW;
+                    const rowCenter = (e.clientY - rect.top) / cellH;
+
+                    schedule(() => tiltAt(rowCenter, colCenter));
+
+                    idleTimerRef.id = setTimeout(() => {
+                        userActiveRef.val = false;
+                    }, 3000);
+                }
+
+                function onPointerDown() {
+                    userActiveRef.val = true;
+                    clearTimeout(idleTimerRef.id);
+                }
+
+                function onPointerUp() {
+                    resetAll();
+                    idleTimerRef.id = setTimeout(() => {
+                        userActiveRef.val = false;
+                    }, 600);
+                }
+
+                function onPointerLeave() {
+                    resetAll();
+                }
+
+                scene.addEventListener('pointermove', onPointerMove);
+                scene.addEventListener('pointerdown', onPointerDown);
+                scene.addEventListener('pointerup', onPointerUp);
+                scene.addEventListener('pointercancel', onPointerUp);
+                scene.addEventListener('pointerleave', onPointerLeave);
+                scene.addEventListener('click', onClick);
+
+                function onClick(e) {
+                    if (!CONFIG.rippleOnClick) {
+                        return;
+                    }
+
+                    const rect = scene.getBoundingClientRect();
+                    const cellW = rect.width / G;
+                    const cellH = rect.height / G;
+                    const clientX = e.clientX ?? (e.touches && e.touches[0] ? e.touches[0].clientX : null);
+                    const clientY = e.clientY ?? (e.touches && e.touches[0] ? e.touches[0].clientY : null);
+
+                    if (clientX == null || clientY == null) {
+                        return;
+                    }
+
+                    const colHit = Math.floor((clientX - rect.left) / cellW);
+                    const rowHit = Math.floor((clientY - rect.top) / cellH);
+
+                    const baseRingDelay = 0.15;
+                    const baseAnimDur = 0.30;
+                    const baseHold = 0.60;
+
+                    const spreadDelay = baseRingDelay / CONFIG.rippleSpeed;
+                    const animDuration = baseAnimDur / CONFIG.rippleSpeed;
+                    const holdTime = baseHold / CONFIG.rippleSpeed;
+
+                    const rings = {};
+                    cubes.forEach((cube) => {
+                        const r = Number(cube.dataset.row);
+                        const c = Number(cube.dataset.col);
+                        const dist = Math.hypot(r - rowHit, c - colHit);
+                        const ring = Math.round(dist);
+                        if (!rings[ring]) {
+                            rings[ring] = [];
+                        }
+                        rings[ring].push(cube);
+                    });
+
+                    Object.keys(rings)
+                        .map(Number)
+                        .sort((a, b) => a - b)
+                        .forEach((ring) => {
+                            const delay = ring * spreadDelay;
+                            const ringFaces = [];
+                            rings[ring].forEach((cube) => {
+                                const cubeFaces = cube.querySelectorAll('.scroll-cubes__face');
+                                for (let i = 0; i < cubeFaces.length; i += 1) {
+                                    ringFaces.push(cubeFaces[i]);
+                                }
+                            });
+                            if (ringFaces.length === 0) {
+                                return;
+                            }
+                            tweenBGColor(ringFaces, CONFIG.faceColor, CONFIG.rippleColor, animDuration, delay);
+                            tweenBGColor(
+                                ringFaces,
+                                CONFIG.rippleColor,
+                                CONFIG.faceColor,
+                                animDuration,
+                                delay + animDuration + holdTime
+                            );
+                        });
+                }
+
+                if (CONFIG.autoAnimate) {
+                    const simPos = { x: Math.random() * G, y: Math.random() * G };
+                    let simTarget = { x: Math.random() * G, y: Math.random() * G };
+                    const speed = 0.02;
+
+                    function loop() {
+                        if (!userActiveRef.val) {
+                            simPos.x += (simTarget.x - simPos.x) * speed;
+                            simPos.y += (simTarget.y - simPos.y) * speed;
+                            tiltAt(simPos.y, simPos.x);
+
+                            if (Math.hypot(simPos.x - simTarget.x, simPos.y - simTarget.y) < 0.1) {
+                                simTarget = { x: Math.random() * G, y: Math.random() * G };
+                            }
+                        }
+
+                        requestAnimationFrame(loop);
+                    }
+
+                    requestAnimationFrame(loop);
+                }
+
+                function applyPalette(palette) {
+                    if (!palette) {
+                        return;
+                    }
+
+                    CONFIG.faceColor = palette.face;
+                    CONFIG.rippleColor = palette.ripple;
+                    CONFIG.borderStyle = `1.5px solid ${palette.border}`;
+                    wrapper.style.setProperty('--scroll-cubes-face', palette.face);
+                    wrapper.style.setProperty('--scroll-cubes-border', `1.5px solid ${palette.border}`);
+                    wrapper.style.setProperty('--scroll-cubes-shadow', palette.shadow);
+                    wrapper.style.background = palette.backdrop;
+                    wrapper.style.boxShadow = palette.shadow;
+                    faces.forEach((face) => {
+                        face.style.backgroundColor = CONFIG.faceColor;
+                        face.style.border = CONFIG.borderStyle;
+                    });
+                }
+
+                applyPalette(buildCubePalette());
+
+                return {
+                    setPalette(palette) {
+                        applyPalette(palette || buildCubePalette());
+                        resetAll();
+                    }
+                };
+            }
         });
     </script>
+
+    <div class="scroll-cubes" id="scrollCubes" aria-hidden="true">
+        <div class="scroll-cubes__wrapper" id="scrollCubesWrapper">
+            <div class="scroll-cubes__scene"></div>
+        </div>
+    </div>
 
     <!-- Scroll Down Indicator -->
     <div class="scroll-indicator" id="scrollIndicator">
