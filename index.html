@@ -307,6 +307,9 @@
             }
 
             .layout {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
                 padding: 2.5rem 1.25rem 3rem;
             }
 
@@ -1231,6 +1234,15 @@
                 </div>
             </div>
             
+            <div class="theme-switcher card">
+                <h3 class="eyebrow">Theme</h3>
+                <div class="theme-options">
+                    <button data-theme="gold-dark" title="Dark mode with gold accents">Gold</button>
+                    <button data-theme="green-dark" title="Dark mode with green accents">Green</button>
+                    <button data-theme="light" title="Light mode">Light</button>
+                </div>
+            </div>
+
             <nav class="main-nav card" aria-label="Table of contents">
                 <ul>
                     <li><a href="#positions" class="nav-link"><svg class="icon nav-icon" aria-hidden="true"><use href="#icon-positions"></use></svg><span>Positions</span></a></li>
@@ -1241,7 +1253,7 @@
                     <li><a href="#experiences" class="nav-link"><svg class="icon nav-icon" aria-hidden="true"><use href="#icon-experiences"></use></svg><span>Experiences</span></a></li>
                     <li><a href="#research" class="nav-link"><svg class="icon nav-icon" aria-hidden="true"><use href="#icon-research"></use></svg><span>Research</span></a></li>
                     <li><a href="#bibliography" class="nav-link"><svg class="icon nav-icon" aria-hidden="true"><use href="#icon-bibliography"></use></svg><span>Bibliography</span></a></li>
-                    <li><a href="#tools" class="nav-link"><svg class="icon nav-icon" aria-hidden="true"><use href="#icon-tools"></use></svg><span>Tools</span></a></li>
+                    <li><a href="#tools" class="nav-link"><svg class="icon nav-icon" aria-hidden="true"><use href="#icon-tools"></use></svg><span>Web Apps &amp; Tools</span></a></li>
                     <li><a href="#hobbies" class="nav-link"><svg class="icon nav-icon" aria-hidden="true"><use href="#icon-hobbies"></use></svg><span>Hobbies</span></a></li>
                 </ul>
             </nav>
@@ -1257,14 +1269,6 @@
                 </form>
             </div>
             
-            <div class="theme-switcher card">
-                <h3 class="eyebrow">Theme</h3>
-                <div class="theme-options">
-                    <button data-theme="gold-dark" title="Dark mode with gold accents">Gold</button>
-                    <button data-theme="green-dark" title="Dark mode with green accents">Green</button>
-                    <button data-theme="light" title="Light mode">Light</button>
-                </div>
-            </div>
         </aside>
 
         <main class="main-content">
@@ -1706,7 +1710,7 @@
                     </button>
                     <h2><svg class="icon section-icon" aria-hidden="true"><use href="#icon-bibliography"></use></svg>Bibliography</h2>
                 </div>
-                <div class="tabs-container card reveal-on-scroll">
+                <div class="tabs-container card">
                     <div class="tab-list" role="tablist" aria-label="Bibliography Sections">
                         <button class="tab-button active" role="tab" aria-selected="true" aria-controls="panel-articles" id="tab-articles">Manuscripts</button>
                         <button class="tab-button" role="tab" aria-selected="false" aria-controls="panel-books" id="tab-books">Books</button>
@@ -1866,7 +1870,7 @@
                     <button class="copy-link-btn" title="Copy link to this section">
                         <svg class="icon"><use href="#icon-link"></use></svg>
                     </button>
-                    <h2><svg class="icon section-icon" aria-hidden="true"><use href="#icon-tools"></use></svg>Tools and Web Applications</h2>
+                    <h2><svg class="icon section-icon" aria-hidden="true"><use href="#icon-tools"></use></svg>Web Applications &amp; Tools</h2>
                 </div>
 
                 <div class="card reveal-on-scroll">
