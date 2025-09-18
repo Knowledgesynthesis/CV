@@ -344,7 +344,75 @@
                 display: block;
             }
         }
-        
+
+        /* Scroll Down Indicator */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--muted);
+            font-size: 0.875rem;
+            z-index: 100;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .scroll-indicator.visible {
+            opacity: 1;
+        }
+
+        .scroll-indicator-text {
+            text-align: center;
+            font-weight: 500;
+            letter-spacing: 0.025em;
+        }
+
+        .scroll-indicator-arrow {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator-arrow::after {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-right: 2px solid var(--accent);
+            border-bottom: 2px solid var(--accent);
+            transform: rotate(45deg);
+            margin-top: -2px;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-8px);
+            }
+            60% {
+                transform: translateY(-4px);
+            }
+        }
+
+        /* Show scroll indicator only on mobile/tablet */
+        @media (max-width: 1200px) {
+            .scroll-indicator {
+                display: flex;
+            }
+        }
+
         .eyebrow {
             text-transform: uppercase;
             font-size: clamp(0.75rem, 0.5vw + 0.6rem, 0.9rem);
@@ -2217,6 +2285,41 @@
 
             sections.forEach(section => scrollSpyObserver.observe(section));
 
+            // --------------------------------------------------------------------------
+            // SCROLL DOWN INDICATOR
+            // --------------------------------------------------------------------------
+            const scrollIndicator = document.getElementById('scrollIndicator');
+            let indicatorHidden = false;
+
+            // Show indicator on mobile/tablet after page load
+            function showScrollIndicator() {
+                if (window.innerWidth <= 1200 && !indicatorHidden) {
+                    setTimeout(() => {
+                        if (!indicatorHidden) {
+                            scrollIndicator.classList.add('visible');
+                        }
+                    }, 1000); // Show after 1 second
+                }
+            }
+
+            // Hide indicator when first card becomes visible
+            const firstCard = revealElements[0];
+            if (firstCard) {
+                const indicatorObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && !indicatorHidden) {
+                            scrollIndicator.classList.remove('visible');
+                            indicatorHidden = true;
+                            indicatorObserver.disconnect();
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                indicatorObserver.observe(firstCard);
+            }
+
+            // Initialize scroll indicator
+            showScrollIndicator();
 
             // --------------------------------------------------------------------------
             // COLLAPSIBLE SECTIONS
@@ -2501,5 +2604,11 @@
             }
         });
     </script>
+
+    <!-- Scroll Down Indicator -->
+    <div class="scroll-indicator" id="scrollIndicator">
+        <div class="scroll-indicator-text">Scroll to explore</div>
+        <div class="scroll-indicator-arrow"></div>
+    </div>
 </body>
 </html>
