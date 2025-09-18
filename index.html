@@ -308,7 +308,7 @@
 
             .layout {
                 display: block;
-                padding: 2rem 1.25rem 3rem;
+                padding: 0 1.25rem 3rem;
             }
 
             .main-content {
@@ -2179,7 +2179,7 @@
                         observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.1 });
+            }, { threshold: 0.05 });
 
             function revealAllCards() {
                 revealElements.forEach(el => el.classList.add('is-visible'));
