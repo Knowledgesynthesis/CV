@@ -307,10 +307,12 @@
             }
 
             .layout {
-                display: flex;
-                flex-direction: column;
-                gap: 2rem;
-                padding: 2.5rem 1.25rem 3rem;
+                display: block;
+                padding: 2rem 1.25rem 3rem;
+            }
+
+            .main-content {
+                margin-top: 0;
             }
 
             .sidebar {
@@ -1710,7 +1712,7 @@
                     </button>
                     <h2><svg class="icon section-icon" aria-hidden="true"><use href="#icon-bibliography"></use></svg>Bibliography</h2>
                 </div>
-                <div class="tabs-container card">
+                <div class="tabs-container card reveal-on-scroll">
                     <div class="tab-list" role="tablist" aria-label="Bibliography Sections">
                         <button class="tab-button active" role="tab" aria-selected="true" aria-controls="panel-articles" id="tab-articles">Manuscripts</button>
                         <button class="tab-button" role="tab" aria-selected="false" aria-controls="panel-books" id="tab-books">Books</button>
