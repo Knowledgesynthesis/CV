@@ -446,11 +446,11 @@
             border-radius: 18px;
             position: relative;
             overflow: hidden;
-            background:
+            background: var(--scroll-cubes-backdrop,
                 radial-gradient(140% 120% at 50% 20%,
                     color-mix(in srgb, var(--accent) 28%, transparent) 0%,
-                    color-mix(in srgb, var(--bg-1) 90%, transparent) 100%);
-            box-shadow: var(--shadow-elevation-medium);
+                    color-mix(in srgb, var(--bg-1) 90%, transparent) 100%));
+            box-shadow: var(--scroll-cubes-shadow, var(--shadow-elevation-medium));
         }
 
         @media (max-width: 600px) {
@@ -496,8 +496,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--scroll-cubes-face, rgba(255, 255, 255, 0.04));
-            border: var(--scroll-cubes-border, 1.5px solid rgba(255, 255, 255, 0.12));
+            background: var(--scroll-cubes-face, rgba(255, 255, 255, 0.08));
+            border: var(--scroll-cubes-border, 2px dashed rgba(255, 255, 255, 0.28));
             box-shadow: var(--scroll-cubes-shadow, none);
             opacity: 1;
             will-change: background-color;
@@ -2887,22 +2887,21 @@
             function buildCubePalette() {
                 const styles = getComputedStyle(docElement);
                 const accent = sanitizeColor(styles.getPropertyValue('--accent')) || '#d7b56d';
-                const accentInk = sanitizeColor(styles.getPropertyValue('--accent-ink')) || '#41351b';
+                const bg0 = sanitizeColor(styles.getPropertyValue('--bg-0')) || '#0d0f12';
                 const bg1 = sanitizeColor(styles.getPropertyValue('--bg-1')) || '#111318';
                 const bg2 = sanitizeColor(styles.getPropertyValue('--bg-2')) || '#171a21';
                 const text = sanitizeColor(styles.getPropertyValue('--text')) || '#e8eaec';
 
-                const face = mixColors(bg2, accent, 0.22);
-                const border = mixColors(accent, text, 0.35);
-                const shadow = `0 16px 36px ${addAlpha(accent, 0.28)}`;
-                const backdrop = `radial-gradient(140% 120% at 50% 20%, ${addAlpha(accent, 0.45)} 0%, ${addAlpha(bg1, 0.88)} 58%, ${addAlpha(bg2, 1)} 100%)`;
+                const face = mixColors(bg2, accent, 0.18);
+                const borderColor = mixColors(accent, text, 0.45);
+                const ripple = mixColors(accent, '#ffffff', 0.32);
+                const shadow = `0 24px 48px ${addAlpha(accent, 0.22)}`;
+                const backdrop = `radial-gradient(1200px 900px at 50% 18%, ${addAlpha(accent, 0.42)} 0%, ${addAlpha(bg1, 0.9)} 60%, ${addAlpha(bg0, 0.96)} 100%)`;
 
                 return {
-                    accent,
-                    accentInk,
                     face,
-                    border,
-                    ripple: accent,
+                    borderStyle: `2px dashed ${borderColor}`,
+                    ripple,
                     shadow,
                     backdrop
                 };
@@ -2918,23 +2917,23 @@
                 }
 
                 const CONFIG = {
-                    gridSize: 6,
+                    gridSize: 8,
                     cubeSize: undefined,
-                    maxAngle: 52,
-                    radius: 3.3,
-                    duration: { enter: 0.28, leave: 0.6 },
+                    maxAngle: 60,
+                    radius: 4,
+                    duration: { enter: 0.3, leave: 0.6 },
                     easing: 'power3.out',
                     autoAnimate: true,
                     rippleOnClick: true,
-                    rippleSpeed: 1.6,
+                    rippleSpeed: 1.5,
                     faceColor: '#1a1a2e',
                     rippleColor: '#d7b56d',
-                    borderStyle: '1.5px solid #d7b56d'
+                    borderStyle: '2px dashed #d7b56d'
                 };
 
-                wrapper.style.setProperty('--scroll-cubes-col-gap', '4%');
-                wrapper.style.setProperty('--scroll-cubes-row-gap', '4%');
-                wrapper.style.setProperty('--scroll-cubes-perspective', '2000px');
+                wrapper.style.setProperty('--scroll-cubes-col-gap', '5%');
+                wrapper.style.setProperty('--scroll-cubes-row-gap', '5%');
+                wrapper.style.setProperty('--scroll-cubes-perspective', '2600px');
                 scene.style.touchAction = 'manipulation';
 
                 const G = CONFIG.gridSize;
@@ -2958,8 +2957,9 @@
                     for (let c = 0; c < G; c += 1) {
                         const cube = document.createElement('div');
                         cube.className = 'scroll-cubes__cube';
-                        cube.dataset.row = r;
-                        cube.dataset.col = c;
+                        cube.dataset.row = String(r);
+                        cube.dataset.col = String(c);
+                        cube.style.transform = 'rotateX(0deg) rotateY(0deg)';
 
                         ['top', 'bottom', 'left', 'right', 'front', 'back'].forEach((name) => {
                             const face = document.createElement('div');
@@ -3025,9 +3025,9 @@
                         const r = Math.round(fromRGB.r + (toRGB.r - fromRGB.r) * eased);
                         const g = Math.round(fromRGB.g + (toRGB.g - fromRGB.g) * eased);
                         const b = Math.round(fromRGB.b + (toRGB.b - fromRGB.b) * eased);
-                        targetFaces.forEach((face) => {
-                            face.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
-                        });
+                        for (let i = 0; i < targetFaces.length; i += 1) {
+                            targetFaces[i].style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+                        }
                         if (progress < 1) {
                             requestAnimationFrame(step);
                         }
@@ -3085,19 +3085,7 @@
 
                     idleTimerRef.id = setTimeout(() => {
                         userActiveRef.val = false;
-                    }, 3000);
-                }
-
-                function onPointerDown() {
-                    userActiveRef.val = true;
-                    clearTimeout(idleTimerRef.id);
-                }
-
-                function onPointerUp() {
-                    resetAll();
-                    idleTimerRef.id = setTimeout(() => {
-                        userActiveRef.val = false;
-                    }, 600);
+                    }, 2600);
                 }
 
                 function onPointerLeave() {
@@ -3105,10 +3093,46 @@
                 }
 
                 scene.addEventListener('pointermove', onPointerMove);
-                scene.addEventListener('pointerdown', onPointerDown);
-                scene.addEventListener('pointerup', onPointerUp);
-                scene.addEventListener('pointercancel', onPointerUp);
                 scene.addEventListener('pointerleave', onPointerLeave);
+
+                function onTouchMove(e) {
+                    if (!e.touches || !e.touches.length) {
+                        return;
+                    }
+                    e.preventDefault();
+                    userActiveRef.val = true;
+                    clearTimeout(idleTimerRef.id);
+
+                    const rect = scene.getBoundingClientRect();
+                    const cellW = rect.width / G;
+                    const cellH = rect.height / G;
+                    const touch = e.touches[0];
+                    const colCenter = (touch.clientX - rect.left) / cellW;
+                    const rowCenter = (touch.clientY - rect.top) / cellH;
+
+                    schedule(() => tiltAt(rowCenter, colCenter));
+
+                    idleTimerRef.id = setTimeout(() => {
+                        userActiveRef.val = false;
+                    }, 2600);
+                }
+
+                function onTouchStart() {
+                    userActiveRef.val = true;
+                    clearTimeout(idleTimerRef.id);
+                }
+
+                function onTouchEnd() {
+                    resetAll();
+                    idleTimerRef.id = setTimeout(() => {
+                        userActiveRef.val = false;
+                    }, 1200);
+                }
+
+                scene.addEventListener('touchmove', onTouchMove, { passive: false });
+                scene.addEventListener('touchstart', onTouchStart, { passive: true });
+                scene.addEventListener('touchend', onTouchEnd, { passive: true });
+                scene.addEventListener('touchcancel', onTouchEnd, { passive: true });
                 scene.addEventListener('click', onClick);
 
                 function onClick(e) {
@@ -3204,16 +3228,17 @@
 
                     CONFIG.faceColor = palette.face;
                     CONFIG.rippleColor = palette.ripple;
-                    CONFIG.borderStyle = `1.5px solid ${palette.border}`;
+                    CONFIG.borderStyle = palette.borderStyle;
                     wrapper.style.setProperty('--scroll-cubes-face', palette.face);
-                    wrapper.style.setProperty('--scroll-cubes-border', `1.5px solid ${palette.border}`);
+                    wrapper.style.setProperty('--scroll-cubes-border', palette.borderStyle);
                     wrapper.style.setProperty('--scroll-cubes-shadow', palette.shadow);
+                    wrapper.style.setProperty('--scroll-cubes-backdrop', palette.backdrop);
                     wrapper.style.background = palette.backdrop;
                     wrapper.style.boxShadow = palette.shadow;
-                    faces.forEach((face) => {
-                        face.style.backgroundColor = CONFIG.faceColor;
-                        face.style.border = CONFIG.borderStyle;
-                    });
+                    for (let i = 0; i < faces.length; i += 1) {
+                        faces[i].style.backgroundColor = CONFIG.faceColor;
+                        faces[i].style.border = CONFIG.borderStyle;
+                    }
                 }
 
                 applyPalette(buildCubePalette());
