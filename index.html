@@ -98,6 +98,139 @@
             cursor: pointer;
         }
 
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        .mobile-topbar {
+            display: none;
+        }
+
+        .mobile-menu-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: var(--bg-2);
+            color: var(--text);
+            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .mobile-menu-toggle:hover {
+            background-color: var(--accent);
+            color: var(--accent-ink);
+            border-color: transparent;
+        }
+
+        .mobile-menu-toggle:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .mobile-menu-toggle .icon {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        .mobile-topbar__title {
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            font-size: 1rem;
+        }
+
+        .sidebar-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(13, 15, 18, 0.65);
+            backdrop-filter: blur(2px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 180;
+        }
+
+        .sidebar-backdrop.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .sidebar-close {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: var(--bg-1);
+            color: var(--muted);
+            align-self: flex-end;
+            margin-bottom: 1rem;
+            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .sidebar-close:hover {
+            background-color: var(--accent);
+            color: var(--accent-ink);
+            border-color: transparent;
+        }
+
+        .sidebar-close:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .sidebar-close .icon {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            margin-top: 0.75rem;
+        }
+
+        .search-submit {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: var(--bg-2);
+            color: var(--accent);
+            flex-shrink: 0;
+            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .search-submit:hover {
+            background-color: var(--accent);
+            color: var(--accent-ink);
+            border-color: transparent;
+        }
+
+        .search-submit:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
         h1, h2, h3, h4, h5, h6 {
             line-height: 1.2;
             text-wrap: balance;
@@ -132,7 +265,7 @@
             width: 0;
             height: 3px;
             background-color: var(--accent);
-            z-index: 100;
+            z-index: 220;
             transition: width 0.1s linear;
         }
 
@@ -149,6 +282,61 @@
             .layout {
                 grid-template-columns: minmax(280px, 1fr) 3fr;
                 padding: 4rem 2rem;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .mobile-topbar {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1rem;
+                padding: 1rem 1.25rem;
+                background:
+                    linear-gradient(145deg,
+                        var(--bg-0),
+                        color-mix(in srgb, var(--accent) 6%, var(--bg-0)));
+                border-bottom: 1px solid var(--line);
+                position: sticky;
+                top: 0;
+                z-index: 150;
+            }
+
+            .mobile-topbar__title {
+                font-size: 0.95rem;
+            }
+
+            .layout {
+                padding: 2.5rem 1.25rem 3rem;
+            }
+
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                width: min(90vw, 360px);
+                padding: 1.5rem 1.25rem 3rem;
+                border-right: 1px solid var(--line);
+                background: var(--bg-0);
+                box-shadow: var(--shadow-elevation-medium);
+                transform: translateX(-105%);
+                z-index: 200;
+                transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+                overflow-y: auto;
+                gap: 1.5rem;
+            }
+
+            .sidebar.is-open {
+                transform: translateX(0);
+            }
+
+            .sidebar-close {
+                display: inline-flex;
+            }
+
+            .sidebar-backdrop {
+                display: block;
             }
         }
         
@@ -733,13 +921,14 @@
         /* Search & Highlighting */
         #cv-search {
             width: 100%;
+            min-width: 0;
             background-color: var(--bg-0);
             border: 1px solid var(--line);
             color: var(--text);
             padding: 0.5rem 0.75rem;
             border-radius: 8px;
             font-size: 0.9rem;
-            margin-top: 0.75rem;
+            margin-top: 0;
         }
         #cv-search:focus {
             outline: 2px solid var(--accent);
@@ -836,6 +1025,11 @@
                 color: var(--text);
             }
             
+            .reveal-on-scroll {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+
             .sidebar, .back-to-top, .reading-progress-bar, .theme-switcher, .hero-actions .btn-secondary {
                 display: none;
             }
@@ -884,6 +1078,19 @@
         </symbol>
         <symbol id="icon-arrow-up" viewBox="0 0 24 24">
             <line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline>
+        </symbol>
+        <symbol id="icon-arrow-right" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+        </symbol>
+        <symbol id="icon-menu" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="6" x2="20" y2="6"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="4" y1="18" x2="20" y2="18"></line>
+        </symbol>
+        <symbol id="icon-close" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="5" x2="19" y2="19"></line>
+            <line x1="19" y1="5" x2="5" y2="19"></line>
         </symbol>
         <symbol id="icon-chevron-down" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -974,11 +1181,23 @@
             <path d="M12 14l1.2 3.2L16 18l-2.8.8L12 22l-1.2-3.2L8 18l2.8-.8Z"></path>
         </symbol>
     </svg>
-    
+
     <div class="reading-progress-bar"></div>
 
+    <header class="mobile-topbar">
+        <button class="mobile-menu-toggle" type="button" aria-controls="site-sidebar" aria-expanded="false" aria-label="Open navigation">
+            <svg class="icon" aria-hidden="true"><use href="#icon-menu"></use></svg>
+            <span>Menu</span>
+        </button>
+        <p class="mobile-topbar__title">Bashar Hasan, MD</p>
+    </header>
+
     <div class="layout">
-        <aside class="sidebar">
+        <aside class="sidebar" id="site-sidebar" tabindex="-1" aria-hidden="false">
+            <button class="sidebar-close" type="button" aria-label="Close navigation">
+                <svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>
+                <span class="sr-only">Close</span>
+            </button>
             <div class="hero-card card">
                 <h1>Bashar Hasan, MD</h1>
                 <p class="role">Research Fellow and Assistant Professor of Medicine</p>
@@ -1029,7 +1248,13 @@
 
             <div class="search-card card">
                 <h3 class="eyebrow" for="cv-search">Highlight in CV</h3>
-                <input type="search" id="cv-search" placeholder="e.g., systematic review, AI, meta-analysis...">
+                <form id="cv-search-form" class="search-form" role="search">
+                    <label class="sr-only" for="cv-search">Highlight text in CV</label>
+                    <input type="search" id="cv-search" name="query" placeholder="e.g. myelofibrosis..." autocomplete="off">
+                    <button class="search-submit" type="submit" aria-label="Highlight term">
+                        <svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+                    </button>
+                </form>
             </div>
             
             <div class="theme-switcher card">
@@ -1759,6 +1984,8 @@
         </main>
     </div>
 
+    <div class="sidebar-backdrop" hidden></div>
+
     <a href="#" class="back-to-top" aria-label="Back to top">
         <svg class="icon"><use href="#icon-arrow-up"></use></svg>
     </a>
@@ -1799,6 +2026,109 @@
                     applyTheme('light');
                 }
             }
+
+
+            // --------------------------------------------------------------------------
+            // MOBILE SIDEBAR TOGGLE
+            // --------------------------------------------------------------------------
+            function initMobileSidebar() {
+                const sidebar = document.getElementById('site-sidebar');
+                const toggleButton = document.querySelector('.mobile-menu-toggle');
+                const closeButton = document.querySelector('.sidebar-close');
+                const backdrop = document.querySelector('.sidebar-backdrop');
+
+                if (!sidebar || !toggleButton || !backdrop) return;
+
+                const toggleIcon = toggleButton.querySelector('use');
+                const mobileQuery = window.matchMedia('(max-width: 1200px)');
+
+                function syncAriaHidden() {
+                    const shouldHide = mobileQuery.matches && !sidebar.classList.contains('is-open');
+                    sidebar.setAttribute('aria-hidden', shouldHide ? 'true' : 'false');
+                }
+
+                function setToggleState(isOpen) {
+                    toggleButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                    toggleButton.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+                    if (toggleIcon) {
+                        toggleIcon.setAttribute('href', isOpen ? '#icon-close' : '#icon-menu');
+                    }
+                }
+
+                function hideBackdrop() {
+                    if (backdrop.hasAttribute('hidden')) return;
+                    setTimeout(() => {
+                        if (!sidebar.classList.contains('is-open')) {
+                            backdrop.setAttribute('hidden', '');
+                        }
+                    }, 320);
+                }
+
+                function openSidebar() {
+                    if (!mobileQuery.matches) return;
+                    sidebar.classList.add('is-open');
+                    document.body.classList.add('menu-open');
+                    backdrop.removeAttribute('hidden');
+                    requestAnimationFrame(() => backdrop.classList.add('visible'));
+                    setToggleState(true);
+                    sidebar.setAttribute('aria-hidden', 'false');
+                    sidebar.focus({ preventScroll: true });
+                }
+
+                function closeSidebar() {
+                    sidebar.classList.remove('is-open');
+                    document.body.classList.remove('menu-open');
+                    backdrop.classList.remove('visible');
+                    setToggleState(false);
+                    syncAriaHidden();
+                    hideBackdrop();
+                }
+
+                toggleButton.addEventListener('click', () => {
+                    if (!mobileQuery.matches) return;
+                    if (sidebar.classList.contains('is-open')) {
+                        closeSidebar();
+                    } else {
+                        openSidebar();
+                    }
+                });
+
+                if (closeButton) {
+                    closeButton.addEventListener('click', closeSidebar);
+                }
+
+                backdrop.addEventListener('click', closeSidebar);
+
+                sidebar.addEventListener('click', (event) => {
+                    const link = event.target.closest('.nav-link');
+                    if (link) {
+                        closeSidebar();
+                    }
+                });
+
+                document.addEventListener('keydown', (event) => {
+                    if (event.key === 'Escape' && sidebar.classList.contains('is-open')) {
+                        closeSidebar();
+                    }
+                });
+
+                document.addEventListener('request-close-sidebar', closeSidebar);
+
+                mobileQuery.addEventListener('change', (event) => {
+                    if (!event.matches) {
+                        closeSidebar();
+                        backdrop.setAttribute('hidden', '');
+                        sidebar.setAttribute('aria-hidden', 'false');
+                    } else {
+                        syncAriaHidden();
+                    }
+                });
+
+                syncAriaHidden();
+                backdrop.setAttribute('hidden', '');
+            }
+
+            initMobileSidebar();
 
 
             // --------------------------------------------------------------------------
@@ -1845,7 +2175,28 @@
                 });
             }, { threshold: 0.1 });
 
+            function revealAllCards() {
+                revealElements.forEach(el => el.classList.add('is-visible'));
+            }
+
             revealElements.forEach(el => revealObserver.observe(el));
+
+            window.addEventListener('beforeprint', revealAllCards);
+
+            const printMediaQuery = window.matchMedia('print');
+            if (printMediaQuery.addEventListener) {
+                printMediaQuery.addEventListener('change', (event) => {
+                    if (event.matches) {
+                        revealAllCards();
+                    }
+                });
+            } else if (printMediaQuery.addListener) {
+                printMediaQuery.addListener((event) => {
+                    if (event.matches) {
+                        revealAllCards();
+                    }
+                });
+            }
 
             const scrollSpyObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -1971,6 +2322,7 @@
                     event.stopPropagation();
                     event.stopImmediatePropagation();
                     triggerBurst(downloadBtn, { spread: 88, count: 18 });
+                    revealAllCards();
                     setTimeout(() => window.print(), 140);
                 }, { capture: true });
             }
@@ -2002,6 +2354,7 @@
             // --------------------------------------------------------------------------
             function initSearchFilter() {
                 const searchInput = document.getElementById('cv-search');
+                const searchForm = document.getElementById('cv-search-form');
                 const content = document.querySelector('.main-content');
 
                 if (!searchInput || !content) return;
@@ -2031,7 +2384,7 @@
                             return NodeFilter.FILTER_SKIP;
                         }
                     });
-                    
+
                     const nodes = [];
                     while(walker.nextNode()) {
                         nodes.push(walker.currentNode);
@@ -2056,9 +2409,30 @@
                     });
                 }
 
-                searchInput.addEventListener('input', () => {
+                function applyHighlight(term, { scrollIntoView = false } = {}) {
+                    const query = term.trim();
                     unmark();
-                    mark(searchInput.value);
+                    if (query.length < 2) return;
+                    mark(query);
+
+                    if (scrollIntoView) {
+                        const firstMatch = content.querySelector('mark');
+                        if (firstMatch) {
+                            firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    }
+                }
+
+                if (searchForm) {
+                    searchForm.addEventListener('submit', (event) => {
+                        event.preventDefault();
+                        applyHighlight(searchInput.value, { scrollIntoView: true });
+                        document.dispatchEvent(new CustomEvent('request-close-sidebar'));
+                    });
+                }
+
+                searchInput.addEventListener('input', () => {
+                    applyHighlight(searchInput.value);
                 });
             }
 
