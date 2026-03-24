@@ -598,43 +598,15 @@ body {
     font-weight: 500;
 }
 
-/* ===== MENTORSHIP TABLE ===== */
-.table-wrapper { overflow-x: auto; border-radius: 12px; box-shadow: var(--card-shadow); }
-.mentorship-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.88rem;
-}
-.mentorship-table thead {
-    background: linear-gradient(135deg, var(--navy), var(--primary-deep));
-}
-.mentorship-table th {
-    padding: 1rem 1.2rem;
-    text-align: left;
-    color: white;
-    font-weight: 600;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-.mentorship-table td {
-    padding: 0.8rem 1.2rem;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-}
-.mentorship-table tbody tr {
-    transition: all 0.3s;
-}
-.mentorship-table tbody tr:nth-child(even) { background: var(--bg-alt); }
-.mentorship-table tbody tr:hover { background: rgba(8, 145, 178, 0.06); }
-.mentee-name { font-weight: 600; color: var(--navy); }
-.pub-badge {
-    display: inline-block;
-    padding: 0.2rem 0.6rem;
-    background: linear-gradient(135deg, var(--accent), #059669);
-    color: white;
-    border-radius: 100px;
-    font-size: 0.75rem;
-    font-weight: 600;
+/* ===== MENTORSHIP ===== */
+.mentorship-summary {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    border-left: 5px solid var(--primary);
+    font-size: 0.95rem;
+    line-height: 1.7;
 }
 
 /* ===== AWARDS ===== */
@@ -906,7 +878,7 @@ Syrian American Medical Society (SAMS)</p>
             </div>
             <div class="timeline-item reveal timeline-right">
                 <div class="timeline-content">
-                    <div class="timeline-date">2014</div>
+                    <div class="timeline-date">03/2014 – 02/2015</div>
                     <h3 class="timeline-title">Surgical Assistant</h3>
                     <p class="timeline-place">Al-Rasheed Hospital, Damascus, Syria</p>
                     
@@ -914,7 +886,7 @@ Syrian American Medical Society (SAMS)</p>
             </div>
             <div class="timeline-item reveal timeline-left">
                 <div class="timeline-content">
-                    <div class="timeline-date">2013</div>
+                    <div class="timeline-date">01/2013 – 03/2014</div>
                     <h3 class="timeline-title">Medical Ward Physician and Surgical Assistant</h3>
                     <p class="timeline-place">New Medical Center, Damascus, Syria</p>
                     
@@ -1837,193 +1809,8 @@ href="https://www.ncbi.nlm.nih.gov/books/NBK549046/">Link</a></li></ol><button c
                 </span>
                 Mentorship
             </h2>
-            <div class="table-wrapper reveal">
-                <table class="mentorship-table">
-                    <thead>
-                        <tr>
-                            <th>Individual</th>
-                            <th>Timeframe</th>
-                            <th>Outcomes</th>
-                            <th>Current Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <tr class="reveal">
-                        <td class="mentee-name">Magdoleen Farah, MBBS</td>
-                        <td>11/2017 – Present</td>
-                        <td><span class="pub-badge">15 publications</span></td>
-                        <td>Research Associate, Mayo Clinic</td>
-                    </tr>
-                    <tr class="reveal">
-                        <td class="mentee-name">Tarek Nayfeh, MD</td>
-                        <td>05/2018 – Present</td>
-                        <td><span class="pub-badge">16 publications</span></td>
-                        <td>Resident, Maryland</td>
-                    </tr>
-                    <tr class="reveal">
-                        <td class="mentee-name">Rami Abd-Rabu, MBBS</td>
-                        <td>05/2019 – Present</td>
-                        <td><span class="pub-badge">10 publications</span></td>
-                        <td>Resident, Ohio</td>
-                    </tr>
-                    <tr class="reveal">
-                        <td class="mentee-name">Sahrish H. Shah, MBBS</td>
-                        <td>06/2019 – Present</td>
-                        <td><span class="pub-badge">9 publications</span></td>
-                        <td>Resident, Pennsylvania</td>
-                    </tr>
-                    <tr class="reveal">
-                        <td class="mentee-name">Mustapha Amin, MD</td>
-                        <td>06/2019 – Present</td>
-                        <td><span class="pub-badge">5 publications</span></td>
-                        <td>Resident, Ohio</td>
-                    </tr>
-                    <tr class="reveal">
-                        <td class="mentee-name">Muayad Alzuabi, MD</td>
-                        <td>06/2018 – 05/2019</td>
-                        <td><span class="pub-badge">2 publications</span></td>
-                        <td>Resident, South Carolina</td>
-                    </tr>
-                    <tr class="reveal">
-                        <td class="mentee-name">Samer Saadi, MD</td>
-                        <td>09/2019 – Present</td>
-                        <td><span class="pub-badge">16 publications</span></td>
-                        <td>Incoming Resident, Florida</td>
-                    </tr>
-                    <tr class="reveal">
-                        <td class="mentee-name">Mohamed Firwana, MBBS</td>
-                        <td>01/2020 – Present</td>
-                        <td><span class="pub-badge">12 publications</span></td>
-                        <td>HCA Peds Incoming Resident, Florida</td>
-                    </tr>
-                    <tr class="reveal">
-                        <td class="mentee-name">Jingyi Ding, MD</td>
-                        <td>06/2018 – 12/2018</td>
-                        <td><span class="pub-badge">2 publications</span></td>
-                        <td>Researcher, China</td>
-                    </tr>
-                    <tr class="reveal">
-                        <td class="mentee-name">Nigar Sofiyeva, MD, PhD</td>
-                        <td>06/2018 – 02/2019</td>
-                        <td><span class="pub-badge">1 publication</span></td>
-                        <td>PhD, Norway</td>
-                    </tr>
-                    <tr class="reveal">
-                        <td class="mentee-name">Rami Rajjoub</td>
-                        <td>05/2019 – 08/2019</td>
-                        <td><span class="pub-badge">6 publications</span></td>
-                        <td>Medical Student, NY</td>
-                    </tr>
-                    <tr class="reveal">
-                        <td class="mentee-name">Tabinda Jawaid, MD</td>
-                        <td>12/2019 – 04/2021</td>
-                        <td><span class="pub-badge">2 publications</span></td>
-                        <td>Resident, Connecticut</td>
-                    </tr>
-                    <tr class="reveal">
-                        <td class="mentee-name">Victor Torres Roldan, MD</td>
-                        <td>12/2019 – 05/2021</td>
-                        <td><span class="pub-badge">3 publications</span></td>
-                        <td>Resident, Arizona</td>
-                    </tr>
-                    <tr class="reveal">
-                        <td class="mentee-name">Merri Urtecho Suarez, MD</td>
-                        <td>08/2019 – 05/2021</td>
-                        <td><span class="pub-badge">7 publications</span></td>
-                        <td>Resident, Arizona</td>
-                    </tr>
-                    <tr class="reveal">
-                        <td class="mentee-name">Yahya Alsawaf, MD</td>
-                        <td>05/2022 – 04/2023</td>
-                        <td><span class="pub-badge">5 publications</span></td>
-                        <td>Resident, Maryland</td>
-                    </tr>
-                    <tr class="reveal">
-                        <td class="mentee-name">Reem Alsibai, MD</td>
-                        <td>08/2022 – 06/2023</td>
-                        <td><span class="pub-badge">2 publications</span></td>
-                        <td>Resident, Virginia</td>
-                    </tr>
-                    <tr class="reveal">
-                        <td class="mentee-name">Alzhraa Abbas, MBBS</td>
-                        <td>08/2022 – Present</td>
-                        <td><span class="pub-badge">3 publications</span></td>
-                        <td>Research Fellow, Mayo Clinic</td>
-                    </tr>
-                    <tr class="reveal">
-                        <td class="mentee-name">Farah Fleti, MD</td>
-                        <td>05/2023 – Present</td>
-                        <td><span class="pub-badge">2 publications</span></td>
-                        <td>Research Fellow, Mayo Clinic</td>
-                    </tr>
-                    <tr class="reveal">
-                        <td class="mentee-name">Mustafa Hegazi, MBBS</td>
-                        <td>07/2023 – Present</td>
-                        <td><span class="pub-badge">2 publications</span></td>
-                        <td>Resident, Florida</td>
-                    </tr>
-                    <tr class="reveal">
-                        <td class="mentee-name">Zin Tarakji, MD</td>
-                        <td>10/2023 – Present</td>
-                        <td><span class="pub-badge">2 publications</span></td>
-                        <td>Resident, Michigan</td>
-                    </tr>
-                    <tr class="reveal">
-                        <td class="mentee-name">Mohammad Al-Kordi, MD</td>
-                        <td>07/2023 – Present</td>
-                        <td><span class="pub-badge">2 publications</span></td>
-                        <td>Research Fellow, Mayo Clinic</td>
-                    </tr>
-                    <tr class="reveal">
-                        <td class="mentee-name">Mohammed Abu-Salih, MBBS</td>
-                        <td>10/2023 – Present</td>
-                        <td><span class="pub-badge">2 publications</span></td>
-                        <td>Hospitalist, Texas</td>
-                    </tr>
-                    <tr class="reveal">
-                        <td class="mentee-name">Dima Bechenati, MD</td>
-                        <td>05/2024 – Present</td>
-                        <td><span class="pub-badge">2 publications</span></td>
-                        <td>Incoming Resident, California</td>
-                    </tr>
-                    <tr class="reveal">
-                        <td class="mentee-name">Adel Kabbara Allababidi, MD</td>
-                        <td>05/2024 – Present</td>
-                        <td><span class="pub-badge">2 publications</span></td>
-                        <td>Resident, Illinois</td>
-                    </tr>
-                    <tr class="reveal">
-                        <td class="mentee-name">Sammy Murad</td>
-                        <td>05/2024 – Present</td>
-                        <td><span class="pub-badge">2 publications</span></td>
-                        <td>PhD Student, Illinois</td>
-                    </tr>
-                    <tr class="reveal">
-                        <td class="mentee-name">Hannah Bethel</td>
-                        <td>05/2024 – Present</td>
-                        <td><span class="pub-badge">3 publications</span></td>
-                        <td>College Student, FL</td>
-                    </tr>
-                    <tr class="reveal">
-                        <td class="mentee-name">Sydney Cho</td>
-                        <td>05/2024 – Present</td>
-                        <td><span class="pub-badge">2 publications</span></td>
-                        <td>College Student</td>
-                    </tr>
-                    <tr class="reveal">
-                        <td class="mentee-name">Noora Rajjoub</td>
-                        <td>08/2023 – Present</td>
-                        <td><span class="pub-badge">3 publications</span></td>
-                        <td>College Student</td>
-                    </tr>
-                    <tr class="reveal">
-                        <td class="mentee-name">Sameh Taki Aldin, MD</td>
-                        <td>03/2025 – Present</td>
-                        <td><span class="pub-badge">3 publications</span></td>
-                        <td>Incoming Resident, Illinois</td>
-                    </tr>
-                    </tbody>
-                </table>
+            <div class="mentorship-summary reveal">
+                <p>Mentored <strong>29+ researchers</strong> from diverse international backgrounds, including medical graduates, research fellows, and summer students at various stages of their careers. Mentees have co-authored numerous peer-reviewed publications and have gone on to pursue residency positions, research roles, and advanced degrees across the United States and internationally.</p>
             </div>
         </div>
     </section>
