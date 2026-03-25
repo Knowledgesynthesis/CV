@@ -6,84 +6,128 @@
     <title>Bashar Hasan, MD — Curriculum Vitae</title>
     <meta name="description" content="Curriculum Vitae of Bashar Hasan, MD — Pediatric Resident, Researcher, and Mentor">
     <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Sora:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;900&family=Geologica:wght@300;400;500;600&display=swap');
 
 :root {
-    --primary: #0891B2;
-    --primary-dark: #0E7490;
-    --primary-deep: #155E75;
-    --secondary: #F97316;
-    --secondary-light: #FB923C;
-    --accent: #10B981;
-    --coral: #FB7185;
-    --navy: #0F172A;
-    --slate: #1E293B;
-    --text: #334155;
-    --text-light: #64748B;
-    --bg: #FFFBF5;
-    --bg-alt: #F0F9FF;
-    --white: #FFFFFF;
-    --card-shadow: 0 4px 24px rgba(14, 116, 144, 0.08);
-    --card-hover: 0 12px 40px rgba(14, 116, 144, 0.15);
+    /* Colors */
+    --teal:        #1DBFA6;
+    --teal-light:  #4DD4C2;
+    --teal-bg:     #E7F8F5;
+    --coral:       #FF6B5E;
+    --coral-light: #FF8F85;
+    --coral-bg:    #FFF1EF;
+    --lavender:    #8B7CF6;
+    --lav-light:   #A997FF;
+    --lavender-bg: #EEEAFF;
+    --mint:        #3CC88A;
+    --mint-light:  #6DDAAC;
+    --mint-bg:     #EAFBF3;
+    --yellow:      #FFB547;
+    --yel-light:   #FFCC7A;
+    --yellow-bg:   #FFF8EC;
+
+    /* Neutrals */
+    --dark:        #0F0F1A;
+    --dark-2:      #1A1A2C;
+    --text:        #22223A;
+    --text-muted:  #6E6E8A;
+    --bg:          #FAFAF7;
+    --bg-alt:      #F4F4F0;
+    --white:       #FFFFFF;
+    --border:      rgba(0,0,0,0.07);
+
+    /* Typography */
+    --font-head:   'Rubik', sans-serif;
+    --font-body:   'Geologica', sans-serif;
+
+    /* Shadows */
+    --shadow-sm:   0 2px 12px rgba(0,0,0,0.06);
+    --shadow-md:   0 6px 28px rgba(0,0,0,0.09);
+    --shadow-lg:   0 16px 48px rgba(0,0,0,0.12);
+
+    /* Radius */
+    --radius-sm:   10px;
+    --radius-md:   16px;
+    --radius-lg:   24px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; font-size: 16px; }
 
 body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    color: var(--text);
+    font-family: var(--font-body);
     background: var(--bg);
+    color: var(--text);
     line-height: 1.65;
-    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
+a { color: inherit; text-decoration: none; }
+
 .container {
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
-/* ===== NAVIGATION ===== */
+/* ===== NAV ===== */
 .nav {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background: rgba(255, 251, 245, 0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(14, 116, 144, 0.1);
-    transform: translateY(-100%);
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(250,250,247,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
-.nav.visible { transform: translateY(0); }
+.nav.scrolled {
+    border-color: var(--border);
+    box-shadow: var(--shadow-sm);
+}
 .nav-inner {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0.7rem 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 64px;
 }
-.nav-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem;
+.nav-logo {
+    font-family: var(--font-head);
     font-weight: 700;
-    color: var(--navy);
+    font-size: 1rem;
+    letter-spacing: -0.02em;
+    color: var(--text);
 }
-.nav-links { display: flex; gap: 1.5rem; }
+.nav-logo span { color: var(--teal); }
+.nav-links {
+    display: flex;
+    gap: 0.25rem;
+}
 .nav-links a {
-    font-size: 0.8rem;
+    font-family: var(--font-head);
+    font-size: 0.85rem;
     font-weight: 500;
-    color: var(--text-light);
-    text-decoration: none;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-    transition: color 0.3s;
+    color: var(--text-muted);
+    padding: 0.4rem 0.75rem;
+    border-radius: 8px;
+    transition: color 0.2s, background 0.2s;
+    white-space: nowrap;
 }
-.nav-links a:hover { color: var(--primary); }
+.nav-links a:hover {
+    color: var(--text);
+    background: var(--border);
+}
+.nav-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.4rem;
+    color: var(--text);
+}
 
 /* ===== HERO ===== */
 .hero {
@@ -92,623 +136,874 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
+    padding: 7rem 2rem 5rem;
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, #0F172A 0%, #155E75 40%, #0891B2 70%, #0EA5E9 100%);
+    background: var(--bg);
 }
-.hero-shapes {
+
+/* Hero grid layers */
+.hero-grid-bg,
+.hero-grid-fg {
     position: absolute;
     inset: 0;
     pointer-events: none;
 }
-.shape {
+.hero-grid-bg {
+    z-index: 0;
+    opacity: 0.05;
+    color: var(--text);
+}
+.hero-grid-fg {
+    z-index: 0;
+    opacity: 0.4;
+    color: var(--text);
+    -webkit-mask-image: radial-gradient(300px circle at -999px -999px, black, transparent);
+    mask-image: radial-gradient(300px circle at -999px -999px, black, transparent);
+    transition: none;
+}
+
+.hero-blob {
     position: absolute;
     border-radius: 50%;
-    opacity: 0.08;
-    background: white;
+    filter: blur(80px);
+    opacity: 0.45;
+    pointer-events: none;
 }
-.shape-1 { width: 400px; height: 400px; top: -100px; right: -100px; animation: float1 20s ease-in-out infinite; }
-.shape-2 { width: 250px; height: 250px; bottom: 10%; left: -50px; animation: float2 25s ease-in-out infinite; }
-.shape-3 { width: 150px; height: 150px; top: 30%; right: 15%; animation: float3 18s ease-in-out infinite; border-radius: 30%; }
-.shape-4 { width: 80px; height: 80px; bottom: 30%; right: 25%; animation: float1 15s ease-in-out infinite reverse; background: var(--secondary); opacity: 0.12; }
-.shape-5 { width: 120px; height: 120px; top: 15%; left: 20%; animation: float2 22s ease-in-out infinite; background: var(--accent); opacity: 0.1; border-radius: 40%; }
-.shape-6 { width: 200px; height: 200px; bottom: -50px; left: 40%; animation: float3 28s ease-in-out infinite; background: var(--coral); opacity: 0.06; }
+.hero-blob-1 {
+    width: 500px; height: 500px;
+    background: var(--lavender-bg);
+    top: -100px; right: -80px;
+}
+.hero-blob-2 {
+    width: 400px; height: 400px;
+    background: var(--mint-bg);
+    bottom: -80px; left: -60px;
+}
+.hero-blob-3 {
+    width: 300px; height: 300px;
+    background: var(--coral-bg);
+    top: 40%; left: 55%;
+    transform: translate(-50%,-50%);
+}
 
-@keyframes float1 { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 33% { transform: translate(30px, -30px) rotate(10deg); } 66% { transform: translate(-20px, 20px) rotate(-5deg); } }
-@keyframes float2 { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 50% { transform: translate(-40px, -20px) rotate(-15deg); } }
-@keyframes float3 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(20px, -30px) scale(1.1); } }
-
-.hero-content {
-    text-align: center;
+.hero-inner {
+    position: relative;
     z-index: 1;
-    animation: fadeUp 1s ease-out;
+    max-width: 780px;
 }
-.hero-badge {
+
+.hero-label {
     display: inline-block;
+    font-family: var(--font-head);
     font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--secondary-light);
-    border: 1px solid rgba(249, 115, 22, 0.4);
-    padding: 0.4rem 1.2rem;
+    color: var(--teal);
+    background: var(--teal-bg);
+    padding: 0.45rem 1.2rem;
     border-radius: 100px;
-    margin-bottom: 1.5rem;
-    animation: fadeUp 1s ease-out 0.2s both;
-}
-.hero-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    font-weight: 700;
-    color: white;
-    line-height: 1.1;
-    margin-bottom: 0.5rem;
-    animation: fadeUp 1s ease-out 0.4s both;
-}
-.hero-title {
-    font-size: clamp(1rem, 2vw, 1.3rem);
-    font-weight: 300;
-    color: rgba(255,255,255,0.85);
-    margin-bottom: 0.3rem;
-    animation: fadeUp 1s ease-out 0.6s both;
-}
-.hero-affiliation {
-    font-size: 0.9rem;
-    color: rgba(255,255,255,0.6);
     margin-bottom: 2rem;
-    animation: fadeUp 1s ease-out 0.7s both;
-}
-.hero-links {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    animation: fadeUp 1s ease-out 0.8s both;
-}
-.hero-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.1);
-    color: white;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255,255,255,0.15);
-}
-.hero-link:hover {
-    background: rgba(255,255,255,0.2);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
 }
 
-.scroll-indicator {
+.hero-name {
+    font-family: var(--font-head);
+    font-weight: 900;
+    font-size: clamp(2.8rem, 6vw, 5.2rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+}
+
+.hero-role {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-head);
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
+}
+.role-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--coral);
+    flex-shrink: 0;
+}
+
+.hero-address {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+}
+
+.hero-links {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.hero-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--font-head);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text);
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 0.5rem 1.1rem 0.5rem 0.9rem;
+    border-radius: 100px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.hero-link:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--teal-light);
+}
+
+.hero-scroll {
     position: absolute;
-    bottom: 2rem;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-    color: rgba(255,255,255,0.5);
     font-size: 0.7rem;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    animation: fadeUp 1s ease-out 1.2s both;
+    color: var(--text-muted);
+    opacity: 0.6;
 }
-.mouse {
-    width: 24px;
-    height: 38px;
-    border: 2px solid rgba(255,255,255,0.4);
-    border-radius: 12px;
-    position: relative;
+.scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, transparent, var(--text-muted));
+    animation: scrollPulse 2s ease-in-out infinite;
 }
-.wheel {
-    width: 4px;
-    height: 8px;
-    background: rgba(255,255,255,0.6);
-    border-radius: 2px;
-    position: absolute;
-    top: 6px;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: scroll-wheel 2s ease-in-out infinite;
+@keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(0.6); }
 }
-@keyframes scroll-wheel { 0% { opacity: 1; transform: translateX(-50%) translateY(0); } 100% { opacity: 0; transform: translateX(-50%) translateY(12px); } }
 
-/* ===== STATS BAR ===== */
-.stats-bar {
-    background: var(--navy);
-    padding: 3rem 0;
-    position: relative;
-}
-.stats-bar::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent), var(--coral));
+/* ===== STATS ===== */
+.stats-section {
+    padding: 4rem 0;
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
 }
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
+    gap: 1.25rem;
+}
+.stat-card {
+    border-radius: var(--radius-md);
+    padding: 2rem 1.5rem;
     text-align: center;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.stat-item { color: white; }
-.stat-icon {
-    color: var(--primary);
+.stat-card:hover { transform: translateY(-4px) scale(1.02); }
+
+.stat-lavender { background: var(--lavender-bg); }
+.stat-mint     { background: var(--mint-bg); }
+.stat-coral    { background: var(--coral-bg); }
+.stat-yellow   { background: var(--yellow-bg); }
+
+.stat-num {
+    font-family: var(--font-head);
+    font-weight: 900;
+    font-size: clamp(2.4rem, 4vw, 3.2rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
     margin-bottom: 0.5rem;
-    display: flex;
-    justify-content: center;
-}
-.stat-number {
-    font-family: 'Sora', sans-serif;
-    font-size: 2.8rem;
-    font-weight: 700;
     display: block;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
 }
+.stat-lavender .stat-num { color: var(--lavender); }
+.stat-mint     .stat-num { color: var(--mint); }
+.stat-coral    .stat-num { color: var(--coral); }
+.stat-yellow   .stat-num { color: var(--yellow); }
+
 .stat-label {
-    font-size: 0.8rem;
-    color: rgba(255,255,255,0.6);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+    font-family: var(--font-head);
+    font-size: 0.82rem;
     font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.01em;
 }
 
-/* ===== SECTIONS ===== */
-.section { padding: 5rem 0; }
-.section-alt { background: var(--bg-alt); }
+/* ===== SECTION COMMONS ===== */
+.cv-section {
+    padding: 5.5rem 0;
+}
+.cv-section-alt {
+    background: var(--bg-alt);
+}
 
-.section-heading {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--navy);
+.section-header {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 2.5rem;
-    position: relative;
+    gap: 1.25rem;
+    margin-bottom: 3rem;
 }
-.section-heading::after {
-    content: '';
+.section-title {
+    font-family: var(--font-head);
+    font-weight: 800;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    letter-spacing: -0.03em;
+    color: var(--text);
+    white-space: nowrap;
+}
+.section-line {
     flex: 1;
     height: 2px;
-    background: linear-gradient(90deg, var(--primary), transparent);
-    margin-left: 1rem;
-}
-.heading-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    color: white;
-    flex-shrink: 0;
+    background: linear-gradient(to right, var(--border), transparent);
+    border-radius: 2px;
 }
 
-/* ===== TIMELINE ===== */
-.timeline {
+/* ===== TIMELINE (POSITIONS) ===== */
+.tl-track {
     position: relative;
-    padding: 1rem 0;
+    padding: 1rem 0 2rem;
 }
-.timeline::before {
+.tl-track::before {
     content: '';
     position: absolute;
     left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: linear-gradient(to bottom, var(--primary), var(--accent));
+    top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--lavender-bg), var(--coral-bg) 50%, var(--mint-bg));
     transform: translateX(-50%);
     border-radius: 2px;
 }
-.timeline-item {
+.tl-item {
     display: flex;
-    margin-bottom: 2rem;
     position: relative;
+    margin-bottom: 1.75rem;
+    width: 50%;
 }
-.timeline-item::before {
-    content: '';
+.tl-left {
+    justify-content: flex-end;
+    padding-right: 2.75rem;
+    align-self: flex-start;
+}
+.tl-right {
+    justify-content: flex-start;
+    padding-left: 2.75rem;
+    margin-left: 50%;
+}
+.tl-dot {
     position: absolute;
-    left: 50%;
-    top: 1.2rem;
-    width: 14px;
-    height: 14px;
-    background: var(--white);
-    border: 3px solid var(--primary);
+    top: 1.4rem;
+    width: 14px; height: 14px;
     border-radius: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
+    border: 3px solid var(--white);
+    box-shadow: 0 0 0 2px currentColor;
+    z-index: 2;
 }
-.timeline-left { justify-content: flex-start; padding-right: 52%; }
-.timeline-right { justify-content: flex-end; padding-left: 52%; }
-.timeline-content {
-    background: var(--white);
-    padding: 1.2rem 1.5rem;
-    border-radius: 12px;
-    box-shadow: var(--card-shadow);
-    transition: all 0.3s ease;
-    border: 1px solid rgba(14, 116, 144, 0.08);
+.tl-left  .tl-dot { right: -7px; }
+.tl-right .tl-dot { left: -7px; }
+
+.tl-dot-lavender { background: var(--lavender); color: var(--lavender); }
+.tl-dot-mint     { background: var(--mint);     color: var(--mint); }
+.tl-dot-coral    { background: var(--coral);    color: var(--coral); }
+.tl-dot-yellow   { background: var(--yellow);   color: var(--yellow); }
+.tl-dot-teal     { background: var(--teal);     color: var(--teal); }
+
+.tl-card {
+    display: flex;
+    gap: 1.1rem;
+    align-items: flex-start;
+    padding: 1.3rem 1.4rem;
+    border-radius: var(--radius-md);
+    width: 100%;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
 }
-.timeline-content:hover {
-    box-shadow: var(--card-hover);
-    transform: translateY(-2px);
+.tl-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
 }
-.timeline-date {
-    font-family: 'Sora', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--primary);
-    margin-bottom: 0.3rem;
+
+/* ===== STEP CARD INTERNALS (shared by timeline cards) ===== */
+.step-card {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
 }
-.timeline-title {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--navy);
-    margin-bottom: 0.2rem;
+.step-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
 }
-.timeline-place {
-    font-size: 0.85rem;
-    color: var(--text-light);
+
+.step-lavender { background: var(--lavender-bg); }
+.step-mint     { background: var(--mint-bg); }
+.step-coral    { background: var(--coral-bg); }
+.step-yellow   { background: var(--yellow-bg); }
+.step-teal     { background: var(--teal-bg); }
+
+.step-num {
+    font-family: var(--font-head);
+    font-size: 1.6rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    flex-shrink: 0;
+    opacity: 0.35;
 }
-.timeline-badge {
+.step-lavender .step-num { color: var(--lavender); }
+.step-mint     .step-num { color: var(--mint); }
+.step-coral    .step-num { color: var(--coral); }
+.step-yellow   .step-num { color: var(--yellow); }
+.step-teal     .step-num { color: var(--teal); }
+
+.step-body { flex: 1; min-width: 0; }
+
+.step-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.35rem;
+}
+.step-title {
+    font-family: var(--font-head);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.3;
+}
+.current-badge {
     display: inline-block;
+    font-family: var(--font-head);
     font-size: 0.65rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 0.2rem 0.7rem;
+    letter-spacing: 0.07em;
+    color: var(--teal);
+    background: var(--teal-bg);
+    border: 1px solid var(--teal-light);
+    padding: 0.15rem 0.5rem;
     border-radius: 100px;
-    margin-top: 0.5rem;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
-.timeline-badge.current {
-    background: linear-gradient(135deg, var(--accent), #059669);
-    color: white;
+.step-place {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-bottom: 0.2rem;
 }
-
-/* ===== EDUCATION ===== */
-.education-content h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem;
-    color: var(--navy);
-    margin-bottom: 0.8rem;
-    padding-bottom: 0.4rem;
-    border-bottom: 2px solid var(--primary);
-    display: inline-block;
+.step-dates {
+    font-family: var(--font-head);
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    opacity: 0.75;
 }
-.education-content h3 {
-    font-size: 1.1rem;
-    color: var(--primary-dark);
-    margin: 1.5rem 0 0.5rem;
-}
-.education-content ol { padding-left: 1.5rem; }
-.education-content li { margin-bottom: 0.4rem; }
-.education-content a { color: var(--primary); text-decoration: none; }
-.education-content a:hover { text-decoration: underline; }
 
 /* ===== RESEARCH INTERESTS ===== */
 .interests-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 1rem;
 }
 .interest-card {
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 1.2rem 1.5rem;
-    background: var(--white);
-    border-radius: 12px;
-    box-shadow: var(--card-shadow);
-    border: 1px solid rgba(14, 116, 144, 0.06);
-    transition: all 0.3s ease;
+    padding: 1.1rem 1.4rem;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-head);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
 }
 .interest-card:hover {
-    box-shadow: var(--card-hover);
     transform: translateY(-3px);
-    border-color: var(--primary);
+    box-shadow: var(--shadow-md);
 }
-.interest-icon { font-size: 1.8rem; }
-.interest-text { font-weight: 500; color: var(--navy); font-size: 0.95rem; }
+.interest-lavender { background: var(--lavender-bg); color: var(--text); }
+.interest-mint     { background: var(--mint-bg); color: var(--text); }
+.interest-coral    { background: var(--coral-bg); color: var(--text); }
+.interest-yellow   { background: var(--yellow-bg); color: var(--text); }
+.interest-teal     { background: var(--teal-bg); color: var(--text); }
+
+.interest-emoji {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+/* ===== PUBLICATIONS (TABS) ===== */
+.tabs-wrapper {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+.tabs-nav {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+.tabs-nav::-webkit-scrollbar { display: none; }
+.tab-btn {
+    font-family: var(--font-head);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    border-bottom: 2.5px solid transparent;
+    padding: 1.1rem 1.4rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s;
+    flex-shrink: 0;
+}
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active {
+    color: var(--lavender);
+    border-bottom-color: var(--lavender);
+    font-weight: 600;
+}
+.tab-count {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    background: var(--lavender-bg);
+    color: var(--lavender);
+    padding: 0.1rem 0.45rem;
+    border-radius: 100px;
+    margin-left: 0.35rem;
+    vertical-align: middle;
+}
+
+.tabs-content { padding: 2rem; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.bib-list {
+    list-style: decimal;
+    padding-left: 1.5rem;
+}
+.bib-item {
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: var(--text);
+    padding: 0.6rem 0.5rem;
+    border-bottom: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    transition: background 0.2s, padding-left 0.2s;
+}
+.bib-item:hover {
+    background: var(--lavender-bg);
+    padding-left: 1rem;
+}
+.bib-item:last-of-type { border-bottom: none; }
+.bib-item strong { color: var(--text); font-weight: 700; }
+.bib-item em { font-style: italic; }
+.bib-item a { color: var(--teal); text-decoration: underline; text-underline-offset: 2px; }
+.bib-item.bib-hidden { display: none; }
+
+.bib-toggle-btn {
+    display: block;
+    margin: 1.25rem auto 0;
+    font-family: var(--font-head);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--lavender);
+    background: var(--lavender-bg);
+    border: none;
+    padding: 0.65rem 1.5rem;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+.bib-toggle-btn:hover {
+    background: var(--lav-light);
+    color: var(--white);
+    transform: translateY(-1px);
+}
+
+/* ===== EDUCATION / PROSE CARD ===== */
+.prose-card {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-sm);
+}
+.prose-card h2 {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text);
+    margin: 1.5rem 0 0.5rem;
+}
+.prose-card h2:first-child { margin-top: 0; }
+.prose-card p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+.prose-card ul, .prose-card ol {
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+.prose-card li {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+}
+.prose-card strong { color: var(--text); font-weight: 600; }
+.prose-card a { color: var(--teal); text-decoration: underline; text-underline-offset: 2px; }
 
 /* ===== EXPERIENCES ===== */
 .exp-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.25rem;
 }
 .exp-card {
+    display: flex;
     background: var(--white);
-    border-radius: 16px;
-    padding: 1.8rem;
-    box-shadow: var(--card-shadow);
-    border: 1px solid rgba(14, 116, 144, 0.06);
-    transition: all 0.3s ease;
-    position: relative;
+    border-radius: var(--radius-md);
     overflow: hidden;
-}
-.exp-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary), var(--accent));
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 .exp-card:hover {
-    box-shadow: var(--card-hover);
-    transform: translateY(-4px);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
 }
+.exp-accent {
+    width: 4px;
+    flex-shrink: 0;
+}
+.exp-teal    .exp-accent { background: var(--teal); }
+.exp-lavender .exp-accent { background: var(--lavender); }
+.exp-coral   .exp-accent { background: var(--coral); }
+.exp-mint    .exp-accent { background: var(--mint); }
+.exp-yellow  .exp-accent { background: var(--yellow); }
+
+.exp-body { padding: 1.4rem 1.4rem 1.4rem 1.2rem; }
 .exp-title {
-    font-size: 1.1rem;
+    font-family: var(--font-head);
+    font-size: 0.95rem;
     font-weight: 700;
-    color: var(--navy);
-    margin-bottom: 0.4rem;
+    color: var(--text);
+    margin-bottom: 0.3rem;
 }
 .exp-meta {
-    font-size: 0.8rem;
-    color: var(--primary);
+    font-size: 0.78rem;
     font-weight: 500;
-    margin-bottom: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
+    font-family: var(--font-head);
 }
-.exp-desc {
-    font-size: 0.9rem;
-    color: var(--text);
-    line-height: 1.6;
-}
-
-/* ===== BIBLIOGRAPHY ===== */
-.bib-section {
-    background: var(--white);
-    border-radius: 12px;
-    margin-bottom: 1rem;
-    box-shadow: var(--card-shadow);
-    border: 1px solid rgba(14, 116, 144, 0.06);
-    overflow: hidden;
-}
-.bib-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.2rem 1.5rem;
-    cursor: pointer;
-    transition: background 0.3s;
-    user-select: none;
-}
-.bib-header:hover { background: var(--bg-alt); }
-.bib-header h3 {
-    font-size: 1.1rem;
-    color: var(--navy);
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-}
-.bib-count {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 28px;
-    height: 28px;
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    color: white;
-    font-size: 0.75rem;
-    font-weight: 700;
-    border-radius: 100px;
-    padding: 0 0.5rem;
-}
-.collapse-icon {
-    color: var(--text-light);
-    transition: transform 0.3s;
-    font-size: 0.8rem;
-}
-.bib-header.open .collapse-icon { transform: rotate(180deg); }
-.bib-body {
-    padding: 0 1.5rem 1.5rem;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s;
-}
-.bib-body.collapsed { max-height: 0; padding-top: 0; padding-bottom: 0; }
-.bib-body.expanded { max-height: 15000px; padding-bottom: 1.5rem; }
-.bib-list {
-    padding-left: 2.5rem;
-    list-style-type: decimal;
-}
-.bib-item {
-    font-size: 0.88rem;
-    line-height: 1.55;
-    margin-bottom: 0.8rem;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid rgba(0,0,0,0.04);
-    transition: all 0.3s;
-}
-.bib-item:hover { background: var(--bg-alt); margin-left: -0.5rem; padding-left: 0.5rem; border-radius: 4px; }
-.bib-item a { color: var(--primary); text-decoration: none; font-weight: 500; }
-.bib-item a:hover { text-decoration: underline; }
-.bib-item em { color: var(--primary-dark); }
-.hidden-item { display: none; }
-.show-more-btn {
-    display: block;
-    margin: 1rem auto 0;
-    padding: 0.6rem 1.5rem;
-    background: transparent;
-    border: 2px solid var(--primary);
-    color: var(--primary);
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 600;
-    border-radius: 100px;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-.show-more-btn:hover {
-    background: var(--primary);
-    color: white;
-}
+.exp-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
 
 /* ===== TEACHING ===== */
-.teaching-list { display: flex; flex-direction: column; gap: 0.6rem; }
-.teaching-item {
+.teach-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+.teach-item {
     display: flex;
     align-items: flex-start;
-    gap: 1rem;
-    padding: 0.8rem 1rem;
+    gap: 1.1rem;
     background: var(--white);
-    border-radius: 10px;
-    border: 1px solid rgba(14, 116, 144, 0.06);
-    transition: all 0.3s;
+    border-radius: var(--radius-sm);
+    padding: 1rem 1.25rem;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.25s;
 }
-.teaching-item:hover {
-    box-shadow: var(--card-shadow);
-    transform: translateX(4px);
-    border-color: var(--primary);
-}
-.teaching-num {
-    font-family: 'Sora', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: white;
-    background: var(--primary);
-    min-width: 28px;
-    height: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.teach-item:hover { transform: translateX(4px); }
+
+.teach-num {
+    font-family: var(--font-head);
+    font-size: 0.82rem;
+    font-weight: 800;
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
     border-radius: 8px;
     flex-shrink: 0;
-    margin-top: 0.1rem;
+    letter-spacing: -0.02em;
 }
-.teaching-content { flex: 1; }
-.teaching-title { font-size: 0.9rem; color: var(--navy); display: block; }
-.teaching-date {
-    font-size: 0.78rem;
-    color: var(--text-light);
+.teach-lavender { background: var(--lavender-bg); color: var(--lavender); }
+.teach-mint     { background: var(--mint-bg); color: var(--mint); }
+.teach-coral    { background: var(--coral-bg); color: var(--coral); }
+.teach-yellow   { background: var(--yellow-bg); color: var(--yellow); }
+.teach-teal     { background: var(--teal-bg); color: var(--teal); }
+
+.teach-body { flex: 1; min-width: 0; }
+.teach-title {
+    display: block;
+    font-family: var(--font-head);
+    font-size: 0.88rem;
     font-weight: 500;
+    color: var(--text);
+    line-height: 1.4;
+}
+.teach-date {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+    font-family: var(--font-head);
 }
 
 /* ===== MENTORSHIP ===== */
-.mentorship-summary {
+.mentorship-card {
     background: var(--white);
-    padding: 2rem;
-    border-radius: 16px;
-    box-shadow: var(--card-shadow);
-    border-left: 5px solid var(--primary);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+}
+.mentorship-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex-shrink: 0;
+}
+.mentorship-num {
+    font-family: var(--font-head);
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--mint);
+}
+.mentorship-label {
+    font-family: var(--font-head);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-top: 0.4rem;
+}
+.mentorship-text p {
     font-size: 0.95rem;
-    line-height: 1.7;
+    line-height: 1.75;
+    color: var(--text-muted);
 }
 
 /* ===== AWARDS ===== */
 .award-card {
-    background: var(--white);
-    padding: 2rem;
-    border-radius: 16px;
-    box-shadow: var(--card-shadow);
-    border-left: 5px solid var(--secondary);
-    font-size: 0.95rem;
-    line-height: 1.7;
+    border-left: 4px solid var(--coral);
 }
 
-/* ===== FOOTER CARDS ===== */
-.footer-grid {
+/* ===== MORE SECTION ===== */
+.more-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
 }
-.footer-card {
-    background: var(--white);
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: var(--card-shadow);
+.more-card {
+    border-radius: var(--radius-md);
+    padding: 1.75rem;
+    transition: transform 0.25s;
 }
-.footer-card h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem;
-    color: var(--navy);
-    margin-bottom: 0.8rem;
+.more-card:hover { transform: translateY(-3px); }
+.more-lavender { background: var(--lavender-bg); }
+.more-mint     { background: var(--mint-bg); }
+.more-coral    { background: var(--coral-bg); }
+
+.more-card h3 {
+    font-family: var(--font-head);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
 }
-.footer-card a { color: var(--primary); text-decoration: none; }
-.footer-card a:hover { text-decoration: underline; }
+.more-lavender h3 { color: var(--lavender); }
+.more-mint     h3 { color: var(--mint); }
+.more-coral    h3 { color: var(--coral); }
+
+.more-card p, .more-card li, .more-card a {
+    font-size: 0.88rem;
+    color: var(--text);
+    line-height: 1.65;
+}
+.more-card a { text-decoration: underline; text-underline-offset: 2px; }
+
 .hobby-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .hobby-tag {
-    padding: 0.35rem 0.9rem;
-    background: linear-gradient(135deg, rgba(8,145,178,0.1), rgba(16,185,129,0.1));
-    color: var(--primary-dark);
+    font-family: var(--font-head);
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--mint);
+    background: var(--white);
+    border: 1px solid var(--mint-light);
+    padding: 0.25rem 0.75rem;
     border-radius: 100px;
+}
+
+/* ===== FOOTER CTA (dark) ===== */
+.footer-cta {
+    background: var(--dark);
+    padding: 6rem 0;
+    text-align: center;
+}
+.footer-cta-inner {
+    max-width: 600px;
+    margin: 0 auto;
+}
+.footer-cta-eyebrow {
+    font-family: var(--font-head);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 1rem;
+}
+.footer-cta-name {
+    font-family: var(--font-head);
+    font-weight: 900;
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -0.03em;
+    color: var(--white);
+    margin-bottom: 2.5rem;
+}
+.footer-cta-links {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.footer-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-head);
     font-size: 0.82rem;
     font-weight: 500;
-    transition: all 0.3s;
+    color: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 0.55rem 1.1rem 0.55rem 0.9rem;
+    border-radius: 100px;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
 }
-.hobby-tag:hover {
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    color: white;
-    transform: translateY(-2px);
+.footer-link:hover {
+    color: var(--white);
+    border-color: rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.07);
 }
 
 /* ===== SITE FOOTER ===== */
 .site-footer {
-    background: var(--navy);
-    color: rgba(255,255,255,0.7);
+    background: var(--dark-2);
+    padding: 1.5rem 0;
     text-align: center;
-    padding: 2.5rem 0;
-    font-size: 0.9rem;
+    font-family: var(--font-head);
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.25);
+    border-top: 1px solid rgba(255,255,255,0.05);
 }
-.footer-sub { font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-top: 0.3rem; }
 
-/* ===== ANIMATIONS ===== */
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-.reveal {
+/* ===== BACK TO TOP ===== */
+.back-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 44px; height: 44px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    box-shadow: var(--shadow-md);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(10px);
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: 99;
+    color: var(--text);
 }
-.reveal.visible {
+.back-top.visible {
     opacity: 1;
     transform: translateY(0);
 }
+.back-top:hover {
+    background: var(--teal);
+    color: var(--white);
+    border-color: var(--teal);
+}
+
+/* ===== SCROLL REVEAL (LANGO-STYLE) ===== */
+.reveal {
+    opacity: 0;
+    transform: scale3d(0.92, 0.92, 1) translateY(12px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+    opacity: 1;
+    transform: scale3d(1, 1, 1) translateY(0);
+}
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-    .stat-number { font-size: 2rem; }
-    .timeline::before { left: 20px; }
-    .timeline-item { padding-left: 50px !important; padding-right: 0 !important; justify-content: flex-start !important; }
-    .timeline-item::before { left: 20px; }
+@media (max-width: 900px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .mentorship-card { flex-direction: column; gap: 1.5rem; text-align: center; }
+}
+
+@media (max-width: 700px) {
     .nav-links { display: none; }
-    .section { padding: 3rem 0; }
+    .hero-name { font-size: 2.6rem; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 0.9rem; }
+    .cv-section { padding: 3.5rem 0; }
     .exp-grid { grid-template-columns: 1fr; }
+    .more-grid { grid-template-columns: 1fr; }
+    .interests-grid { grid-template-columns: 1fr; }
+    .footer-cta { padding: 4rem 0; }
+
+    /* Timeline collapses to single column */
+    .tl-track::before { left: 16px; }
+    .tl-item { width: 100%; padding-right: 0 !important; padding-left: 3rem !important; margin-left: 0 !important; }
+    .tl-left .tl-dot,
+    .tl-right .tl-dot { left: 9px; right: auto; }
 }
 
 @media print {
+    .nav, .hero-scroll, .back-top { display: none; }
     .hero { min-height: auto; padding: 2rem; }
-    .hero-shapes, .scroll-indicator, .nav { display: none; }
-    .section { padding: 1.5rem 0; }
+    .cv-section { padding: 2rem 0; }
     .reveal { opacity: 1; transform: none; }
+    .footer-cta { padding: 2rem 0; }
 }
 </style>
 </head>
 <body>
-    <nav class="nav">
+    <nav class="nav" id="nav">
         <div class="nav-inner">
-            <span class="nav-name">Bashar Hasan, MD</span>
+            <span class="nav-logo">BH <span>·</span> Bashar Hasan</span>
             <div class="nav-links">
                 <a href="#education">Education</a>
                 <a href="#positions">Positions</a>
-                <a href="#experiences">Experiences</a>
                 <a href="#publications">Publications</a>
                 <a href="#teaching">Teaching</a>
                 <a href="#mentorship">Mentorship</a>
@@ -718,83 +1013,81 @@ body {
 
     
     <section class="hero" id="top">
-        <div class="hero-shapes">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-            <div class="shape shape-3"></div>
-            <div class="shape shape-4"></div>
-            <div class="shape shape-5"></div>
-            <div class="shape shape-6"></div>
+        <div class="hero-grid-bg">
+            <svg width="100%" height="100%">
+                <defs>
+                    <pattern id="hero-grid-bg" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="1"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#hero-grid-bg)"/>
+            </svg>
         </div>
-        <div class="hero-content">
-            <div class="hero-badge">Curriculum Vitae</div>
+        <div class="hero-grid-fg" id="heroGridFg">
+            <svg width="100%" height="100%">
+                <defs>
+                    <pattern id="hero-grid-fg" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="1"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#hero-grid-fg)"/>
+            </svg>
+        </div>
+        <div class="hero-blob hero-blob-1"></div>
+        <div class="hero-blob hero-blob-2"></div>
+        <div class="hero-blob hero-blob-3"></div>
+        <div class="hero-inner">
+            <div class="hero-label">Curriculum Vitae</div>
             <h1 class="hero-name">Bashar Hasan, MD</h1>
-            <p class="hero-title">Pediatric Resident, HCA Florida Palms West Hospital</p>
-            <p class="hero-affiliation">HCA Florida Palms West Hospital, 13001 Southern Blvd, Loxahatchee, FL 33470</p>
+            <div class="hero-role">
+                <span class="role-dot"></span>
+                <span>Pediatric Resident, HCA Florida Palms West Hospital</span>
+            </div>
+            <p class="hero-address">HCA Florida Palms West Hospital, 13001 Southern Blvd, Loxahatchee, FL 33470</p>
             <div class="hero-links">
-                <a href="https://orcid.org/0000-0001-9531-4990" class="hero-link" title="ORCID" target="_blank">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zM7.5 8.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm1-2.5h-2v10h2V6zm3.5 0h-2v10h2.5c3.5 0 5.5-2 5.5-5s-2-5-5.5-5h-.5zm.5 8h-.5V8h.5c2.5 0 3.5 1.5 3.5 3s-1 3-3.5 3z"/></svg>
-                </a>
-                <a href="https://scholar.google.com/citations?user=H1td4NoAAAAJ&hl=en" class="hero-link" title="Google Scholar" target="_blank">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/></svg>
-                </a>
-                <a href="https://www.linkedin.com/in/bashar-hasan-56490394" class="hero-link" title="LinkedIn" target="_blank">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                </a>
-                <a href="https://github.com/Knowledgesynthesis" class="hero-link" title="GitHub" target="_blank">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-                </a>
-                <a href="https://x.com/BasharHasanMD" class="hero-link" title="X/Twitter" target="_blank">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                </a>
+                <a href="https://orcid.org/0000-0001-9531-4990" class="hero-link" title="ORCID" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zM7.5 8.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm1-2.5h-2v10h2V6zm3.5 0h-2v10h2.5c3.5 0 5.5-2 5.5-5s-2-5-5.5-5h-.5zm.5 8h-.5V8h.5c2.5 0 3.5 1.5 3.5 3s-1 3-3.5 3z"/></svg><span>ORCID</span></a>
+                <a href="https://scholar.google.com/citations?user=H1td4NoAAAAJ&hl=en" class="hero-link" title="Google Scholar" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/></svg><span>Scholar</span></a>
+                <a href="https://www.linkedin.com/in/bashar-hasan-56490394" class="hero-link" title="LinkedIn" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span>LinkedIn</span></a>
+                <a href="https://github.com/Knowledgesynthesis" class="hero-link" title="GitHub" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg><span>GitHub</span></a>
+                <a href="https://x.com/BasharHasanMD" class="hero-link" title="X/Twitter" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span>X</span></a>
             </div>
         </div>
-        <div class="scroll-indicator">
-            <div class="mouse">
-                <div class="wheel"></div>
-            </div>
-            <span>Scroll to explore</span>
+        <div class="hero-scroll">
+            <div class="scroll-line"></div>
+            <span>scroll</span>
         </div>
     </section>
     
-    <section class="stats-bar" id="stats">
+    <section class="stats-section" id="stats">
         <div class="container">
             <div class="stats-grid">
-                <div class="stat-item reveal">
-                    <div class="stat-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/></svg>
-                    </div>
-                    <span class="stat-number" data-target="56">0</span>
-                    <span class="stat-label">Peer-Reviewed Articles</span>
-                </div>
-                <div class="stat-item reveal" style="animation-delay: 0.1s">
-                    <div class="stat-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"/></svg>
-                    </div>
-                    <span class="stat-number" data-target="29">0</span>
-                    <span class="stat-label">Mentees</span>
-                </div>
-                <div class="stat-item reveal" style="animation-delay: 0.2s">
-                    <div class="stat-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg>
-                    </div>
-                    <span class="stat-number" data-target="100" data-suffix="+">0</span>
-                    <span class="stat-label">Evidence Reports</span>
-                </div>
-                <div class="stat-item reveal" style="animation-delay: 0.3s">
-                    <div class="stat-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"/></svg>
-                    </div>
-                    <span class="stat-number" data-target="28">0</span>
-                    <span class="stat-label">Presentations</span>
-                </div>
+            <div class="stat-card reveal stat-lavender">
+                <div class="stat-num" data-target="56" data-suffix="">0</div>
+                <div class="stat-label">Peer-Reviewed Articles</div>
+            </div>
+            <div class="stat-card reveal stat-mint">
+                <div class="stat-num" data-target="29" data-suffix="">0</div>
+                <div class="stat-label">Researchers Mentored</div>
+            </div>
+            <div class="stat-card reveal stat-coral">
+                <div class="stat-num" data-target="100" data-suffix="+">0+</div>
+                <div class="stat-label">Evidence Reports</div>
+            </div>
+            <div class="stat-card reveal stat-yellow">
+                <div class="stat-num" data-target="28" data-suffix="">0</div>
+                <div class="stat-label">Presentations</div>
+            </div>
             </div>
         </div>
     </section>
     
-    <section class="section section-alt" id="education">
+    <section class="cv-section cv-section-alt" id="education">
         <div class="container">
-            <div class="education-content reveal"><h2 id="education">Education</h2>
+            <div class="section-header reveal">
+                <h2 class="section-title">Education &amp; Memberships</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="prose-card reveal"><h2 id="education">Education</h2>
 <p>University of Damascus Faculty of Medicine, Damascus, Syria —
 08/27/2007 – 01/21/2014</p>
 <h2 id="certifications">Certifications</h2>
@@ -827,209 +1120,266 @@ Syrian American Medical Society (SAMS)</p>
         </div>
     </section>
     
-    <section class="section" id="positions">
+    <section class="cv-section" id="positions">
         <div class="container">
-            <h2 class="section-heading reveal">
-                <span class="heading-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0"/></svg>
-                </span>
-                Positions
-            </h2>
-            <div class="timeline">
-            <div class="timeline-item reveal timeline-left">
-                <div class="timeline-content">
-                    <div class="timeline-date">07/2026 – Present</div>
-                    <h3 class="timeline-title">Pediatric Resident</h3>
-                    <p class="timeline-place">HCA Florida Palms West Hospital, Loxahatchee, FL</p>
-                    <span class="timeline-badge current">Current</span>
+            <div class="section-header reveal">
+                <h2 class="section-title">Positions</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="tl-track">
+            <div class="tl-item reveal tl-left">
+                <div class="tl-dot tl-dot-lavender"></div>
+                <div class="tl-card step-lavender">
+                    <div class="step-num">01</div>
+                    <div class="step-body">
+                        <div class="step-header">
+                            <h3 class="step-title">Pediatric Resident</h3>
+                            <span class="current-badge">Current</span>
+                        </div>
+                        <p class="step-place">HCA Florida Palms West Hospital, Loxahatchee, FL</p>
+                        <p class="step-dates">07/2026 – Present</p>
+                    </div>
                 </div>
             </div>
-            <div class="timeline-item reveal timeline-right">
-                <div class="timeline-content">
-                    <div class="timeline-date">09/2021 – 06/2026</div>
-                    <h3 class="timeline-title">Assistant Professor of Medicine</h3>
-                    <p class="timeline-place">Evidence-Based Practice Research Program, Mayo Clinic, Rochester, MN</p>
-                    
+            <div class="tl-item reveal tl-right">
+                <div class="tl-dot tl-dot-mint"></div>
+                <div class="tl-card step-mint">
+                    <div class="step-num">02</div>
+                    <div class="step-body">
+                        <div class="step-header">
+                            <h3 class="step-title">Assistant Professor of Medicine</h3>
+                            
+                        </div>
+                        <p class="step-place">Evidence-Based Practice Research Program, Mayo Clinic, Rochester, MN</p>
+                        <p class="step-dates">09/2021 – 06/2026</p>
+                    </div>
                 </div>
             </div>
-            <div class="timeline-item reveal timeline-left">
-                <div class="timeline-content">
-                    <div class="timeline-date">09/2020 – 06/2026</div>
-                    <h3 class="timeline-title">Wellness Coordinator</h3>
-                    <p class="timeline-place">Evidence-Based Practice Research Program, Mayo Clinic, Rochester, MN</p>
-                    
+            <div class="tl-item reveal tl-left">
+                <div class="tl-dot tl-dot-coral"></div>
+                <div class="tl-card step-coral">
+                    <div class="step-num">03</div>
+                    <div class="step-body">
+                        <div class="step-header">
+                            <h3 class="step-title">Wellness Coordinator</h3>
+                            
+                        </div>
+                        <p class="step-place">Evidence-Based Practice Research Program, Mayo Clinic, Rochester, MN</p>
+                        <p class="step-dates">09/2020 – 06/2026</p>
+                    </div>
                 </div>
             </div>
-            <div class="timeline-item reveal timeline-right">
-                <div class="timeline-content">
-                    <div class="timeline-date">04/2023 – 06/2026</div>
-                    <h3 class="timeline-title">Research Technology Coordinator</h3>
-                    <p class="timeline-place">Evidence-Based Practice Research Program, Mayo Clinic, Rochester, MN</p>
-                    
+            <div class="tl-item reveal tl-right">
+                <div class="tl-dot tl-dot-yellow"></div>
+                <div class="tl-card step-yellow">
+                    <div class="step-num">04</div>
+                    <div class="step-body">
+                        <div class="step-header">
+                            <h3 class="step-title">Research Technology Coordinator</h3>
+                            
+                        </div>
+                        <p class="step-place">Evidence-Based Practice Research Program, Mayo Clinic, Rochester, MN</p>
+                        <p class="step-dates">04/2023 – 06/2026</p>
+                    </div>
                 </div>
             </div>
-            <div class="timeline-item reveal timeline-left">
-                <div class="timeline-content">
-                    <div class="timeline-date">03/2021 – 06/2026</div>
-                    <h3 class="timeline-title">Training Coordinator</h3>
-                    <p class="timeline-place">Evidence-Based Practice Research Program, Mayo Clinic, Rochester, MN</p>
-                    
+            <div class="tl-item reveal tl-left">
+                <div class="tl-dot tl-dot-teal"></div>
+                <div class="tl-card step-teal">
+                    <div class="step-num">05</div>
+                    <div class="step-body">
+                        <div class="step-header">
+                            <h3 class="step-title">Training Coordinator</h3>
+                            
+                        </div>
+                        <p class="step-place">Evidence-Based Practice Research Program, Mayo Clinic, Rochester, MN</p>
+                        <p class="step-dates">03/2021 – 06/2026</p>
+                    </div>
                 </div>
             </div>
-            <div class="timeline-item reveal timeline-right">
-                <div class="timeline-content">
-                    <div class="timeline-date">10/2017 – 06/2026</div>
-                    <h3 class="timeline-title">Research Fellow</h3>
-                    <p class="timeline-place">Evidence-Based Practice Research Program, Mayo Clinic, Rochester, MN</p>
-                    
+            <div class="tl-item reveal tl-right">
+                <div class="tl-dot tl-dot-lavender"></div>
+                <div class="tl-card step-lavender">
+                    <div class="step-num">06</div>
+                    <div class="step-body">
+                        <div class="step-header">
+                            <h3 class="step-title">Research Fellow</h3>
+                            
+                        </div>
+                        <p class="step-place">Evidence-Based Practice Research Program, Mayo Clinic, Rochester, MN</p>
+                        <p class="step-dates">10/2017 – 06/2026</p>
+                    </div>
                 </div>
             </div>
-            <div class="timeline-item reveal timeline-left">
-                <div class="timeline-content">
-                    <div class="timeline-date">03/2015 – 10/2017</div>
-                    <h3 class="timeline-title">Research Fellow</h3>
-                    <p class="timeline-place">Department of Orthopedics, Mayo Clinic, Rochester, MN</p>
-                    
+            <div class="tl-item reveal tl-left">
+                <div class="tl-dot tl-dot-mint"></div>
+                <div class="tl-card step-mint">
+                    <div class="step-num">07</div>
+                    <div class="step-body">
+                        <div class="step-header">
+                            <h3 class="step-title">Research Fellow</h3>
+                            
+                        </div>
+                        <p class="step-place">Department of Orthopedics, Mayo Clinic, Rochester, MN</p>
+                        <p class="step-dates">03/2015 – 10/2017</p>
+                    </div>
                 </div>
             </div>
-            <div class="timeline-item reveal timeline-right">
-                <div class="timeline-content">
-                    <div class="timeline-date">03/2014 – 02/2015</div>
-                    <h3 class="timeline-title">Surgical Assistant</h3>
-                    <p class="timeline-place">Al-Rasheed Hospital, Damascus, Syria</p>
-                    
+            <div class="tl-item reveal tl-right">
+                <div class="tl-dot tl-dot-coral"></div>
+                <div class="tl-card step-coral">
+                    <div class="step-num">08</div>
+                    <div class="step-body">
+                        <div class="step-header">
+                            <h3 class="step-title">Surgical Assistant</h3>
+                            
+                        </div>
+                        <p class="step-place">Al-Rasheed Hospital, Damascus, Syria</p>
+                        <p class="step-dates">03/2014 – 02/2015</p>
+                    </div>
                 </div>
             </div>
-            <div class="timeline-item reveal timeline-left">
-                <div class="timeline-content">
-                    <div class="timeline-date">01/2013 – 03/2014</div>
-                    <h3 class="timeline-title">Medical Ward Physician and Surgical Assistant</h3>
-                    <p class="timeline-place">New Medical Center, Damascus, Syria</p>
-                    
+            <div class="tl-item reveal tl-left">
+                <div class="tl-dot tl-dot-lavender"></div>
+                <div class="tl-card step-lavender">
+                    <div class="step-num">09</div>
+                    <div class="step-body">
+                        <div class="step-header">
+                            <h3 class="step-title">Medical Ward Physician and Surgical Assistant</h3>
+                            
+                        </div>
+                        <p class="step-place">New Medical Center, Damascus, Syria</p>
+                        <p class="step-dates">01/2013 – 03/2014</p>
+                    </div>
                 </div>
             </div>
             </div>
         </div>
     </section>
     
-    <section class="section" id="research-interests">
+    <section class="cv-section cv-section-alt" id="research-interests">
         <div class="container">
-            <h2 class="section-heading reveal">
-                <span class="heading-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg>
-                </span>
-                Research Interests
-            </h2>
+            <div class="section-header reveal">
+                <h2 class="section-title">Research Interests</h2>
+                <div class="section-line"></div>
+            </div>
             <div class="interests-grid">
-                <div class="interest-card reveal">
-                    <span class="interest-icon">🧠</span>
-                    <span class="interest-text">Applications of Artificial Intelligence and Machine Learning in Healthcare</span>
+                <div class="interest-card reveal interest-lavender">
+                    <span class="interest-emoji">🧠</span>
+                    <span>Applications of Artificial Intelligence and Machine Learning in Healthcare</span>
                 </div>
-                <div class="interest-card reveal">
-                    <span class="interest-icon">🔬</span>
-                    <span class="interest-text">Knowledge Synthesis, Evidence Automation, and Living Evidence Pipelines</span>
+                <div class="interest-card reveal interest-mint">
+                    <span class="interest-emoji">🔬</span>
+                    <span>Knowledge Synthesis, Evidence Automation, and Living Evidence Pipelines</span>
                 </div>
-                <div class="interest-card reveal">
-                    <span class="interest-icon">📊</span>
-                    <span class="interest-text">Statistical Modeling and Clinical Risk Prediction</span>
+                <div class="interest-card reveal interest-coral">
+                    <span class="interest-emoji">📊</span>
+                    <span>Statistical Modeling and Clinical Risk Prediction</span>
                 </div>
-                <div class="interest-card reveal">
-                    <span class="interest-icon">💾</span>
-                    <span class="interest-text">Database Research and Data Science in Clinical Medicine</span>
+                <div class="interest-card reveal interest-yellow">
+                    <span class="interest-emoji">💾</span>
+                    <span>Database Research and Data Science in Clinical Medicine</span>
                 </div>
-                <div class="interest-card reveal">
-                    <span class="interest-icon">📋</span>
-                    <span class="interest-text">Evidence-Based Medicine, Research Methodology, and Meta-Epidemiology</span>
+                <div class="interest-card reveal interest-teal">
+                    <span class="interest-emoji">📋</span>
+                    <span>Evidence-Based Medicine, Research Methodology, and Meta-Epidemiology</span>
                 </div>
-                <div class="interest-card reveal">
-                    <span class="interest-icon">🏥</span>
-                    <span class="interest-text">Evidence Synthesis for Clinical Practice Guidelines</span>
+                <div class="interest-card reveal interest-lavender">
+                    <span class="interest-emoji">🏥</span>
+                    <span>Evidence Synthesis for Clinical Practice Guidelines</span>
                 </div>
             </div>
         </div>
     </section>
     
-    <section class="section section-alt" id="experiences">
+    <section class="cv-section" id="experiences">
         <div class="container">
-            <h2 class="section-heading reveal">
-                <span class="heading-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
-                </span>
-                Experiences
-            </h2>
+            <div class="section-header reveal">
+                <h2 class="section-title">Experiences</h2>
+                <div class="section-line"></div>
+            </div>
             <div class="exp-grid">
-                <div class="exp-card reveal">
-                    <h3 class="exp-title">Research Fellow and Assistant Professor of Medicine</h3>
-                    <div class="exp-meta">Mayo Clinic | 03/2015 – Present | Rochester, MN</div>
-                    <p class="exp-desc">Authored 100+ evidence synthesis reports for national organizations and medical societies, including AHRQ, FAA, SVS, AUA, ONS, OPTN, ASH, TES, Chest, and others. Contribute to clinical practice guidelines with focus areas relevant to primary care. Led automation and AI projects to advance evidence synthesis methodology, and during the COVID-19 pandemic, managed rapid reviews for Mayo physicians supporting real-time patient care decisions.</p>
+                <div class="exp-card reveal exp-teal">
+                    <div class="exp-accent"></div>
+                    <div class="exp-body">
+                        <h3 class="exp-title">Research Fellow and Assistant Professor of Medicine</h3>
+                        <div class="exp-meta">Mayo Clinic | 03/2015 – Present | Rochester, MN</div>
+                        <p class="exp-desc">Authored 100+ evidence synthesis reports for national organizations and medical societies, including AHRQ, FAA, SVS, AUA, ONS, OPTN, ASH, TES, Chest, and others. Contribute to clinical practice guidelines with focus areas relevant to primary care. Led automation and AI projects to advance evidence synthesis methodology, and during the COVID-19 pandemic, managed rapid reviews for Mayo physicians supporting real-time patient care decisions.</p>
+                    </div>
                 </div>
-                <div class="exp-card reveal">
-                    <h3 class="exp-title">Pediatrics Observership Rotation</h3>
-                    <div class="exp-meta">Mayo Clinic | 08/2024 | Rochester, MN</div>
-                    <p class="exp-desc">Observed clinical care in pediatrics across inpatient and outpatient settings, gaining exposure to common pediatric conditions and multidisciplinary approaches to patient management. Reinforced my interest in pediatrics as a core component of primary care.</p>
+                <div class="exp-card reveal exp-lavender">
+                    <div class="exp-accent"></div>
+                    <div class="exp-body">
+                        <h3 class="exp-title">Pediatrics Observership Rotation</h3>
+                        <div class="exp-meta">Mayo Clinic | 08/2024 | Rochester, MN</div>
+                        <p class="exp-desc">Observed clinical care in pediatrics across inpatient and outpatient settings, gaining exposure to common pediatric conditions and multidisciplinary approaches to patient management. Reinforced my interest in pediatrics as a core component of primary care.</p>
+                    </div>
                 </div>
-                <div class="exp-card reveal">
-                    <h3 class="exp-title">Mentorship and Teaching</h3>
-                    <div class="exp-meta">Mayo Clinic | 10/2017 – Present | Rochester, MN</div>
-                    <p class="exp-desc">Mentor medical trainees, including fellows and summer students, in systematic review methodology and critical appraisal of clinical evidence. Lead seminars on research design, data synthesis, and applications of AI in clinical decision-making.</p>
+                <div class="exp-card reveal exp-coral">
+                    <div class="exp-accent"></div>
+                    <div class="exp-body">
+                        <h3 class="exp-title">Mentorship and Teaching</h3>
+                        <div class="exp-meta">Mayo Clinic | 10/2017 – Present | Rochester, MN</div>
+                        <p class="exp-desc">Mentor medical trainees, including fellows and summer students, in systematic review methodology and critical appraisal of clinical evidence. Lead seminars on research design, data synthesis, and applications of AI in clinical decision-making.</p>
+                    </div>
                 </div>
-                <div class="exp-card reveal">
-                    <h3 class="exp-title">Guideline Panel Leadership and Evidence Synthesis</h3>
-                    <div class="exp-meta">American Society of Hematology (ASH) | 2023 – Present | Washington, DC and Virtual</div>
-                    <p class="exp-desc">Led 10 systematic reviews supporting a national clinical practice guideline on myelofibrosis management. Presented findings at a 2-day in-person panel meeting, facilitating expert discussion using the GRADE framework to draft recommendations. Prior contributions include guideline evidence synthesis for the Endocrine Society (2019) and Society for Vascular Surgery (2020).</p>
+                <div class="exp-card reveal exp-mint">
+                    <div class="exp-accent"></div>
+                    <div class="exp-body">
+                        <h3 class="exp-title">Guideline Panel Leadership and Evidence Synthesis</h3>
+                        <div class="exp-meta">American Society of Hematology (ASH) | 2023 – Present | Washington, DC and Virtual</div>
+                        <p class="exp-desc">Led 10 systematic reviews supporting a national clinical practice guideline on myelofibrosis management. Presented findings at a 2-day in-person panel meeting, facilitating expert discussion using the GRADE framework to draft recommendations. Prior contributions include guideline evidence synthesis for the Endocrine Society (2019) and Society for Vascular Surgery (2020).</p>
+                    </div>
                 </div>
-                <div class="exp-card reveal">
-                    <h3 class="exp-title">Family Medicine Observership Rotation</h3>
-                    <div class="exp-meta">Mayo Clinic | 05/2024 | Rochester, MN</div>
-                    <p class="exp-desc">Observed comprehensive, patient-centered care in family medicine clinics, learning from faculty on continuity of care, preventive medicine, and chronic disease management. Gained valuable perspective on primary care delivery applicable to pediatric practice.</p>
+                <div class="exp-card reveal exp-yellow">
+                    <div class="exp-accent"></div>
+                    <div class="exp-body">
+                        <h3 class="exp-title">Family Medicine Observership Rotation</h3>
+                        <div class="exp-meta">Mayo Clinic | 05/2024 | Rochester, MN</div>
+                        <p class="exp-desc">Observed comprehensive, patient-centered care in family medicine clinics, learning from faculty on continuity of care, preventive medicine, and chronic disease management. Gained valuable perspective on primary care delivery applicable to pediatric practice.</p>
+                    </div>
                 </div>
-                <div class="exp-card reveal">
-                    <h3 class="exp-title">Research Collaborator</h3>
-                    <div class="exp-meta">Mayo Clinic | 03/2024 – Present | Rochester, MN</div>
-                    <p class="exp-desc">Collaborate with Mayo Clinic physicians across multiple specialties to develop AI-driven risk prediction tools, statistical models, and web applications. Apply machine learning, programming, and advanced biostatistics to build clinical decision-support tools that improve patient stratification and outcome prediction.</p>
+                <div class="exp-card reveal exp-teal">
+                    <div class="exp-accent"></div>
+                    <div class="exp-body">
+                        <h3 class="exp-title">Research Collaborator</h3>
+                        <div class="exp-meta">Mayo Clinic | 03/2024 – Present | Rochester, MN</div>
+                        <p class="exp-desc">Collaborate with Mayo Clinic physicians across multiple specialties to develop AI-driven risk prediction tools, statistical models, and web applications. Apply machine learning, programming, and advanced biostatistics to build clinical decision-support tools that improve patient stratification and outcome prediction.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
     
-    <section class="section section-alt" id="awards">
+    <section class="cv-section cv-section-alt" id="awards">
         <div class="container">
-            <h2 class="section-heading reveal">
-                <span class="heading-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M18.75 4.236c.982.143 1.954.317 2.916.52A6.003 6.003 0 0 1 16.27 9.728M18.75 4.236V4.5c0 2.108-.966 3.99-2.48 5.228m0 0a6.003 6.003 0 0 1-3.77 1.522m0 0a6.003 6.003 0 0 1-3.77-1.522"/></svg>
-                </span>
-                Awards &amp; Honors
-            </h2>
-            <div class="award-card reveal"><p>Above and Beyond Recognition for Teamwork: “For the leadership and
+            <div class="section-header reveal">
+                <h2 class="section-title">Awards &amp; Honors</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="prose-card award-card reveal"><p>Above and Beyond Recognition for Teamwork: “For the leadership and
 mentoring you provided our summer students. They will always remember
 this positive experience at Mayo Clinic, and it will launch their young
 careers.” Presented by M. Hassan Murad, MD, MPH.</p></div>
         </div>
     </section>
     
-    <section class="section" id="publications">
+    <section class="cv-section" id="publications">
         <div class="container">
-            <h2 class="section-heading reveal">
-                <span class="heading-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/></svg>
-                </span>
-                Publications &amp; Bibliography
-            </h2>
-
-            <div class="bib-section reveal">
-                <div class="bib-header" onclick="toggleCollapse(this)">
-                    <h3>Peer-Reviewed Articles <span class="bib-count">56</span></h3>
-                    <span class="collapse-icon">&#9660;</span>
-                </div>
-                <div class="bib-body collapsed" id="bib-pr">
-                    <ol class="bib-list"><li class="bib-item reveal" value="1">Hegazi M, Saadi S, Kabbara Allababidi A, Farah MH, Abusalih M, Shamsi
+            <div class="section-header reveal">
+                <h2 class="section-title">Publications &amp; Bibliography</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="tabs-wrapper reveal">
+                <div class="tabs-nav"><button class="tab-btn active" data-tab="pr" onclick="switchTab(this)">Peer-Reviewed <span class="tab-count">56</span></button><button class="tab-btn" data-tab="abs" onclick="switchTab(this)">Abstracts &amp; Posters <span class="tab-count">17</span></button><button class="tab-btn" data-tab="books" onclick="switchTab(this)">Books <span class="tab-count">9</span></button><button class="tab-btn" data-tab="reports" onclick="switchTab(this)">Reports <span class="tab-count">10</span></button></div>
+                <div class="tabs-content"><div class="tab-panel active" id="tab-pr"><ol class="bib-list" id="bib-pr-list"><li class="bib-item" value="1">Hegazi M, Saadi S, Kabbara Allababidi A, Farah MH, Abusalih M, Shamsi
 Basha A, <strong>Hasan B</strong>, Rajjo T, Wang Z, Murad MH. Real-World
 Evaluation of Inter-Consensus Agreement on the Murad Tool for Appraising
 the Methodological Quality of Case Reports and Case Series. <em>JBI Evid
 Synth</em>. 2026;24(3):444-458. <a
 href="https://doi.org/10.11124/JBIES-25-00225">doi:10.11124/JBIES-25-00225</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/41414955">41414955</a></li><li class="bib-item reveal" value="2">Pan CQ, Saadi S, Ghany MG, Feld JJ, Lim JK, Kim AY, Tang AS, Nguyen
+href="https://www.ncbi.nlm.nih.gov/pubmed/41414955">41414955</a></li><li class="bib-item" value="2">Pan CQ, Saadi S, Ghany MG, Feld JJ, Lim JK, Kim AY, Tang AS, Nguyen
 MH, Sulkowski MS, Terrault NA, Lok AS, Hegazi M, <strong>Hasan
 B</strong>, Fleti F, Nayfeh T, Abusalih MF, Seisa MO, Kabbara Allababidi
 A, Abbas AS, Prokop LJ, Murad MH, Mohammad KS. Technical Systematic
@@ -1037,7 +1387,7 @@ Review Supporting the 2025 AASLD Practice Guideline on Management of
 Chronic Hepatitis B. <em>Hepatology</em>. 2026;83(4):998-1019. <a
 href="https://doi.org/10.1097/HEP.0000000000001584">doi:10.1097/HEP.0000000000001584</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/41186417">41186417</a></li><li class="bib-item reveal" value="3">Sivasubramaniam P, Shabaan A, Elhalaby R, <strong>Hasan B</strong>,
+href="https://www.ncbi.nlm.nih.gov/pubmed/41186417">41186417</a></li><li class="bib-item" value="3">Sivasubramaniam P, Shabaan A, Elhalaby R, <strong>Hasan B</strong>,
 Patil AA, Nazli S, DaCosta A, Park BU, Smith L, Mounajjed T, Lagana SM,
 Codipilly C, Hopson P, Absah I, Hartley CP, Graham RP, Moreira RK. A
 Machine Learning Model of Lamina Propria Fibrosis in Eosinophilic
@@ -1045,14 +1395,14 @@ Esophagitis for Prediction of Fibrostenotic Disease. <em>J Pathol
 Inform</em>. 2026;20:100538. <a
 href="https://doi.org/10.1016/j.jpi.2025.100538">doi:10.1016/j.jpi.2025.100538</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/41584263">41584263</a></li><li class="bib-item reveal" value="4">Almasri J, <strong>Hasan B</strong>, Tarakji Z, Naffa FW, Warner L,
+href="https://www.ncbi.nlm.nih.gov/pubmed/41584263">41584263</a></li><li class="bib-item" value="4">Almasri J, <strong>Hasan B</strong>, Tarakji Z, Naffa FW, Warner L,
 Mian H, Chakraborty R, Mohyuddin GR, Abdel-Rahman Z, Al Hadidi S.
 Treatment Outcomes of Multiple Myeloma in Developing Countries: A
 Systematic Review and Meta-Analysis. <em>Clin Hematol Int</em>.
 2025;7(4):1-20. <a
 href="https://doi.org/10.46989/001c.144582">doi:10.46989/001c.144582</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/41078459">41078459</a></li><li class="bib-item reveal" value="5">Duarte-Rojo A, Taouli B, Leung DH, Levine D, Nayfeh T, <strong>Hasan
+href="https://www.ncbi.nlm.nih.gov/pubmed/41078459">41078459</a></li><li class="bib-item" value="5">Duarte-Rojo A, Taouli B, Leung DH, Levine D, Nayfeh T, <strong>Hasan
 B</strong>, Alsawaf Y, Saadi S, Majzoub AM, Manolopoulos A, Haffar S,
 Dundar A, Murad MH, Rockey DC, Alsawas M, Sterling RK. Imaging-Based
 Noninvasive Liver Disease Assessment for Staging Liver Fibrosis in
@@ -1060,20 +1410,20 @@ Chronic Liver Disease: A Systematic Review Supporting the AASLD Practice
 Guideline. <em>Hepatology</em>. 2025;81(2):725-748. <a
 href="https://doi.org/10.1097/HEP.0000000000000852">doi:10.1097/HEP.0000000000000852</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/38489521">38489521</a></li><li class="bib-item reveal hidden-item" value="6">Farah W, Abusalih MF, <strong>Hasan B</strong>, Lees EH, Fleti F,
+href="https://www.ncbi.nlm.nih.gov/pubmed/38489521">38489521</a></li><li class="bib-item bib-hidden" value="6">Farah W, Abusalih MF, <strong>Hasan B</strong>, Lees EH, Fleti F,
 Elkhatib WY, Johnson BD, Toups G, Wolf M, Murad MH. Safety Implications
 of Mask Use: A Systematic Review and Evidence Map. <em>BMJ Evid Based
 Med</em>. 2025;30(2):91-103. <a
 href="https://doi.org/10.1136/bmjebm-2024-113028">doi:10.1136/bmjebm-2024-113028</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/39326926">39326926</a></li><li class="bib-item reveal hidden-item" value="7">Firwana M, Seisa M, Farah M, Alsibai R, Christensen A, Alsawaf Y,
+href="https://www.ncbi.nlm.nih.gov/pubmed/39326926">39326926</a></li><li class="bib-item bib-hidden" value="7">Firwana M, Seisa M, Farah M, Alsibai R, Christensen A, Alsawaf Y,
 Abbas A, <strong>Hasan B</strong>, Saadi S, Prokop LJ, Azizzadeh A,
 Murad MH. A Systematic Review Supporting the Development of the Society
 for Vascular Surgery Clinical Practice Guidelines on the Management of
 Blunt Thoracic Aortic Injury. <em>J Vasc Surg</em>. 2025. <a
 href="https://doi.org/10.1016/j.jvs.2025.05.208">doi:10.1016/j.jvs.2025.05.208</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/40482894">40482894</a></li><li class="bib-item reveal hidden-item" value="8"><strong>Hasan B</strong>, Bechenati D, Bethel HM, Cho S, Rajjoub NS,
+href="https://www.ncbi.nlm.nih.gov/pubmed/40482894">40482894</a></li><li class="bib-item bib-hidden" value="8"><strong>Hasan B</strong>, Bechenati D, Bethel HM, Cho S, Rajjoub NS,
 Murad ST, Kabbara Allababidi A, Rajjo TI, Yousufuddin M. A Systematic
 Review of Length of Stay Linked to Hospital-Acquired Falls, Pressure
 Ulcers, Central Line-Associated Bloodstream Infections, and Surgical
@@ -1081,7 +1431,7 @@ Site Infections. <em>Mayo Clin Proc Innov Qual Outcomes</em>.
 2025;9(3):100607. <a
 href="https://doi.org/10.1016/j.mayocpiqo.2025.100607">doi:10.1016/j.mayocpiqo.2025.100607</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/40256621">40256621</a></li><li class="bib-item reveal hidden-item" value="9">Khan MA, Ayub U, Naqvi SAA, Khakwani KZR, Sipra ZBR, Raina A, Zhou S,
+href="https://www.ncbi.nlm.nih.gov/pubmed/40256621">40256621</a></li><li class="bib-item bib-hidden" value="9">Khan MA, Ayub U, Naqvi SAA, Khakwani KZR, Sipra ZBR, Raina A, Zhou S,
 He H, Saeidi A, <strong>Hasan B</strong>, Rumble RB, Bitterman DS,
 Warner JL, Zou J, Tevaarwerk AJ, Leventakos K, Kehl KL, Palmer JM, Murad
 MH, Baral C, Riaz IB. Collaborative Large Language Models for Automated
@@ -1089,7 +1439,7 @@ Data Extraction in Living Systematic Reviews. <em>J Am Med Inform
 Assoc</em>. 2025;32(4):638-647. <a
 href="https://doi.org/10.1093/jamia/ocae325">doi:10.1093/jamia/ocae325</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/39836495">39836495</a></li><li class="bib-item reveal hidden-item" value="10">Patel K, Asrani SK, Fiel MI, Levine D, Leung DH, Duarte-Rojo A,
+href="https://www.ncbi.nlm.nih.gov/pubmed/39836495">39836495</a></li><li class="bib-item bib-hidden" value="10">Patel K, Asrani SK, Fiel MI, Levine D, Leung DH, Duarte-Rojo A,
 Dranoff JA, Nayfeh T, <strong>Hasan B</strong>, Taddei TH, Alsawaf Y,
 Saadi S, Majzoub AM, Manolopoulos A, Alzuabi M, Ding J, Sofiyeva N,
 Murad MH, Alsawas M, Rockey DC, Sterling RK. Accuracy of Blood-Based
@@ -1098,28 +1448,28 @@ Systematic Review Supporting the AASLD Practice Guideline.
 <em>Hepatology</em>. 2025;81(1):358-379. <a
 href="https://doi.org/10.1097/HEP.0000000000000842">doi:10.1097/HEP.0000000000000842</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/38489517">38489517</a></li><li class="bib-item reveal hidden-item" value="11">Patil A, <strong>Hasan B</strong>, Park BU, Smith L, Sivasubramaniam
+href="https://www.ncbi.nlm.nih.gov/pubmed/38489517">38489517</a></li><li class="bib-item bib-hidden" value="11">Patil A, <strong>Hasan B</strong>, Park BU, Smith L, Sivasubramaniam
 P, Elhalaby R, Elessawy N, Nazli S, DaCosta A, Shabaan A, Cannon A, Lau
 C, Hartley CP, Graham RP, Moreira RK. A Deep Learning Model of
 Histologic Tumor Differentiation as a Prognostic Tool in Hepatocellular
 Carcinoma. <em>Mod Pathol</em>. 2025;38(7):100747. <a
 href="https://doi.org/10.1016/j.modpat.2025.100747">doi:10.1016/j.modpat.2025.100747</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/40086592">40086592</a></li><li class="bib-item reveal hidden-item" value="12">Rockey DC, Alsawas M, Duarte-Rojo A, Patel K, Levine D, Asrani SK,
+href="https://www.ncbi.nlm.nih.gov/pubmed/40086592">40086592</a></li><li class="bib-item bib-hidden" value="12">Rockey DC, Alsawas M, Duarte-Rojo A, Patel K, Levine D, Asrani SK,
 <strong>Hasan B</strong>, Nayfeh T, Alsawaf Y, Saadi S, Malandris K,
 Murad MH, Sterling RK. Noninvasive Liver Disease Assessment to Identify
 Portal Hypertension: Systematic and Narrative Reviews Supporting the
 AASLD Practice Guideline. <em>Hepatology</em>. 2025;81(3):1086-1104. <a
 href="https://doi.org/10.1097/HEP.0000000000000841">doi:10.1097/HEP.0000000000000841</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/38489516">38489516</a></li><li class="bib-item reveal hidden-item" value="13">Saadi S, Nayfeh T, Rajjoub R, <strong>Hasan B</strong>, Firwana M,
+href="https://www.ncbi.nlm.nih.gov/pubmed/38489516">38489516</a></li><li class="bib-item bib-hidden" value="13">Saadi S, Nayfeh T, Rajjoub R, <strong>Hasan B</strong>, Firwana M,
 Jawaid T, Hazem W, Shah S, Alsawaf Y, Seisa MO, Prokop LJ, Conte MS,
 Murad MH. A Systematic Review Supporting the Society for Vascular
 Surgery Guideline Update on the Management of Intermittent Claudication.
 <em>J Vasc Surg</em>. 2025;82(2):688-697. <a
 href="https://doi.org/10.1016/j.jvs.2024.12.135">doi:10.1016/j.jvs.2024.12.135</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/40316186">40316186</a></li><li class="bib-item reveal hidden-item" value="14">Shumway DA, Corbin KS, Shiraishi S, Farah MH, Fleti F, <strong>Hasan
+href="https://www.ncbi.nlm.nih.gov/pubmed/40316186">40316186</a></li><li class="bib-item bib-hidden" value="14">Shumway DA, Corbin KS, Shiraishi S, Farah MH, Fleti F, <strong>Hasan
 B</strong>, Firwana MM, Saadi S, Nayfeh T, Hegazi M, Waddle MR, Amundson
 AC, Vargas CE, Vallow LA, Oladeru OT, Hieken TJ, Park SS, Mutter RW,
 Murad MH, Wang Z. Comparison of Partial Breast Radiation Modalities in
@@ -1127,76 +1477,76 @@ Women with Early-Stage Breast Cancer: A Target Trial Emulation. <em>J
 Natl Cancer Inst</em>. 2025:djaf346. <a
 href="https://doi.org/10.1093/jnci/djaf346">doi:10.1093/jnci/djaf346</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/41352976">41352976</a></li><li class="bib-item reveal hidden-item" value="15">Sim L, Murad MH, Croarkin PE, McKean AJ, Mohammed KS, Rajjo TI,
+href="https://www.ncbi.nlm.nih.gov/pubmed/41352976">41352976</a></li><li class="bib-item bib-hidden" value="15">Sim L, Murad MH, Croarkin PE, McKean AJ, Mohammed KS, Rajjo TI,
 Firwana M, Simha S, Fleti F, Hegazi M, Abusalih ME, Al-Kordi M, Basmaci
 R, Chuzhyk O, Saadi S, <strong>Hasan B</strong>, Farah MH, Prokop LJ,
 Viola KE, Wang Z. Suicide Interventions for Youths: A Systematic Review.
 <em>JAMA Pediatr</em>. 2025;179(11):1217-1224. <a
 href="https://doi.org/10.1001/jamapediatrics.2025.3485">doi:10.1001/jamapediatrics.2025.3485</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/41021221">41021221</a></li><li class="bib-item reveal hidden-item" value="16"><strong>Hasan B</strong>, Saadi S, Rajjoub NS, Hegazi M, Al-Kordi M,
+href="https://www.ncbi.nlm.nih.gov/pubmed/41021221">41021221</a></li><li class="bib-item bib-hidden" value="16"><strong>Hasan B</strong>, Saadi S, Rajjoub NS, Hegazi M, Al-Kordi M,
 Fleti F, Farah M, Riaz IB, Banerjee I, Wang Z, Murad MH. Integrating
 Large Language Models in Systematic Reviews: A Framework and Case Study
 Using ROBINS-I for Risk of Bias Assessment. <em>BMJ Evid Based Med</em>.
 2024;29(6):394-398. <a
 href="https://doi.org/10.1136/bmjebm-2023-112597">doi:10.1136/bmjebm-2023-112597</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/38383136">38383136</a></li><li class="bib-item reveal hidden-item" value="17">Murad MH, Vaa Stelling BE, West CP, <strong>Hasan B</strong>, Simha
+href="https://www.ncbi.nlm.nih.gov/pubmed/38383136">38383136</a></li><li class="bib-item bib-hidden" value="17">Murad MH, Vaa Stelling BE, West CP, <strong>Hasan B</strong>, Simha
 S, Saadi S, Firwana M, Viola KE, Prokop LJ, Nayfeh T, Wang Z. Measuring
 Documentation Burden in Healthcare. <em>J Gen Intern Med</em>.
 2024;39(14):2837-2848. <a
 href="https://doi.org/10.1007/s11606-024-08956-8">doi:10.1007/s11606-024-08956-8</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/39073484">39073484</a></li><li class="bib-item reveal hidden-item" value="18">Rajjoub R, Sammak SE, Rajjo T, Rajjoub NS, <strong>Hasan B</strong>,
+href="https://www.ncbi.nlm.nih.gov/pubmed/39073484">39073484</a></li><li class="bib-item bib-hidden" value="18">Rajjoub R, Sammak SE, Rajjo T, Rajjoub NS, <strong>Hasan B</strong>,
 Saadi S, Kanaan A, Bydon M. Meditation for Perioperative Pain and
 Anxiety: A Systematic Review. <em>Brain Behav</em>. 2024;14(7):e3640. <a
 href="https://doi.org/10.1002/brb3.3640">doi:10.1002/brb3.3640</a> PMID:
-<a href="https://www.ncbi.nlm.nih.gov/pubmed/39073307">39073307</a></li><li class="bib-item reveal hidden-item" value="19">Riaz IB, Naqvi SAA, <strong>Hasan B</strong>, Murad MH. Future of
+<a href="https://www.ncbi.nlm.nih.gov/pubmed/39073307">39073307</a></li><li class="bib-item bib-hidden" value="19">Riaz IB, Naqvi SAA, <strong>Hasan B</strong>, Murad MH. Future of
 Evidence Synthesis: Automated, Living, and Interactive Systematic
 Reviews and Meta-Analyses. <em>Mayo Clin Proc Digit Health</em>.
 2024;2(3):361-365. <a
 href="https://doi.org/10.1016/j.mcpdig.2024.05.023">doi:10.1016/j.mcpdig.2024.05.023</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/40206128">40206128</a></li><li class="bib-item reveal hidden-item" value="20">Saadi S, <strong>Hasan B</strong>, Kanaan A, Abusalih M, Tarakji Z,
+href="https://www.ncbi.nlm.nih.gov/pubmed/40206128">40206128</a></li><li class="bib-item bib-hidden" value="20">Saadi S, <strong>Hasan B</strong>, Kanaan A, Abusalih M, Tarakji Z,
 Sadek M, Shamsi Basha A, Firwana M, Wang Z, Murad MH. Real-World
 Evaluation of Interconsensus Agreement of Risk of Bias Tools: A Case
 Study Using Risk of Bias in Nonrandomized Studies of Interventions
 (ROBINS-I). <em>Cochrane Evid Synth Methods</em>. 2024;2(7):e12094. <a
 href="https://doi.org/10.1002/cesm.12094">doi:10.1002/cesm.12094</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/40475320">40475320</a></li><li class="bib-item reveal hidden-item" value="21">Tarakji Z, Kanaan A, Saadi S, Firwana M, Allababidi AK, Abusalih MF,
+href="https://www.ncbi.nlm.nih.gov/pubmed/40475320">40475320</a></li><li class="bib-item bib-hidden" value="21">Tarakji Z, Kanaan A, Saadi S, Firwana M, Allababidi AK, Abusalih MF,
 Basmaci R, Rajjo TI, Wang Z, Murad MH, <strong>Hasan B</strong>.
 Concordance between Humans and GPT-4 in Appraising the Methodological
 Quality of Case Reports and Case Series Using the Murad Tool. <em>BMC
 Med Res Methodol</em>. 2024;24(1):266. <a
 href="https://doi.org/10.1186/s12874-024-02372-6">doi:10.1186/s12874-024-02372-6</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/39497032">39497032</a></li><li class="bib-item reveal hidden-item" value="22">Firwana M, <strong>Hasan B</strong>, Saadi S, Abd-Rabu R, Alabdallah
+href="https://www.ncbi.nlm.nih.gov/pubmed/39497032">39497032</a></li><li class="bib-item bib-hidden" value="22">Firwana M, <strong>Hasan B</strong>, Saadi S, Abd-Rabu R, Alabdallah
 K, Al-Zu’bi H, Shalhub S, Black JH 3rd, Prokop LJ, Murad MH. A
 Systematic Review Supporting the Society for Vascular Surgery Guidelines
 on the Management of Heritable Aortopathies. <em>J Vasc Surg</em>.
 2023;78(4):1077-1082.e12. <a
 href="https://doi.org/10.1016/j.jvs.2023.06.004">doi:10.1016/j.jvs.2023.06.004</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/37327953">37327953</a></li><li class="bib-item reveal hidden-item" value="23">Madieh J, <strong>Hasan B</strong>, Khamayseh I, Hrizat A, Salah T,
+href="https://www.ncbi.nlm.nih.gov/pubmed/37327953">37327953</a></li><li class="bib-item bib-hidden" value="23">Madieh J, <strong>Hasan B</strong>, Khamayseh I, Hrizat A, Salah T,
 Nayfeh T, Gharaibeh K, Hamadah A. The Safety of Intravenous Peripheral
 Administration of 3% Hypertonic Saline: A Systematic Review and
 Meta-Analysis. <em>Am J Med Sci</em>. 2023;366(2):135-142. <a
 href="https://doi.org/10.1016/j.amjms.2023.04.025">doi:10.1016/j.amjms.2023.04.025</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/37192695">37192695</a></li><li class="bib-item reveal hidden-item" value="24">Murad MH, Lin L, Chu H, <strong>Hasan B</strong>, Alsibai RA, Abbas
+href="https://www.ncbi.nlm.nih.gov/pubmed/37192695">37192695</a></li><li class="bib-item bib-hidden" value="24">Murad MH, Lin L, Chu H, <strong>Hasan B</strong>, Alsibai RA, Abbas
 AS, Mustafa RA, Wang Z. The Association of Sensitivity and Specificity
 with Disease Prevalence: Analysis of 6909 Studies of Diagnostic Test
 Accuracy. <em>CMAJ</em>. 2023;195(27):E925-E931. <a
 href="https://doi.org/10.1503/cmaj.221802">doi:10.1503/cmaj.221802</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/37460126">37460126</a></li><li class="bib-item reveal hidden-item" value="25">O’Banion LA, Saadi S, <strong>Hasan B</strong>, Nayfeh T, Simons JP,
+href="https://www.ncbi.nlm.nih.gov/pubmed/37460126">37460126</a></li><li class="bib-item bib-hidden" value="25">O’Banion LA, Saadi S, <strong>Hasan B</strong>, Nayfeh T, Simons JP,
 Murad MH, Woo K. Lack of Patient-Centered Evaluation of Outcomes in
 Intermittent Claudication Literature. <em>J Vasc Surg</em>.
 2023;78(3):828-836. <a
 href="https://doi.org/10.1016/j.jvs.2023.03.497">doi:10.1016/j.jvs.2023.03.497</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/37044317">37044317</a></li><li class="bib-item reveal hidden-item" value="26">Seisa MO, Nayfeh T, <strong>Hasan B</strong>, Firwana M, Saadi S,
+href="https://www.ncbi.nlm.nih.gov/pubmed/37044317">37044317</a></li><li class="bib-item bib-hidden" value="26">Seisa MO, Nayfeh T, <strong>Hasan B</strong>, Firwana M, Saadi S,
 Mushannen A, Shah SH, Rajjoub NS, Farah MH, Prokop LJ, Wang Z, Fuleihan
 GE, Drake MT, Murad MH. A Systematic Review Supporting the Endocrine
 Society Clinical Practice Guideline on the Treatment of Hypercalcemia of
@@ -1204,7 +1554,7 @@ Malignancy in Adults. <em>J Clin Endocrinol Metab</em>.
 2023;108(3):585-591. <a
 href="https://doi.org/10.1210/clinem/dgac631">doi:10.1210/clinem/dgac631</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/36545700">36545700</a></li><li class="bib-item reveal hidden-item" value="27">Shah S, Nayfeh T, <strong>Hasan B</strong>, Urtecho M, Firwana M,
+href="https://www.ncbi.nlm.nih.gov/pubmed/36545700">36545700</a></li><li class="bib-item bib-hidden" value="27">Shah S, Nayfeh T, <strong>Hasan B</strong>, Urtecho M, Firwana M,
 Saadi S, Abd-Rabu R, Nanaa A, Flynn DN, Rajjoub NS, Hazem W, Seisa MO,
 Hassett LC, Spyropoulos AC, Douketis JD, Murad MH. Perioperative
 Management of Vitamin K Antagonists and Direct Oral Anticoagulants: A
@@ -1212,7 +1562,7 @@ Systematic Review and Meta-Analysis. <em>Chest</em>.
 2023;163(5):1245-1257. <a
 href="https://doi.org/10.1016/j.chest.2022.11.032">doi:10.1016/j.chest.2022.11.032</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/36462533">36462533</a></li><li class="bib-item reveal hidden-item" value="28">Shah VP, Oliveira JESL, Farah W, Seisa M, Kara Balla A, Christensen
+href="https://www.ncbi.nlm.nih.gov/pubmed/36462533">36462533</a></li><li class="bib-item bib-hidden" value="28">Shah VP, Oliveira JESL, Farah W, Seisa M, Kara Balla A, Christensen
 A, Farah M, <strong>Hasan B</strong>, Bellolio F, Murad MH. Diagnostic
 Accuracy of Neuroimaging in Emergency Department Patients with Acute
 Vertigo or Dizziness: A Systematic Review and Meta-Analysis for the
@@ -1220,21 +1570,21 @@ Guidelines for Reasonable and Appropriate Care in the Emergency
 Department. <em>Acad Emerg Med</em>. 2023;30(5):517-530. <a
 href="https://doi.org/10.1111/acem.14561">doi:10.1111/acem.14561</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/35876220">35876220</a></li><li class="bib-item reveal hidden-item" value="29">Shah VP, Oliveira JESL, Farah W, Seisa MO, Balla AK, Christensen A,
+href="https://www.ncbi.nlm.nih.gov/pubmed/35876220">35876220</a></li><li class="bib-item bib-hidden" value="29">Shah VP, Oliveira JESL, Farah W, Seisa MO, Balla AK, Christensen A,
 Farah M, <strong>Hasan B</strong>, Bellolio F, Murad MH. Diagnostic
 Accuracy of the Physical Examination in Emergency Department Patients
 with Acute Vertigo or Dizziness: A Systematic Review and Meta-Analysis
 for GRACE-3. <em>Acad Emerg Med</em>. 2023;30(5):552-578. <a
 href="https://doi.org/10.1111/acem.14630">doi:10.1111/acem.14630</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/36453134">36453134</a></li><li class="bib-item reveal hidden-item" value="30">Shumway DA, Corbin KS, Farah MH, Viola KE, Nayfeh T, Saadi S, Shah V,
+href="https://www.ncbi.nlm.nih.gov/pubmed/36453134">36453134</a></li><li class="bib-item bib-hidden" value="30">Shumway DA, Corbin KS, Farah MH, Viola KE, Nayfeh T, Saadi S, Shah V,
 <strong>Hasan B</strong>, Shah S, Mohammed K, Riaz IB, Prokop LJ, Murad
 MH, Wang Z. Partial Breast Irradiation Compared with Whole Breast
 Irradiation: A Systematic Review and Meta-Analysis. <em>J Natl Cancer
 Inst</em>. 2023;115(9):1011-1019. <a
 href="https://doi.org/10.1093/jnci/djad100">doi:10.1093/jnci/djad100</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/37289549">37289549</a></li><li class="bib-item reveal hidden-item" value="31">Torres Roldan VD, Urtecho M, Nayfeh T, Firwana M, Muthusamy K,
+href="https://www.ncbi.nlm.nih.gov/pubmed/37289549">37289549</a></li><li class="bib-item bib-hidden" value="31">Torres Roldan VD, Urtecho M, Nayfeh T, Firwana M, Muthusamy K,
 <strong>Hasan B</strong>, Abd-Rabu R, Maraboto A, Qoubaitary A, Prokop
 L, Lieb DC, McCall AL, Wang Z, Murad MH. A Systematic Review Supporting
 the Endocrine Society Guidelines: Management of Diabetes and High Risk
@@ -1242,14 +1592,14 @@ of Hypoglycemia. <em>J Clin Endocrinol Metab</em>. 2023;108(3):592-603.
 <a
 href="https://doi.org/10.1210/clinem/dgac601">doi:10.1210/clinem/dgac601</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/36477885">36477885</a></li><li class="bib-item reveal hidden-item" value="32">Abdelhafez M, Nayfeh T, Atieh A, AbuShamma O, Babaa B, Baniowda M,
+href="https://www.ncbi.nlm.nih.gov/pubmed/36477885">36477885</a></li><li class="bib-item bib-hidden" value="32">Abdelhafez M, Nayfeh T, Atieh A, AbuShamma O, Babaa B, Baniowda M,
 Hrizat A, <strong>Hasan B</strong>, Hassett L, Hamadah A, Gharaibeh K.
 Diagnostic Performance of Fractional Excretion of Sodium for the
 Differential Diagnosis of Acute Kidney Injury: A Systematic Review and
 Meta-Analysis. <em>Clin J Am Soc Nephrol</em>. 2022;17(6):785-797. <a
 href="https://doi.org/10.2215/CJN.14561121">doi:10.2215/CJN.14561121</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/35545442">35545442</a></li><li class="bib-item reveal hidden-item" value="33">Alzu’bi H, Rmilah AA, Haq IU, Kheiri B, Al-Abdouh A, <strong>Hasan
+href="https://www.ncbi.nlm.nih.gov/pubmed/35545442">35545442</a></li><li class="bib-item bib-hidden" value="33">Alzu’bi H, Rmilah AA, Haq IU, Kheiri B, Al-Abdouh A, <strong>Hasan
 B</strong>, Elsekaily O, Jaber S, Qaisi I, Yagmour A, Dajani H, Ahmed A,
 Ahmed E, Kashani K, Deshmukh A. Effect of TAVR Approach and Other
 Baseline Factors on the Incidence of Acute Kidney Injury: A Systematic
@@ -1257,14 +1607,14 @@ Review and Meta-Analysis. <em>J Interv Cardiol</em>. 2022;2022:3380605.
 <a
 href="https://doi.org/10.1155/2022/3380605">doi:10.1155/2022/3380605</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/36348992">36348992</a></li><li class="bib-item reveal hidden-item" value="34">Ezaizi Y, <strong>Hasan B</strong>, Manini ML, Absah I. Intrapyloric
+href="https://www.ncbi.nlm.nih.gov/pubmed/36348992">36348992</a></li><li class="bib-item bib-hidden" value="34">Ezaizi Y, <strong>Hasan B</strong>, Manini ML, Absah I. Intrapyloric
 Botulinum Toxin A Injection for Gastroparesis and Functional Upper
 Gastrointestinal Symptoms in Children: Mayo Clinic Experience, Review of
 the Literature, and Meta-Analysis. <em>Paediatr Drugs</em>.
 2022;24(5):539-545. <a
 href="https://doi.org/10.1007/s40272-022-00518-x">doi:10.1007/s40272-022-00518-x</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/35768647">35768647</a></li><li class="bib-item reveal hidden-item" value="35">Farah MH, Nayfeh T, Urtecho M, <strong>Hasan B</strong>, Amin M, Sen
+href="https://www.ncbi.nlm.nih.gov/pubmed/35768647">35768647</a></li><li class="bib-item bib-hidden" value="35">Farah MH, Nayfeh T, Urtecho M, <strong>Hasan B</strong>, Amin M, Sen
 I, Wang Z, Prokop LJ, Lawrence PF, Gloviczki P, Murad MH. A Systematic
 Review Supporting the Society for Vascular Surgery, the American Venous
 Forum, and the American Vein and Lymphatic Society Guidelines on the
@@ -1272,20 +1622,20 @@ Management of Varicose Veins. <em>J Vasc Surg Venous Lymphat
 Disord</em>. 2022;10(5):1155-1171. <a
 href="https://doi.org/10.1016/j.jvsv.2021.08.011">doi:10.1016/j.jvsv.2021.08.011</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/34450355">34450355</a></li><li class="bib-item reveal hidden-item" value="36"><strong>Hasan B</strong>, Farah M, Nayfeh T, Amin M, Malandris K,
+href="https://www.ncbi.nlm.nih.gov/pubmed/34450355">34450355</a></li><li class="bib-item bib-hidden" value="36"><strong>Hasan B</strong>, Farah M, Nayfeh T, Amin M, Malandris K,
 Abd-Rabu R, Shah S, Rajjoub R, Seisa MO, Saadi S, Hassett L, Prokop LJ,
 AbuRahma AF, Murad MH. A Systematic Review Supporting the Society for
 Vascular Surgery Guidelines on the Management of Carotid Artery Disease.
 <em>J Vasc Surg</em>. 2022;75(1S):99S-108S.e42. <a
 href="https://doi.org/10.1016/j.jvs.2021.06.001">doi:10.1016/j.jvs.2021.06.001</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/34153350">34153350</a></li><li class="bib-item reveal hidden-item" value="37">Osman KT, Nayfeh T, Abdelfattah AM, Alabdallah K, <strong>Hasan
+href="https://www.ncbi.nlm.nih.gov/pubmed/34153350">34153350</a></li><li class="bib-item bib-hidden" value="37">Osman KT, Nayfeh T, Abdelfattah AM, Alabdallah K, <strong>Hasan
 B</strong>, Firwana M, Alabaji H, Elkhabiry L, Mousa J, Prokop LJ, Murad
 MH, Gordon F. Secondary Prophylaxis of Gastric Variceal Bleeding: A
 Systematic Review and Network Meta-Analysis. <em>Liver Transpl</em>.
 2022;28(6):945-958. <a
 href="https://doi.org/10.1002/lt.26383">doi:10.1002/lt.26383</a> PMID:
-<a href="https://www.ncbi.nlm.nih.gov/pubmed/34860458">34860458</a></li><li class="bib-item reveal hidden-item" value="38">Seisa MO, Saadi S, Nayfeh T, Muthusamy K, Shah SH, Firwana M,
+<a href="https://www.ncbi.nlm.nih.gov/pubmed/34860458">34860458</a></li><li class="bib-item bib-hidden" value="38">Seisa MO, Saadi S, Nayfeh T, Muthusamy K, Shah SH, Firwana M,
 <strong>Hasan B</strong>, Jawaid T, Abd-Rabu R, Korytkowski MT,
 Muniyappa R, Antinori-Lent K, Donihi AC, Drincic AT, Luger A, Torres
 Roldan VD, Urtecho M, Wang Z, Murad MH. A Systematic Review Supporting
@@ -1295,111 +1645,111 @@ Undergoing Elective Surgical Procedures. <em>J Clin Endocrinol
 Metab</em>. 2022;107(8):2139-2147. <a
 href="https://doi.org/10.1210/clinem/dgac277">doi:10.1210/clinem/dgac277</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/35690929">35690929</a></li><li class="bib-item reveal hidden-item" value="39">Shah S, Urtecho M, Firwana M, Nayfeh T, <strong>Hasan B</strong>,
+href="https://www.ncbi.nlm.nih.gov/pubmed/35690929">35690929</a></li><li class="bib-item bib-hidden" value="39">Shah S, Urtecho M, Firwana M, Nayfeh T, <strong>Hasan B</strong>,
 Nanaa A, Saadi S, Flynn DN, Abd-Rabu R, Seisa MO, Rajjoub NS, Hassett
 LC, Spyropoulos AC, Douketis JD, Murad MH. Perioperative Management of
 Antiplatelet Therapy: A Systematic Review and Meta-Analysis. <em>Mayo
 Clin Proc Innov Qual Outcomes</em>. 2022;6(6):564-573. <a
 href="https://doi.org/10.1016/j.mayocpiqo.2022.09.006">doi:10.1016/j.mayocpiqo.2022.09.006</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/36304523">36304523</a></li><li class="bib-item reveal hidden-item" value="40">Pal D, Riester SM, <strong>Hasan B</strong>, Tufa SF, Dudakovic A,
+href="https://www.ncbi.nlm.nih.gov/pubmed/36304523">36304523</a></li><li class="bib-item bib-hidden" value="40">Pal D, Riester SM, <strong>Hasan B</strong>, Tufa SF, Dudakovic A,
 Keene DR, van Wijnen AJ, Schweitzer R. Ezh2 Is Essential for Patterning
 of Multiple Musculoskeletal Tissues but Dispensable for Tendon
 Differentiation. <em>Stem Cells Dev</em>. 2021;30(11):601-609. <a
 href="https://doi.org/10.1089/scd.2020.0209">doi:10.1089/scd.2020.0209</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/33757300">33757300</a></li><li class="bib-item reveal hidden-item" value="41">Qu W, Wang Z, Hunt C, Morrow AS, Urtecho M, Amin M, Shah S,
+href="https://www.ncbi.nlm.nih.gov/pubmed/33757300">33757300</a></li><li class="bib-item bib-hidden" value="41">Qu W, Wang Z, Hunt C, Morrow AS, Urtecho M, Amin M, Shah S,
 <strong>Hasan B</strong>, Abd-Rabu R, Ashmore Z, Kubrova E, Prokop LJ,
 Murad MH. The Effectiveness and Safety of Platelet-Rich Plasma for
 Chronic Wounds: A Systematic Review and Meta-Analysis. <em>Mayo Clin
 Proc</em>. 2021;96(9):2407-2417. <a
 href="https://doi.org/10.1016/j.mayocp.2021.01.030">doi:10.1016/j.mayocp.2021.01.030</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/34226023">34226023</a></li><li class="bib-item reveal hidden-item" value="42">VanderPluym JH, Halker Singh RB, Urtecho M, Morrow AS, Nayfeh T,
+href="https://www.ncbi.nlm.nih.gov/pubmed/34226023">34226023</a></li><li class="bib-item bib-hidden" value="42">VanderPluym JH, Halker Singh RB, Urtecho M, Morrow AS, Nayfeh T,
 Torres Roldan VD, Farah MH, <strong>Hasan B</strong>, Saadi S, Shah S,
 Abd-Rabu R, Daraz L, Prokop LJ, Murad MH, Wang Z. Acute Treatments for
 Episodic Migraine in Adults: A Systematic Review and Meta-Analysis.
 <em>JAMA</em>. 2021;325(23):2357-2369. <a
 href="https://doi.org/10.1001/jama.2021.7939">doi:10.1001/jama.2021.7939</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/34128998">34128998</a></li><li class="bib-item reveal hidden-item" value="43">Barrionuevo P, Malas MB, Nejim B, Haddad A, Morrow A, Ponce O,
+href="https://www.ncbi.nlm.nih.gov/pubmed/34128998">34128998</a></li><li class="bib-item bib-hidden" value="43">Barrionuevo P, Malas MB, Nejim B, Haddad A, Morrow A, Ponce O,
 <strong>Hasan B</strong>, Seisa M, Chaer R, Murad MH. A Systematic
 Review and Meta-Analysis of the Management of Visceral Artery Aneurysms.
 <em>J Vasc Surg</em>. 2020;72(1S):40S-45S. <a
 href="https://doi.org/10.1016/j.jvs.2020.05.018">doi:10.1016/j.jvs.2020.05.018</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/32553135">32553135</a></li><li class="bib-item reveal hidden-item" value="44">Ding J, Farah MH, Nayfeh T, Malandris K, Manolopoulos A, Ginex PK,
+href="https://www.ncbi.nlm.nih.gov/pubmed/32553135">32553135</a></li><li class="bib-item bib-hidden" value="44">Ding J, Farah MH, Nayfeh T, Malandris K, Manolopoulos A, Ginex PK,
 <strong>Hasan B</strong>, Dunnack H, Abd-Rabu R, Rajjoub M, Prokop L,
 Morgan RL, Murad MH. Targeted Therapy- and Chemotherapy-Associated Skin
 Toxicities: Systematic Review and Meta-Analysis. <em>Oncol Nurs
 Forum</em>. 2020;47(5):E149-E160. <a
 href="https://doi.org/10.1188/20.ONF.E149-E160">doi:10.1188/20.ONF.E149-E160</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/32830797">32830797</a></li><li class="bib-item reveal hidden-item" value="45">Ding J, <strong>Hasan B</strong>, Malandris K, Farah MH, Manolopoulos
+href="https://www.ncbi.nlm.nih.gov/pubmed/32830797">32830797</a></li><li class="bib-item bib-hidden" value="45">Ding J, <strong>Hasan B</strong>, Malandris K, Farah MH, Manolopoulos
 A, Ginex PK, Anbari AB, Nayfeh T, Rajjoub M, Benkhadra R, Prokop L,
 Morgan RL, Murad MH. Prospective Surveillance and Risk Reduction of
 Cancer Treatment-Related Lymphedema: Systematic Review and
 Meta-Analysis. <em>Oncol Nurs Forum</em>. 2020;47(5):E161-E170. <a
 href="https://doi.org/10.1188/20.ONF.E161-E170">doi:10.1188/20.ONF.E161-E170</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/32830796">32830796</a></li><li class="bib-item reveal hidden-item" value="46">Dobler CC, Morrow AS, Beuschel B, Farah MH, Majzoub AM, Wilson ME,
+href="https://www.ncbi.nlm.nih.gov/pubmed/32830796">32830796</a></li><li class="bib-item bib-hidden" value="46">Dobler CC, Morrow AS, Beuschel B, Farah MH, Majzoub AM, Wilson ME,
 <strong>Hasan B</strong>, Seisa MO, Daraz L, Prokop LJ, Murad MH, Wang
 Z. Pharmacologic Therapies in Patients with Exacerbation of Chronic
 Obstructive Pulmonary Disease: A Systematic Review with Meta-Analysis.
 <em>Ann Intern Med</em>. 2020;172(6):413-422. <a
 href="https://doi.org/10.7326/M19-3007">doi:10.7326/M19-3007</a> PMID:
-<a href="https://www.ncbi.nlm.nih.gov/pubmed/32092762">32092762</a></li><li class="bib-item reveal hidden-item" value="47">Dobler CC, Morrow AS, Farah MH, Beuschel B, Majzoub AM, Wilson ME,
+<a href="https://www.ncbi.nlm.nih.gov/pubmed/32092762">32092762</a></li><li class="bib-item bib-hidden" value="47">Dobler CC, Morrow AS, Farah MH, Beuschel B, Majzoub AM, Wilson ME,
 <strong>Hasan B</strong>, Seisa MO, Daraz L, Prokop LJ, Murad MH, Wang
 Z. Nonpharmacologic Therapies in Patients with Exacerbation of Chronic
 Obstructive Pulmonary Disease: A Systematic Review with Meta-Analysis.
 <em>Mayo Clin Proc</em>. 2020;95(6):1169-1183. <a
 href="https://doi.org/10.1016/j.mayocp.2020.01.018">doi:10.1016/j.mayocp.2020.01.018</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/32498773">32498773</a></li><li class="bib-item reveal hidden-item" value="48"><strong>Hasan B</strong>, Almasri J, Marwa B, Klaas KM, Fischer PR.
+href="https://www.ncbi.nlm.nih.gov/pubmed/32498773">32498773</a></li><li class="bib-item bib-hidden" value="48"><strong>Hasan B</strong>, Almasri J, Marwa B, Klaas KM, Fischer PR.
 Treatment of Postural Orthostatic Tachycardia Syndrome with Medication:
 A Systematic Review. <em>J Child Neurol</em>. 2020;35(14):1004-1016. <a
 href="https://doi.org/10.1177/0883073820948679">doi:10.1177/0883073820948679</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/32838632">32838632</a></li><li class="bib-item reveal hidden-item" value="49"><strong>Hasan B</strong>, Nayfeh T, Alzuabi M, Wang Z, Kuchkuntla AR,
+href="https://www.ncbi.nlm.nih.gov/pubmed/32838632">32838632</a></li><li class="bib-item bib-hidden" value="49"><strong>Hasan B</strong>, Nayfeh T, Alzuabi M, Wang Z, Kuchkuntla AR,
 Prokop LJ, Newman CB, Murad MH, Rajjo TI. Weight Loss and Serum Lipids
 in Overweight and Obese Adults: A Systematic Review and Meta-Analysis.
 <em>J Clin Endocrinol Metab</em>. 2020;105(12):3695-3703. <a
 href="https://doi.org/10.1210/clinem/dgaa673">doi:10.1210/clinem/dgaa673</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/32954416">32954416</a></li><li class="bib-item reveal hidden-item" value="50">Murad MH, Nayfeh T, Urtecho Suarez M, Seisa MO, Abd-Rabu R, Farah
+href="https://www.ncbi.nlm.nih.gov/pubmed/32954416">32954416</a></li><li class="bib-item bib-hidden" value="50">Murad MH, Nayfeh T, Urtecho Suarez M, Seisa MO, Abd-Rabu R, Farah
 MHE, Firwana M, <strong>Hasan B</strong>, Jawaid T, Shah S, Torres
 Roldan VD, Prokop L, Wang Z, Saadi SM. A Framework for Evidence
 Synthesis Programs to Respond to a Pandemic. <em>Mayo Clin Proc</em>.
 2020;95(7):1426-1429. <a
 href="https://doi.org/10.1016/j.mayocp.2020.05.009">doi:10.1016/j.mayocp.2020.05.009</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/32561147">32561147</a></li><li class="bib-item reveal hidden-item" value="51">Almasri J, Tello M, Benkhadra R, Morrow AS, <strong>Hasan B</strong>,
+href="https://www.ncbi.nlm.nih.gov/pubmed/32561147">32561147</a></li><li class="bib-item bib-hidden" value="51">Almasri J, Tello M, Benkhadra R, Morrow AS, <strong>Hasan B</strong>,
 Farah W, Alvarez Villalobos N, Mohammed K, Allen JP, Prokop LJ, Wang Z,
 Kasiske BL, Israni AK, Murad MH. A Systematic Review for Variables to Be
 Collected in a Transplant Database for Improving Risk Prediction.
 <em>Transplantation</em>. 2019;103(12):2591-2601. <a
 href="https://doi.org/10.1097/TP.0000000000002652">doi:10.1097/TP.0000000000002652</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/30768569">30768569</a></li><li class="bib-item reveal hidden-item" value="52">Dobler CC, Farah MH, Morrow AS, Alsawas M, Benkhadra R, <strong>Hasan
+href="https://www.ncbi.nlm.nih.gov/pubmed/30768569">30768569</a></li><li class="bib-item bib-hidden" value="52">Dobler CC, Farah MH, Morrow AS, Alsawas M, Benkhadra R, <strong>Hasan
 B</strong>, Prokop LJ, Wang Z, Murad MH. Treatment of Stable Chronic
 Obstructive Pulmonary Disease: Protocol for a Systematic Review and
 Evidence Map. <em>BMJ Open</em>. 2019;9(5):e027935. <a
 href="https://doi.org/10.1136/bmjopen-2018-027935">doi:10.1136/bmjopen-2018-027935</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/31061055">31061055</a></li><li class="bib-item reveal hidden-item" value="53"><strong>Hasan B</strong>, Thompson WG, Almasri J, Wang Z, Lakis S,
+href="https://www.ncbi.nlm.nih.gov/pubmed/31061055">31061055</a></li><li class="bib-item bib-hidden" value="53"><strong>Hasan B</strong>, Thompson WG, Almasri J, Wang Z, Lakis S,
 Prokop LJ, Hensrud DD, Frie KS, Wirtz MJ, Murad AL, Ewoldt JS, Murad MH.
 The Effect of Culinary Interventions (Cooking Classes) on Dietary Intake
 and Behavioral Change: A Systematic Review and Evidence Map. <em>BMC
 Nutr</em>. 2019;5:29. <a
 href="https://doi.org/10.1186/s40795-019-0293-8">doi:10.1186/s40795-019-0293-8</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/32153942">32153942</a></li><li class="bib-item reveal hidden-item" value="54">Bangerter LR, Griffin JM, Langer S, <strong>Hasan B</strong>, Kim WS,
+href="https://www.ncbi.nlm.nih.gov/pubmed/32153942">32153942</a></li><li class="bib-item bib-hidden" value="54">Bangerter LR, Griffin JM, Langer S, <strong>Hasan B</strong>, Kim WS,
 Murad MH, Khera N. The Effect of Psychosocial Interventions on Outcomes
 for Caregivers of Hematopoietic Cell Transplant Patients. <em>Curr
 Hematol Malig Rep</em>. 2018;13(3):155-163. <a
 href="https://doi.org/10.1007/s11899-018-0445-y">doi:10.1007/s11899-018-0445-y</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/29705880">29705880</a></li><li class="bib-item reveal hidden-item" value="55">Mouchli MA, Singh S, Boardman L, Bruining DH, Lightner AL, Rosen CB,
+href="https://www.ncbi.nlm.nih.gov/pubmed/29705880">29705880</a></li><li class="bib-item bib-hidden" value="55">Mouchli MA, Singh S, Boardman L, Bruining DH, Lightner AL, Rosen CB,
 Heimbach JK, <strong>Hasan B</strong>, Poterucha JJ, Watt KD, Kane SV,
 Raffals LE, Loftus EV Jr. Natural History of Established and De Novo
 Inflammatory Bowel Disease after Liver Transplantation for Primary
@@ -1407,149 +1757,119 @@ Sclerosing Cholangitis. <em>Inflamm Bowel Dis</em>.
 2018;24(5):1074-1081. <a
 href="https://doi.org/10.1093/ibd/izx096">doi:10.1093/ibd/izx096</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/29522202">29522202</a></li><li class="bib-item reveal hidden-item" value="56">Mouchli MA, Singh S, Loftus EV Jr, Boardman L, Talwalkar J, Rosen CB,
+href="https://www.ncbi.nlm.nih.gov/pubmed/29522202">29522202</a></li><li class="bib-item bib-hidden" value="56">Mouchli MA, Singh S, Loftus EV Jr, Boardman L, Talwalkar J, Rosen CB,
 Heimbach JK, Wiesner RH, <strong>Hasan B</strong>, Poterucha JJ, Watt
 KD. Risk Factors and Outcomes of De Novo Cancers (Excluding Nonmelanoma
 Skin Cancer) after Liver Transplantation for Primary Sclerosing
 Cholangitis. <em>Transplantation</em>. 2017;101(8):1859-1866. <a
 href="https://doi.org/10.1097/TP.0000000000001725">doi:10.1097/TP.0000000000001725</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/28272287">28272287</a></li></ol><button class="show-more-btn" data-section="bib-pr" onclick="toggleBibSection(this)">Show all 56 items</button>
-                </div>
-            </div>
-
-            <div class="bib-section reveal">
-                <div class="bib-header" onclick="toggleCollapse(this)">
-                    <h3>Conference Abstracts &amp; Posters <span class="bib-count">17</span></h3>
-                    <span class="collapse-icon">&#9660;</span>
-                </div>
-                <div class="bib-body collapsed" id="bib-abs">
-                    <ol class="bib-list"><li class="bib-item reveal" value="1">Zot P, <strong>Hasan B</strong>, Keeney M, Yasir S, Keeney G, Jimenez
+href="https://www.ncbi.nlm.nih.gov/pubmed/28272287">28272287</a></li></ol><button class="bib-toggle-btn" data-panel="bib-pr" data-total="56" data-show="5" onclick="toggleBibItems(this)">Show all 56 items</button></div><div class="tab-panel" id="tab-abs" hidden><ol class="bib-list" id="bib-abs-list"><li class="bib-item" value="1">Zot P, <strong>Hasan B</strong>, Keeney M, Yasir S, Keeney G, Jimenez
 R, Solanki M. 278 Morphologic Features and Classification of
 Adenomyoepithelioma in a Cohort of 33 Patients. <em>Laboratory
-Investigation</em>. 2025;105(3).</li><li class="bib-item reveal" value="2">Smith L, Patil A, Elhalaby R, <strong>Hasan B</strong>, Park BU,
+Investigation</em>. 2025;105(3).</li><li class="bib-item" value="2">Smith L, Patil A, Elhalaby R, <strong>Hasan B</strong>, Park BU,
 Sivasubramaniam P, Nazli S, Shabaan A, DaCosta A, Moreira RK. 1385
 Enhanced Tissue Detection in Digital Pathology: A Robust Model for
-Excluding Artifacts. <em>Laboratory Investigation</em>. 2025;105(3).</li><li class="bib-item reveal" value="3">Sivasubramaniam P, Shabaan A, Elhalaby R, <strong>Hasan B</strong>,
+Excluding Artifacts. <em>Laboratory Investigation</em>. 2025;105(3).</li><li class="bib-item" value="3">Sivasubramaniam P, Shabaan A, Elhalaby R, <strong>Hasan B</strong>,
 Patil A, Nazli S, DaCosta A, Park BU, Archila LR, Smith L. 689 A Machine
 Learning Model of Lamina Propria Fibrosis in Eosinophilic Esophagitis Is
 Accurate and Predicts Fibrosis-Related Endoscopic Findings.
-<em>Laboratory Investigation</em>. 2025;105(3).</li><li class="bib-item reveal" value="4">Patil A, Smith L, Sivasubramaniam P, Elhalaby R, DaCosta A,
+<em>Laboratory Investigation</em>. 2025;105(3).</li><li class="bib-item" value="4">Patil A, Smith L, Sivasubramaniam P, Elhalaby R, DaCosta A,
 <strong>Hasan B</strong>, Nazli S, Park BU, Shabaan A, Graham RP. 665
 Histologic Layer-Based Quantitative Artificial Intelligence Tool for a
 Mouse Model of Eosinophilic Esophagitis. <em>Laboratory
-Investigation</em>. 2025;105(3).</li><li class="bib-item reveal" value="5">Park BU, Patil A, Smith L, <strong>Hasan B</strong>, Sivasubramaniam
+Investigation</em>. 2025;105(3).</li><li class="bib-item" value="5">Park BU, Patil A, Smith L, <strong>Hasan B</strong>, Sivasubramaniam
 P, Elhalaby R, Abdelrahman N, Nazli S, Shabaan A, Cannon A. 1455
 Evaluating the Performance of a Supervised AI Model in Grading and
 Staging Metabolic Dysfunction-Associated Steatohepatitis Using Trichrome
-Stain. <em>Laboratory Investigation</em>. 2025;105(3).</li><li class="bib-item reveal hidden-item" value="6">Nazli S, Shabaan A, <strong>Hasan B</strong>, Park BU, Elhalaby R,
+Stain. <em>Laboratory Investigation</em>. 2025;105(3).</li><li class="bib-item bib-hidden" value="6">Nazli S, Shabaan A, <strong>Hasan B</strong>, Park BU, Elhalaby R,
 Sivasubramaniam P, DaCosta A, Smith L, Graham RP, Hartley CP. 1452
 Steatosis Evaluation in the Digital Age: What Can Machines Tell Us About
-Our Methods? <em>Laboratory Investigation</em>. 2025;105(3).</li><li class="bib-item reveal hidden-item" value="7">Hernandez-Diaz LM, <strong>Hasan B</strong>, Hentz R, Absah I.
+Our Methods? <em>Laboratory Investigation</em>. 2025;105(3).</li><li class="bib-item bib-hidden" value="7">Hernandez-Diaz LM, <strong>Hasan B</strong>, Hentz R, Absah I.
 Tu1762: Microscopic Colitis in Children: A Single-Center Experience and
-Systematic Review. <em>Gastroenterology</em>. 2025;169(1):S-1479.</li><li class="bib-item reveal hidden-item" value="8">Almasri J, <strong>Hasan B</strong>, Tarakji Z, Naffa FW, Warner L,
+Systematic Review. <em>Gastroenterology</em>. 2025;169(1):S-1479.</li><li class="bib-item bib-hidden" value="8">Almasri J, <strong>Hasan B</strong>, Tarakji Z, Naffa FW, Warner L,
 Mian H, Chakraborty R, Mohyuddin GR, Al Hadidi S. Utilization of
 Multiple Myeloma Treatments in Developing Countries: Systematic Review
-and Meta-Analysis. <em>Blood</em>. 2024;144:6986.</li><li class="bib-item reveal hidden-item" value="9">Shah V, e Silva LOJ, Farah W, Seisa MO, Balla AK, Christensen A,
+and Meta-Analysis. <em>Blood</em>. 2024;144:6986.</li><li class="bib-item bib-hidden" value="9">Shah V, e Silva LOJ, Farah W, Seisa MO, Balla AK, Christensen A,
 Farah MH, <strong>Hasan B</strong>, Bellolio F, Murad MH. 134 Diagnostic
 Accuracy of the Physical Exam in Patients with Vertigo or Dizziness
 Presenting to the Emergency Department: A Systematic Review and
 Meta-Analysis Supporting the Guidelines for Reasonable and Appropriate
 Care in Emergency Medicine. <em>Annals of Emergency Medicine</em>.
-2022;80(4):S63.</li><li class="bib-item reveal hidden-item" value="10">Shah V, e Silva LOJ, Farah W, Seisa MO, Balla AK, Christensen A,
+2022;80(4):S63.</li><li class="bib-item bib-hidden" value="10">Shah V, e Silva LOJ, Farah W, Seisa MO, Balla AK, Christensen A,
 Farah MH, <strong>Hasan B</strong>, Bellolio F, Murad MH. 116 Diagnostic
 Accuracy of Neuroimaging in Emergency Department Patients with Acute
 Vertigo or Dizziness: A Systematic Review and Meta-Analysis Supporting
 the Guidelines for Reasonable and Appropriate Care in Emergency
-Medicine. <em>Annals of Emergency Medicine</em>. 2022;80(4):S56.</li><li class="bib-item reveal hidden-item" value="11">Osman KT, Nayfeh T, Abdelfattah AM, Alabdallah K, <strong>Hasan
+Medicine. <em>Annals of Emergency Medicine</em>. 2022;80(4):S56.</li><li class="bib-item bib-hidden" value="11">Osman KT, Nayfeh T, Abdelfattah AM, Alabdallah K, <strong>Hasan
 B</strong>, Firwana M, Alabaji H, Elkhabiry L, Mousa J, Gordon FD. S632
 Secondary Prophylaxis of Gastric Variceal Bleeding: A Systematic Review
 and Network Meta-Analysis. <em>Official Journal of the American College
-of Gastroenterology ACG</em>. 2021;116:S288.</li><li class="bib-item reveal hidden-item" value="12">Mouchli MA, Singh S, Poterucha JJ, Loftus EV Jr, Talwalkar JA,
+of Gastroenterology ACG</em>. 2021;116:S288.</li><li class="bib-item bib-hidden" value="12">Mouchli MA, Singh S, Poterucha JJ, Loftus EV Jr, Talwalkar JA,
 <strong>Hasan B</strong>, Hamdeh S, Watt KD. Rate, Risk Factors, and
 Outcomes of Pouchitis after Liver Transplantation for Primary Sclerosing
 Cholangitis: 655. <em>Official Journal of the American College of
-Gastroenterology ACG</em>. 2016;111:S300.</li><li class="bib-item reveal hidden-item" value="13">Mouchli MA, Singh S, Loftus EV Jr, Talwalkar JA, <strong>Hasan
+Gastroenterology ACG</em>. 2016;111:S300.</li><li class="bib-item bib-hidden" value="13">Mouchli MA, Singh S, Loftus EV Jr, Talwalkar JA, <strong>Hasan
 B</strong>, Hamdeh S, Poterucha JJ, Watt KD. High
 Neutrophil-To-Lymphocyte Ratio Predicts Outcomes in Patients with
 Primary Sclerosing Cholangitis Undergoing Liver Transplantation: 834.
 <em>Official Journal of the American College of Gastroenterology
-ACG</em>. 2016;111:S367.</li><li class="bib-item reveal hidden-item" value="14">Mouchli MA, Singh S, Loftus EV Jr, Talwalkar JA, <strong>Hasan
+ACG</em>. 2016;111:S367.</li><li class="bib-item bib-hidden" value="14">Mouchli MA, Singh S, Loftus EV Jr, Talwalkar JA, <strong>Hasan
 B</strong>, Hamdeh S, Poterucha JJ, Watt KD. Rate, Risk Factors, and
 Outcomes of Post-Transplant Lymphoproliferative Disease after Liver
 Transplantation for Primary Sclerosing Cholangitis: 832. <em>Official
 Journal of the American College of Gastroenterology ACG</em>.
-2016;111:S366.</li><li class="bib-item reveal hidden-item" value="15">Mouchli MA, <strong>Hasan B</strong>, Singh S, Poterucha JJ,
+2016;111:S366.</li><li class="bib-item bib-hidden" value="15">Mouchli MA, <strong>Hasan B</strong>, Singh S, Poterucha JJ,
 Talwalkar JA, Hamdeh S, Watt KD. Rate, Risk Factors and Outcomes of
 Biliary Strictures after Liver Transplantation for Primary Sclerosing
 Cholangitis: 835. <em>Official Journal of the American College of
-Gastroenterology ACG</em>. 2016;111:S367.</li><li class="bib-item reveal hidden-item" value="16">Bethel H, Cho S, Murad S, Bechenati D, Kabbara Allababidi A, Rajjoub
+Gastroenterology ACG</em>. 2016;111:S367.</li><li class="bib-item bib-hidden" value="16">Bethel H, Cho S, Murad S, Bechenati D, Kabbara Allababidi A, Rajjoub
 N, <strong>Hasan B</strong>. Association of In-Hospital Adverse Events
 and Incremental Cost and Length of Stay: A Systematic Review. Mayo
-Clinic Research Symposium Poster Sessions. 2024.</li><li class="bib-item reveal hidden-item" value="17">Bethel H, Murad S, Sim L, <strong>Hasan B</strong>. Using AI
+Clinic Research Symposium Poster Sessions. 2024.</li><li class="bib-item bib-hidden" value="17">Bethel H, Murad S, Sim L, <strong>Hasan B</strong>. Using AI
 (ChatGPT) to Enhance Quality Improvement Projects in Psychology and
-Psychiatry. Mayo Clinic Research Symposium Poster Sessions. 2024.</li></ol><button class="show-more-btn" data-section="bib-abs" onclick="toggleBibSection(this)">Show all 17 items</button>
-                </div>
-            </div>
-
-            <div class="bib-section reveal">
-                <div class="bib-header" onclick="toggleCollapse(this)">
-                    <h3>Books &amp; Book Sections <span class="bib-count">9</span></h3>
-                    <span class="collapse-icon">&#9660;</span>
-                </div>
-                <div class="bib-body collapsed" id="bib-books">
-                    <ol class="bib-list"><li class="bib-item reveal" value="1">Shumway DA, Corbin KS, Farah MH, Viola KE, Nayfeh T, Saadi S, Shah V,
+Psychiatry. Mayo Clinic Research Symposium Poster Sessions. 2024.</li></ol><button class="bib-toggle-btn" data-panel="bib-abs" data-total="17" data-show="5" onclick="toggleBibItems(this)">Show all 17 items</button></div><div class="tab-panel" id="tab-books" hidden><ol class="bib-list" id="bib-books-list"><li class="bib-item" value="1">Shumway DA, Corbin KS, Farah MH, Viola KE, Nayfeh T, Saadi S, Shah V,
 <strong>Hasan B</strong>, Shah S, Mohammed K. Results from Included
 Studies. In: <em>Partial Breast Irradiation for Breast Cancer
 [Internet]</em>. Agency for Healthcare Research and Quality (US); 2023.
-<a href="https://www.ncbi.nlm.nih.gov/books/NBK589140/">Link</a></li><li class="bib-item reveal" value="2">Shumway DA, Corbin KS, Farah MH, Viola KE, Nayfeh T, Saadi S, Shah V,
+<a href="https://www.ncbi.nlm.nih.gov/books/NBK589140/">Link</a></li><li class="bib-item" value="2">Shumway DA, Corbin KS, Farah MH, Viola KE, Nayfeh T, Saadi S, Shah V,
 <strong>Hasan B</strong>, Shah S, Mohammed K. Subgroup Analysis. In:
 <em>Partial Breast Irradiation for Breast Cancer [Internet]</em>. Agency
 for Healthcare Research and Quality (US); 2023. <a
-href="https://www.ncbi.nlm.nih.gov/books/NBK589141/">Link</a></li><li class="bib-item reveal" value="3">Shumway DA, Corbin KS, Farah MH, Viola KE, Nayfeh T, Saadi S, Shah V,
+href="https://www.ncbi.nlm.nih.gov/books/NBK589141/">Link</a></li><li class="bib-item" value="3">Shumway DA, Corbin KS, Farah MH, Viola KE, Nayfeh T, Saadi S, Shah V,
 <strong>Hasan B</strong>, Shah S, Mohammed K. Additional Relevant
 Studies. In: <em>Partial Breast Irradiation for Breast Cancer
 [Internet]</em>. Agency for Healthcare Research and Quality (US); 2023.
-<a href="https://www.ncbi.nlm.nih.gov/books/NBK589122/">Link</a></li><li class="bib-item reveal" value="4">Qu W, Wang Z, Hunt C, Morrow AS, Urtecho M, Amin M, Shah S,
+<a href="https://www.ncbi.nlm.nih.gov/books/NBK589122/">Link</a></li><li class="bib-item" value="4">Qu W, Wang Z, Hunt C, Morrow AS, Urtecho M, Amin M, Shah S,
 <strong>Hasan B</strong>, Abd-Rabu R, Ashmore Z. Evidence Summary. In:
 <em>Platelet-Rich Plasma for Wound Care in the Medicare Population
 [Internet]</em>. Agency for Healthcare Research and Quality (US); 2020.
-<a href="https://www.ncbi.nlm.nih.gov/books/NBK575960/">Link</a></li><li class="bib-item reveal" value="5">Qu W, Wang Z, Hunt C, Morrow AS, Urtecho M, Amin M, Shah S,
+<a href="https://www.ncbi.nlm.nih.gov/books/NBK575960/">Link</a></li><li class="bib-item" value="5">Qu W, Wang Z, Hunt C, Morrow AS, Urtecho M, Amin M, Shah S,
 <strong>Hasan B</strong>, Abd-Rabu R, Ashmore Z. Summary of Findings of
 Included Studies. In: <em>Platelet-Rich Plasma for Wound Care in the
 Medicare Population [Internet]</em>. Agency for Healthcare Research and
 Quality (US); 2020. <a
-href="https://www.ncbi.nlm.nih.gov/books/NBK575942/">Link</a></li><li class="bib-item reveal" value="6">Halker Singh RB, VanderPluym JH, Morrow AS, Urtecho M, Nayfeh T,
+href="https://www.ncbi.nlm.nih.gov/books/NBK575942/">Link</a></li><li class="bib-item" value="6">Halker Singh RB, VanderPluym JH, Morrow AS, Urtecho M, Nayfeh T,
 Torres Roldan VD, Farah MH, <strong>Hasan B</strong>, Saadi S, Shah S.
 Evidence Summary. In: <em>Acute Treatments for Episodic Migraine
 [Internet]</em>. Agency for Healthcare Research and Quality (US); 2020.
-<a href="https://www.ncbi.nlm.nih.gov/books/NBK566250/">Link</a></li><li class="bib-item reveal" value="7">Halker Singh RB, VanderPluym JH, Morrow AS, Urtecho M, Nayfeh T,
+<a href="https://www.ncbi.nlm.nih.gov/books/NBK566250/">Link</a></li><li class="bib-item" value="7">Halker Singh RB, VanderPluym JH, Morrow AS, Urtecho M, Nayfeh T,
 Torres Roldan VD, Farah MH, <strong>Hasan B</strong>, Saadi S, Shah S.
 Results from Included Studies. In: <em>Acute Treatments for Episodic
 Migraine [Internet]</em>. Agency for Healthcare Research and Quality
 (US); 2020. <a
-href="https://www.ncbi.nlm.nih.gov/books/NBK566230/">Link</a></li><li class="bib-item reveal" value="8">Dobler CC, Morrow AS, Farah MH, Beuschel B, Majzoub AM, Wilson ME,
+href="https://www.ncbi.nlm.nih.gov/books/NBK566230/">Link</a></li><li class="bib-item" value="8">Dobler CC, Morrow AS, Farah MH, Beuschel B, Majzoub AM, Wilson ME,
 <strong>Hasan B</strong>, Seisa MO, Daraz L, Prokop LJ. Evidence
 Summary. In: <em>Pharmacologic and Nonpharmacologic Therapies in Adult
 Patients With Exacerbation of COPD: A Systematic Review [Internet]</em>.
 Agency for Healthcare Research and Quality (US); 2019. <a
-href="https://www.ncbi.nlm.nih.gov/books/NBK549052/">Link</a></li><li class="bib-item reveal" value="9">Dobler CC, Morrow AS, Farah MH, Beuschel B, Majzoub AM, Wilson ME,
+href="https://www.ncbi.nlm.nih.gov/books/NBK549052/">Link</a></li><li class="bib-item" value="9">Dobler CC, Morrow AS, Farah MH, Beuschel B, Majzoub AM, Wilson ME,
 <strong>Hasan B</strong>, Seisa MO, Daraz L, Prokop LJ. Results from
 Included Studies. In: <em>Pharmacologic and Nonpharmacologic Therapies
 in Adult Patients With Exacerbation of COPD: A Systematic Review
 [Internet]</em>. Agency for Healthcare Research and Quality (US); 2019.
 <a
-href="https://www.ncbi.nlm.nih.gov/sites/books/NBK549030/">Link</a></li></ol>
-                </div>
-            </div>
-
-            <div class="bib-section reveal">
-                <div class="bib-header" onclick="toggleCollapse(this)">
-                    <h3>AHRQ &amp; Government Reports <span class="bib-count">10</span></h3>
-                    <span class="collapse-icon">&#9660;</span>
-                </div>
-                <div class="bib-body collapsed" id="bib-reports">
-                    <ol class="bib-list"><li class="bib-item reveal" value="1">Sim L, Wang Z, Croarkin PE, McKean AJ, Mohammed KS, Rajjo TI, Firwana
+href="https://www.ncbi.nlm.nih.gov/sites/books/NBK549030/">Link</a></li></ol></div><div class="tab-panel" id="tab-reports" hidden><ol class="bib-list" id="bib-reports-list"><li class="bib-item" value="1">Sim L, Wang Z, Croarkin PE, McKean AJ, Mohammed KS, Rajjo TI, Firwana
 M, Simha S, Abusalih ME, Al-Kordi M, Fleti F, Hegazi M, Basmaci R,
 Chuzhyk O, Saadi S, <strong>Hasan B</strong>, Farah MH, Prokop LJ, Viola
 KE, Murad MH. Management of Suicidal Thoughts and Behaviors in Youth: A
@@ -1557,292 +1877,293 @@ Systematic Review. Agency for Healthcare Research and Quality (US).
 2025. <a
 href="https://doi.org/10.23970/AHRQEPCSR_SUICIDALYOUTH">doi:10.23970/AHRQEPCSR_SUICIDALYOUTH</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/40991758">40991758</a></li><li class="bib-item reveal" value="2">Wang Z, West CP, Vaa Stelling BE, <strong>Hasan B</strong>, Simha S,
+href="https://www.ncbi.nlm.nih.gov/pubmed/40991758">40991758</a></li><li class="bib-item" value="2">Wang Z, West CP, Vaa Stelling BE, <strong>Hasan B</strong>, Simha S,
 Saadi S, Firwana M, Nayfeh T, Viola KE, Prokop LJ, Murad MH. Measuring
 Documentation Burden in Healthcare. Agency for Healthcare Research and
 Quality (US). 2024. <a
 href="https://doi.org/10.23970/AHRQEPCTB47">doi:10.23970/AHRQEPCTB47</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/39480984">39480984</a></li><li class="bib-item reveal" value="3">Farah W, Wolf M, Abusalih MF, <strong>Hasan B</strong>, Lees EH,
+href="https://www.ncbi.nlm.nih.gov/pubmed/39480984">39480984</a></li><li class="bib-item" value="3">Farah W, Wolf M, Abusalih MF, <strong>Hasan B</strong>, Lees EH,
 Fleti F, Elkhatib WY, Johnson BD, Toups G. Safety Implication of
 Respiratory Protection Mask Wear. United States Department of
 Transportation, Federal Aviation Administration. 2024. <a
 href="https://doi.org/10.21949/1529663">doi:10.21949/1529663</a> <a
-href="https://rosap.ntl.bts.gov/view/dot/74594">Link</a></li><li class="bib-item reveal" value="4">Shumway DA, Corbin KS, Farah MH, Viola KE, Nayfeh T, Saadi S, Shah V,
+href="https://rosap.ntl.bts.gov/view/dot/74594">Link</a></li><li class="bib-item" value="4">Shumway DA, Corbin KS, Farah MH, Viola KE, Nayfeh T, Saadi S, Shah V,
 <strong>Hasan B</strong>, Shah S, Mohammed K, Riaz IB, Prokop LJ, Wang
 Z, Murad MH. Partial Breast Irradiation for Breast Cancer. Agency for
 Healthcare Research and Quality (US). 2023. <a
 href="https://doi.org/10.23970/AHRQEPCCER259">doi:10.23970/AHRQEPCCER259</a>
 PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/36753597">36753597</a></li><li class="bib-item reveal" value="5">VanderPluym JH, Halker Singh RB, Farah MH, Viola KE, <strong>Hasan
+href="https://www.ncbi.nlm.nih.gov/pubmed/36753597">36753597</a></li><li class="bib-item" value="5">VanderPluym JH, Halker Singh RB, Farah MH, Viola KE, <strong>Hasan
 B</strong>, Saadi S, Shah S, Nayfeh T, Prokop LJ, Murad MH, Wang Z.
 Acute Treatments for Episodic Migraine: Surveillance Report 2:
 Literature Update Period: September 2, 2021, through December 30, 2021.
 Agency for Healthcare Research and Quality (US). 2022. PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/36893296">36893296</a></li><li class="bib-item reveal hidden-item" value="6">VanderPluym JH, Halker Singh RB, Farah MH, Viola KE, <strong>Hasan
+href="https://www.ncbi.nlm.nih.gov/pubmed/36893296">36893296</a></li><li class="bib-item bib-hidden" value="6">VanderPluym JH, Halker Singh RB, Farah MH, Viola KE, <strong>Hasan
 B</strong>, Saadi S, Shah S, Nayfeh T, Prokop LJ, Murad MH, Wang Z.
 Acute Treatments for Episodic Migraine: Surveillance Report 3:
 Literature Update Period: December 31, 2021, through March 21, 2022.
 Agency for Healthcare Research and Quality (US). 2022. PMID: <a
-href="https://www.ncbi.nlm.nih.gov/pubmed/36893297">36893297</a></li><li class="bib-item reveal hidden-item" value="7">Halker Singh RB, VanderPluym JH, <strong>Hasan B</strong>, Farah MH,
+href="https://www.ncbi.nlm.nih.gov/pubmed/36893297">36893297</a></li><li class="bib-item bib-hidden" value="7">Halker Singh RB, VanderPluym JH, <strong>Hasan B</strong>, Farah MH,
 Viola KE, Saadi S, Shah S, Nayfeh T, Prokop LJ, Murad MH. Systematic
 Review on Acute Treatments for Episodic Migraine: Surveillance Report 1:
 Literature Update Period: July 2020 through September 2021. Agency for
 Healthcare Research and Quality (US). 2022. <a
-href="https://www.ncbi.nlm.nih.gov/books/NBK589549/">Link</a></li><li class="bib-item reveal hidden-item" value="8">Halker Singh RB, VanderPluym JH, Morrow AS, Urtecho M, Nayfeh T,
+href="https://www.ncbi.nlm.nih.gov/books/NBK589549/">Link</a></li><li class="bib-item bib-hidden" value="8">Halker Singh RB, VanderPluym JH, Morrow AS, Urtecho M, Nayfeh T,
 Torres Roldan VD, Farah MH, <strong>Hasan B</strong>, Saadi S, Shah S.
 Acute Treatments for Episodic Migraine. Agency for Healthcare Research
 and Quality (US). 2021. <a
-href="https://www.ncbi.nlm.nih.gov/books/NBK566246/">Link</a></li><li class="bib-item reveal hidden-item" value="9">Qu W, Wang Z, Hunt C, Morrow AS, Urtecho M, Amin M, Shah S,
+href="https://www.ncbi.nlm.nih.gov/books/NBK566246/">Link</a></li><li class="bib-item bib-hidden" value="9">Qu W, Wang Z, Hunt C, Morrow AS, Urtecho M, Amin M, Shah S,
 <strong>Hasan B</strong>, Abd-Rabu R, Ashmore Z, Kubrova E, Prokop LJ,
 Murad MH. Platelet-Rich Plasma for Wound Care in the Medicare
 Population. Agency for Healthcare Research and Quality (US). 2020. <a
-href="https://www.ncbi.nlm.nih.gov/books/NBK575939/">Link</a></li><li class="bib-item reveal hidden-item" value="10">Dobler CC, Morrow AS, Farah MH, Beuschel B, Majzoub AM, Wilson ME,
+href="https://www.ncbi.nlm.nih.gov/books/NBK575939/">Link</a></li><li class="bib-item bib-hidden" value="10">Dobler CC, Morrow AS, Farah MH, Beuschel B, Majzoub AM, Wilson ME,
 <strong>Hasan B</strong>, Seisa MO, Daraz L, Prokop LJ. Pharmacologic
 and Nonpharmacologic Therapies in Adult Patients with Exacerbation of
 COPD: A Systematic Review. Agency for Healthcare Research and Quality
 (US). 2019. <a
-href="https://www.ncbi.nlm.nih.gov/books/NBK549046/">Link</a></li></ol><button class="show-more-btn" data-section="bib-reports" onclick="toggleBibSection(this)">Show all 10 items</button>
+href="https://www.ncbi.nlm.nih.gov/books/NBK549046/">Link</a></li></ol><button class="bib-toggle-btn" data-panel="bib-reports" data-total="10" data-show="5" onclick="toggleBibItems(this)">Show all 10 items</button></div></div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cv-section cv-section-alt" id="teaching">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Educational Activities: Teaching</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="teach-list">
+                <div class="teach-item reveal">
+                    <div class="teach-num teach-lavender">01</div>
+                    <div class="teach-body">
+                        <span class="teach-title">Invited Presentation and Panel Discussion at National Society Guideline Meeting: American Society of Hematology, Myelofibrosis Guideline Panel Discussion, ASH Headquarters, Washington, DC</span>
+                        <span class="teach-date">09/2025</span>
+                    </div>
+                </div>
+                <div class="teach-item reveal">
+                    <div class="teach-num teach-mint">02</div>
+                    <div class="teach-body">
+                        <span class="teach-title">Board Review Session: Board Style Questions in Different Topics Across Epidemiology, Statistics, Patient Safety and Preventive and Occupational Medicine, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
+                        <span class="teach-date">01/2025 – 09/2025</span>
+                    </div>
+                </div>
+                <div class="teach-item reveal">
+                    <div class="teach-num teach-coral">03</div>
+                    <div class="teach-body">
+                        <span class="teach-title">A Deep Learning Model of Histologic Tumor Differentiation as a Prognostic Tool in Hepatocellular Carcinoma, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
+                        <span class="teach-date">08/2024</span>
+                    </div>
+                </div>
+                <div class="teach-item reveal">
+                    <div class="teach-num teach-yellow">04</div>
+                    <div class="teach-body">
+                        <span class="teach-title">A Framework on Integrating Large Language Models in Systematic Reviews, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
+                        <span class="teach-date">04/2024</span>
+                    </div>
+                </div>
+                <div class="teach-item reveal">
+                    <div class="teach-num teach-teal">05</div>
+                    <div class="teach-body">
+                        <span class="teach-title">Statistics Review Session, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
+                        <span class="teach-date">12/2023</span>
+                    </div>
+                </div>
+                <div class="teach-item reveal">
+                    <div class="teach-num teach-lavender">06</div>
+                    <div class="teach-body">
+                        <span class="teach-title">Choosing the Right Statistical Test, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
+                        <span class="teach-date">09/2023</span>
+                    </div>
+                </div>
+                <div class="teach-item reveal">
+                    <div class="teach-num teach-mint">07</div>
+                    <div class="teach-body">
+                        <span class="teach-title">Navigating Statistical Paradigms, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
+                        <span class="teach-date">06/2023</span>
+                    </div>
+                </div>
+                <div class="teach-item reveal">
+                    <div class="teach-num teach-coral">08</div>
+                    <div class="teach-body">
+                        <span class="teach-title">Introducing Methodology Essentials: A New Website for Research Methodology, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
+                        <span class="teach-date">03/2023</span>
+                    </div>
+                </div>
+                <div class="teach-item reveal">
+                    <div class="teach-num teach-yellow">09</div>
+                    <div class="teach-body">
+                        <span class="teach-title">Board Review Session: Patient Safety, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
+                        <span class="teach-date">10/2022</span>
+                    </div>
+                </div>
+                <div class="teach-item reveal">
+                    <div class="teach-num teach-teal">10</div>
+                    <div class="teach-body">
+                        <span class="teach-title">Board Review Session: Medical Ethics, Legal, Professional Scenarios, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
+                        <span class="teach-date">05/2022</span>
+                    </div>
+                </div>
+                <div class="teach-item reveal">
+                    <div class="teach-num teach-lavender">11</div>
+                    <div class="teach-body">
+                        <span class="teach-title">Board Review Session: Epidemiology and Biostatistics, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
+                        <span class="teach-date">11/2021</span>
+                    </div>
+                </div>
+                <div class="teach-item reveal">
+                    <div class="teach-num teach-mint">12</div>
+                    <div class="teach-body">
+                        <span class="teach-title">Board Review Session: Epidemiology and Biostatistics, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
+                        <span class="teach-date">06/2021</span>
+                    </div>
+                </div>
+                <div class="teach-item reveal">
+                    <div class="teach-num teach-coral">13</div>
+                    <div class="teach-body">
+                        <span class="teach-title">Board Review Session: Different Scenarios in Clinical Medicine, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
+                        <span class="teach-date">01/2021</span>
+                    </div>
+                </div>
+                <div class="teach-item reveal">
+                    <div class="teach-num teach-yellow">14</div>
+                    <div class="teach-body">
+                        <span class="teach-title">Board Review Session: Tuberculosis, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
+                        <span class="teach-date">10/2020</span>
+                    </div>
+                </div>
+                <div class="teach-item reveal">
+                    <div class="teach-num teach-teal">15</div>
+                    <div class="teach-body">
+                        <span class="teach-title">Invited Presentation and Panel Discussion at National Society Guideline Meeting: Society for Vascular Surgery, Carotid Artery Disease Guideline Meeting, Virtual</span>
+                        <span class="teach-date">2020</span>
+                    </div>
+                </div>
+                <div class="teach-item reveal">
+                    <div class="teach-num teach-lavender">16</div>
+                    <div class="teach-body">
+                        <span class="teach-title">Degree of Freedom, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
+                        <span class="teach-date">08/2020</span>
+                    </div>
+                </div>
+                <div class="teach-item reveal">
+                    <div class="teach-num teach-mint">17</div>
+                    <div class="teach-body">
+                        <span class="teach-title">Invited Presentation and Panel Discussion at National Society Guideline Meeting: Endocrine Society, Lipid Metabolism and Weight Loss Guideline Meeting, Virtual</span>
+                        <span class="teach-date">2019</span>
+                    </div>
+                </div>
+                <div class="teach-item reveal">
+                    <div class="teach-num teach-coral">18</div>
+                    <div class="teach-body">
+                        <span class="teach-title">Meta-Analysis Using R, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
+                        <span class="teach-date">11/2019</span>
+                    </div>
+                </div>
+                <div class="teach-item reveal">
+                    <div class="teach-num teach-yellow">19</div>
+                    <div class="teach-body">
+                        <span class="teach-title">Fixed-Effect and Random-Effects Models, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
+                        <span class="teach-date">12/2018</span>
+                    </div>
+                </div>
+                <div class="teach-item reveal">
+                    <div class="teach-num teach-teal">20</div>
+                    <div class="teach-body">
+                        <span class="teach-title">Board Review Session: Confounding vs. Effect Modification, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
+                        <span class="teach-date">06/2018</span>
+                    </div>
+                </div>
+                <div class="teach-item reveal">
+                    <div class="teach-num teach-lavender">21</div>
+                    <div class="teach-body">
+                        <span class="teach-title">The Effect of Culinary Interventions (Cooking Classes) on Dietary Intake and Behavioral Change: A Systematic Review and Evidence Map, Division of Preventive, Occupational, and Aerospace Medicine (DPOAM) Research Committee Meeting, Mayo Clinic, Rochester, MN</span>
+                        <span class="teach-date">03/2018</span>
+                    </div>
+                </div>
+                <div class="teach-item reveal">
+                    <div class="teach-num teach-mint">22</div>
+                    <div class="teach-body">
+                        <span class="teach-title">Quantifying the Diagnostic Ability of a Test: Pre- and Post-Test Probabilities, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
+                        <span class="teach-date">10/2017</span>
+                    </div>
+                </div>
+                <div class="teach-item reveal">
+                    <div class="teach-num teach-coral">23</div>
+                    <div class="teach-body">
+                        <span class="teach-title">Types of Observational Study Designs, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
+                        <span class="teach-date">09/2017</span>
+                    </div>
+                </div>
+                <div class="teach-item reveal">
+                    <div class="teach-num teach-yellow">24</div>
+                    <div class="teach-body">
+                        <span class="teach-title">Prevalence and Incidence, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
+                        <span class="teach-date">08/2017</span>
+                    </div>
+                </div>
+                <div class="teach-item reveal">
+                    <div class="teach-num teach-teal">25</div>
+                    <div class="teach-body">
+                        <span class="teach-title">Ezh2 Is Essential for Patterning of Multiple Musculoskeletal Tissues but Dispensable for Tendon Differentiation, Department of Orthopedics, Mayo Clinic, Rochester, MN</span>
+                        <span class="teach-date">01/2017</span>
+                    </div>
+                </div>
+                <div class="teach-item reveal">
+                    <div class="teach-num teach-lavender">26</div>
+                    <div class="teach-body">
+                        <span class="teach-title">Exploring the Role of Experimental Treatments in Rotator Cuff Syndrome Management, Department of Orthopedics, Mayo Clinic, Rochester, MN</span>
+                        <span class="teach-date">11/2016</span>
+                    </div>
+                </div>
+                <div class="teach-item reveal">
+                    <div class="teach-num teach-mint">27</div>
+                    <div class="teach-body">
+                        <span class="teach-title">Innovative Therapeutics for Rotator Cuff Syndrome: Current Research and Future Directions, Department of Orthopedics, Mayo Clinic, Rochester, MN</span>
+                        <span class="teach-date">06/2016</span>
+                    </div>
+                </div>
+                <div class="teach-item reveal">
+                    <div class="teach-num teach-coral">28</div>
+                    <div class="teach-body">
+                        <span class="teach-title">Anatomy and Function of the Rotator Cuff: Implications for Rotator Cuff Syndrome, Department of Orthopedics, Mayo Clinic, Rochester, MN</span>
+                        <span class="teach-date">02/2016</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
     
-    <section class="section section-alt" id="teaching">
+    <section class="cv-section" id="mentorship">
         <div class="container">
-            <h2 class="section-heading reveal">
-                <span class="heading-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"/></svg>
-                </span>
-                Educational Activities: Teaching
-            </h2>
-            <div class="teaching-list">
-                <div class="teaching-item reveal">
-                    <span class="teaching-num">1</span>
-                    <div class="teaching-content">
-                        <span class="teaching-title">Invited Presentation and Panel Discussion at National Society Guideline Meeting: American Society of Hematology, Myelofibrosis Guideline Panel Discussion, ASH Headquarters, Washington, DC</span>
-                        <span class="teaching-date">09/2025</span>
-                    </div>
+            <div class="section-header reveal">
+                <h2 class="section-title">Mentorship</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="mentorship-card reveal">
+                <div class="mentorship-stat">
+                    <span class="mentorship-num">29+</span>
+                    <span class="mentorship-label">Researchers Mentored</span>
                 </div>
-                <div class="teaching-item reveal">
-                    <span class="teaching-num">2</span>
-                    <div class="teaching-content">
-                        <span class="teaching-title">Board Review Session: Board Style Questions in Different Topics Across Epidemiology, Statistics, Patient Safety and Preventive and Occupational Medicine, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
-                        <span class="teaching-date">01/2025 – 09/2025</span>
-                    </div>
-                </div>
-                <div class="teaching-item reveal">
-                    <span class="teaching-num">3</span>
-                    <div class="teaching-content">
-                        <span class="teaching-title">A Deep Learning Model of Histologic Tumor Differentiation as a Prognostic Tool in Hepatocellular Carcinoma, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
-                        <span class="teaching-date">08/2024</span>
-                    </div>
-                </div>
-                <div class="teaching-item reveal">
-                    <span class="teaching-num">4</span>
-                    <div class="teaching-content">
-                        <span class="teaching-title">A Framework on Integrating Large Language Models in Systematic Reviews, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
-                        <span class="teaching-date">04/2024</span>
-                    </div>
-                </div>
-                <div class="teaching-item reveal">
-                    <span class="teaching-num">5</span>
-                    <div class="teaching-content">
-                        <span class="teaching-title">Statistics Review Session, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
-                        <span class="teaching-date">12/2023</span>
-                    </div>
-                </div>
-                <div class="teaching-item reveal">
-                    <span class="teaching-num">6</span>
-                    <div class="teaching-content">
-                        <span class="teaching-title">Choosing the Right Statistical Test, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
-                        <span class="teaching-date">09/2023</span>
-                    </div>
-                </div>
-                <div class="teaching-item reveal">
-                    <span class="teaching-num">7</span>
-                    <div class="teaching-content">
-                        <span class="teaching-title">Navigating Statistical Paradigms, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
-                        <span class="teaching-date">06/2023</span>
-                    </div>
-                </div>
-                <div class="teaching-item reveal">
-                    <span class="teaching-num">8</span>
-                    <div class="teaching-content">
-                        <span class="teaching-title">Introducing Methodology Essentials: A New Website for Research Methodology, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
-                        <span class="teaching-date">03/2023</span>
-                    </div>
-                </div>
-                <div class="teaching-item reveal">
-                    <span class="teaching-num">9</span>
-                    <div class="teaching-content">
-                        <span class="teaching-title">Board Review Session: Patient Safety, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
-                        <span class="teaching-date">10/2022</span>
-                    </div>
-                </div>
-                <div class="teaching-item reveal">
-                    <span class="teaching-num">10</span>
-                    <div class="teaching-content">
-                        <span class="teaching-title">Board Review Session: Medical Ethics, Legal, Professional Scenarios, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
-                        <span class="teaching-date">05/2022</span>
-                    </div>
-                </div>
-                <div class="teaching-item reveal">
-                    <span class="teaching-num">11</span>
-                    <div class="teaching-content">
-                        <span class="teaching-title">Board Review Session: Epidemiology and Biostatistics, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
-                        <span class="teaching-date">11/2021</span>
-                    </div>
-                </div>
-                <div class="teaching-item reveal">
-                    <span class="teaching-num">12</span>
-                    <div class="teaching-content">
-                        <span class="teaching-title">Board Review Session: Epidemiology and Biostatistics, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
-                        <span class="teaching-date">06/2021</span>
-                    </div>
-                </div>
-                <div class="teaching-item reveal">
-                    <span class="teaching-num">13</span>
-                    <div class="teaching-content">
-                        <span class="teaching-title">Board Review Session: Different Scenarios in Clinical Medicine, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
-                        <span class="teaching-date">01/2021</span>
-                    </div>
-                </div>
-                <div class="teaching-item reveal">
-                    <span class="teaching-num">14</span>
-                    <div class="teaching-content">
-                        <span class="teaching-title">Board Review Session: Tuberculosis, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
-                        <span class="teaching-date">10/2020</span>
-                    </div>
-                </div>
-                <div class="teaching-item reveal">
-                    <span class="teaching-num">15</span>
-                    <div class="teaching-content">
-                        <span class="teaching-title">Invited Presentation and Panel Discussion at National Society Guideline Meeting: Society for Vascular Surgery, Carotid Artery Disease Guideline Meeting, Virtual</span>
-                        <span class="teaching-date">2020</span>
-                    </div>
-                </div>
-                <div class="teaching-item reveal">
-                    <span class="teaching-num">16</span>
-                    <div class="teaching-content">
-                        <span class="teaching-title">Degree of Freedom, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
-                        <span class="teaching-date">08/2020</span>
-                    </div>
-                </div>
-                <div class="teaching-item reveal">
-                    <span class="teaching-num">17</span>
-                    <div class="teaching-content">
-                        <span class="teaching-title">Invited Presentation and Panel Discussion at National Society Guideline Meeting: Endocrine Society, Lipid Metabolism and Weight Loss Guideline Meeting, Virtual</span>
-                        <span class="teaching-date">2019</span>
-                    </div>
-                </div>
-                <div class="teaching-item reveal">
-                    <span class="teaching-num">18</span>
-                    <div class="teaching-content">
-                        <span class="teaching-title">Meta-Analysis Using R, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
-                        <span class="teaching-date">11/2019</span>
-                    </div>
-                </div>
-                <div class="teaching-item reveal">
-                    <span class="teaching-num">19</span>
-                    <div class="teaching-content">
-                        <span class="teaching-title">Fixed-Effect and Random-Effects Models, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
-                        <span class="teaching-date">12/2018</span>
-                    </div>
-                </div>
-                <div class="teaching-item reveal">
-                    <span class="teaching-num">20</span>
-                    <div class="teaching-content">
-                        <span class="teaching-title">Board Review Session: Confounding vs. Effect Modification, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
-                        <span class="teaching-date">06/2018</span>
-                    </div>
-                </div>
-                <div class="teaching-item reveal">
-                    <span class="teaching-num">21</span>
-                    <div class="teaching-content">
-                        <span class="teaching-title">The Effect of Culinary Interventions (Cooking Classes) on Dietary Intake and Behavioral Change: A Systematic Review and Evidence Map, Division of Preventive, Occupational, and Aerospace Medicine (DPOAM) Research Committee Meeting, Mayo Clinic, Rochester, MN</span>
-                        <span class="teaching-date">03/2018</span>
-                    </div>
-                </div>
-                <div class="teaching-item reveal">
-                    <span class="teaching-num">22</span>
-                    <div class="teaching-content">
-                        <span class="teaching-title">Quantifying the Diagnostic Ability of a Test: Pre- and Post-Test Probabilities, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
-                        <span class="teaching-date">10/2017</span>
-                    </div>
-                </div>
-                <div class="teaching-item reveal">
-                    <span class="teaching-num">23</span>
-                    <div class="teaching-content">
-                        <span class="teaching-title">Types of Observational Study Designs, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
-                        <span class="teaching-date">09/2017</span>
-                    </div>
-                </div>
-                <div class="teaching-item reveal">
-                    <span class="teaching-num">24</span>
-                    <div class="teaching-content">
-                        <span class="teaching-title">Prevalence and Incidence, Evidence-Based Practice Center, Mayo Clinic, Rochester, MN</span>
-                        <span class="teaching-date">08/2017</span>
-                    </div>
-                </div>
-                <div class="teaching-item reveal">
-                    <span class="teaching-num">25</span>
-                    <div class="teaching-content">
-                        <span class="teaching-title">Ezh2 Is Essential for Patterning of Multiple Musculoskeletal Tissues but Dispensable for Tendon Differentiation, Department of Orthopedics, Mayo Clinic, Rochester, MN</span>
-                        <span class="teaching-date">01/2017</span>
-                    </div>
-                </div>
-                <div class="teaching-item reveal">
-                    <span class="teaching-num">26</span>
-                    <div class="teaching-content">
-                        <span class="teaching-title">Exploring the Role of Experimental Treatments in Rotator Cuff Syndrome Management, Department of Orthopedics, Mayo Clinic, Rochester, MN</span>
-                        <span class="teaching-date">11/2016</span>
-                    </div>
-                </div>
-                <div class="teaching-item reveal">
-                    <span class="teaching-num">27</span>
-                    <div class="teaching-content">
-                        <span class="teaching-title">Innovative Therapeutics for Rotator Cuff Syndrome: Current Research and Future Directions, Department of Orthopedics, Mayo Clinic, Rochester, MN</span>
-                        <span class="teaching-date">06/2016</span>
-                    </div>
-                </div>
-                <div class="teaching-item reveal">
-                    <span class="teaching-num">28</span>
-                    <div class="teaching-content">
-                        <span class="teaching-title">Anatomy and Function of the Rotator Cuff: Implications for Rotator Cuff Syndrome, Department of Orthopedics, Mayo Clinic, Rochester, MN</span>
-                        <span class="teaching-date">02/2016</span>
-                    </div>
+                <div class="mentorship-text">
+                    <p>Mentored researchers from diverse international backgrounds, including medical graduates, research fellows, and summer students at various stages of their careers. Mentees have co-authored numerous peer-reviewed publications and have gone on to pursue residency positions, research roles, and advanced degrees across the United States and internationally.</p>
                 </div>
             </div>
         </div>
     </section>
     
-    <section class="section" id="mentorship">
+    <section class="cv-section" id="more">
         <div class="container">
-            <h2 class="section-heading reveal">
-                <span class="heading-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"/></svg>
-                </span>
-                Mentorship
-            </h2>
-            <div class="mentorship-summary reveal">
-                <p>Mentored <strong>29+ researchers</strong> from diverse international backgrounds, including medical graduates, research fellows, and summer students at various stages of their careers. Mentees have co-authored numerous peer-reviewed publications and have gone on to pursue residency positions, research roles, and advanced degrees across the United States and internationally.</p>
-            </div>
-        </div>
-    </section>
-    
-    <section class="section" id="more">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-card reveal">
+            <div class="more-grid">
+                <div class="more-card reveal more-lavender">
                     <h3>Languages</h3>
                     <p>Arabic (fluent), English (fluent)</p>
                 </div>
-                <div class="footer-card reveal">
+                <div class="more-card reveal more-mint">
                     <h3>Hobbies &amp; Interests</h3>
                     <div class="hobby-tags"><span class="hobby-tag">Basketball</span><span class="hobby-tag">biking</span><span class="hobby-tag">hiking</span><span class="hobby-tag">strength training</span><span class="hobby-tag">chess</span><span class="hobby-tag">coding</span><span class="hobby-tag">robotics</span></div>
                 </div>
-                <div class="footer-card reveal">
+                <div class="more-card reveal more-coral">
                     <h3>Media Coverage</h3>
                     <ol type="1">
 <li><strong>Hasan B</strong>. A Systematic Review for Variables to Be
@@ -1854,90 +2175,154 @@ href="http://bit.ly/2T2yP7e">Video</a>. March 2019.</li>
         </div>
     </section>
 
+    <section class="footer-cta">
+        <div class="container">
+            <div class="footer-cta-inner">
+                <p class="footer-cta-eyebrow">Curriculum Vitae</p>
+                <h2 class="footer-cta-name">Bashar Hasan, MD</h2>
+                <div class="footer-cta-links">
+                    <a href="https://orcid.org/0000-0001-9531-4990" class="footer-link" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zM7.5 8.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm1-2.5h-2v10h2V6zm3.5 0h-2v10h2.5c3.5 0 5.5-2 5.5-5s-2-5-5.5-5h-.5zm.5 8h-.5V8h.5c2.5 0 3.5 1.5 3.5 3s-1 3-3.5 3z"/></svg><span>ORCID</span></a><a href="https://scholar.google.com/citations?user=H1td4NoAAAAJ&hl=en" class="footer-link" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/></svg><span>Scholar</span></a><a href="https://www.linkedin.com/in/bashar-hasan-56490394" class="footer-link" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span>LinkedIn</span></a><a href="https://github.com/Knowledgesynthesis" class="footer-link" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg><span>GitHub</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer class="site-footer">
         <div class="container">
-            <p>Bashar Hasan, MD &mdash; Curriculum Vitae</p>
-            <p class="footer-sub">Built with care &bull; Last updated 2026</p>
+            <p>Built with care &bull; Last updated March 2026</p>
         </div>
     </footer>
 
+    <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+    </button>
+
     <script>
-// Scroll reveal
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
+// ===== Scroll reveal (Lango-style scale-up) =====
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, idx) => {
         if (entry.isIntersecting) {
-            setTimeout(() => {
-                entry.target.classList.add('visible');
-            }, i * 60);
-            observer.unobserve(entry.target);
+            const delay = entry.target.dataset.delay || (idx % 4) * 80;
+            setTimeout(() => entry.target.classList.add('visible'), parseInt(delay));
+            revealObserver.unobserve(entry.target);
         }
     });
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.dataset.delay = (i % 5) * 70;
+    revealObserver.observe(el);
+});
 
-// Stat counter animation
+// ===== Stat counter =====
 const counterObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const el = entry.target;
-            const target = parseInt(el.dataset.target);
-            const suffix = el.dataset.suffix || '';
-            const duration = 2000;
-            const start = performance.now();
-
-            function update(now) {
-                const elapsed = now - start;
-                const progress = Math.min(elapsed / duration, 1);
-                const eased = 1 - Math.pow(1 - progress, 3);
-                el.textContent = Math.round(target * eased) + suffix;
-                if (progress < 1) requestAnimationFrame(update);
-            }
-            requestAnimationFrame(update);
-            counterObserver.unobserve(el);
-        }
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseInt(el.dataset.target);
+        const suffix = el.dataset.suffix || '';
+        const duration = 1800;
+        const start = performance.now();
+        const tick = (now) => {
+            const t = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - t, 3);
+            el.textContent = Math.round(target * eased) + suffix;
+            if (t < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+        counterObserver.unobserve(el);
     });
 }, { threshold: 0.5 });
 
-document.querySelectorAll('.stat-number').forEach(el => counterObserver.observe(el));
+document.querySelectorAll('.stat-num').forEach(el => counterObserver.observe(el));
 
-// Navigation show/hide
+// ===== Nav scroll state =====
 const nav = document.querySelector('.nav');
-const hero = document.querySelector('.hero');
-const navObserver = new IntersectionObserver(([entry]) => {
-    nav.classList.toggle('visible', !entry.isIntersecting);
-}, { threshold: 0 });
-navObserver.observe(hero);
+window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+    document.getElementById('backTop').classList.toggle('visible', window.scrollY > 400);
+}, { passive: true });
 
-// Collapsible bibliography
-function toggleCollapse(header) {
-    const body = header.nextElementSibling;
-    const isOpen = body.classList.contains('expanded');
-    header.classList.toggle('open', !isOpen);
-    body.classList.toggle('collapsed', isOpen);
-    body.classList.toggle('expanded', !isOpen);
+// ===== Tab switcher =====
+function switchTab(btn) {
+    const tabId = btn.dataset.tab;
+    const wrapper = btn.closest('.tabs-wrapper');
+
+    wrapper.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    wrapper.querySelectorAll('.tab-panel').forEach(p => {
+        p.classList.remove('active');
+        p.hidden = true;
+    });
+
+    btn.classList.add('active');
+    const panel = wrapper.querySelector('#tab-' + tabId);
+    panel.classList.add('active');
+    panel.hidden = false;
 }
 
-// Show more / show less bibliography items
-function toggleBibSection(btn) {
-    const section = btn.closest('.bib-body');
-    const items = section.querySelectorAll('.bib-item');
-    const showing = btn.textContent.startsWith('Show all');
+// ===== Bibliography show more/less =====
+function toggleBibItems(btn) {
+    const panelId = btn.dataset.panel;
+    const total = parseInt(btn.dataset.total);
+    const show = parseInt(btn.dataset.show);
+    const list = document.getElementById(panelId + '-list');
+    const items = list.querySelectorAll('.bib-item');
+    const isExpanded = btn.textContent.startsWith('Show less');
+
     items.forEach((el, i) => {
-        if (i >= 5) {
-            if (showing) {
-                el.style.display = 'list-item';
-                el.classList.add('reveal', 'visible');
-            } else {
-                el.style.display = 'none';
+        if (i >= show) {
+            el.classList.toggle('bib-hidden', isExpanded);
+            if (!isExpanded) {
+                el.classList.add('visible');
+                el.style.opacity = '1';
+                el.style.transform = 'none';
             }
         }
     });
-    btn.textContent = showing ? 'Show less' : 'Show all ' + items.length + ' items';
-    if (!showing) {
-        btn.closest('.bib-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    btn.textContent = isExpanded ? 'Show all ' + total + ' items' : 'Show less';
+
+    if (isExpanded) {
+        btn.closest('.tabs-wrapper').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 }
+
+// ===== Hero infinite grid =====
+(function() {
+    const patBg = document.getElementById('hero-grid-bg');
+    const patFg = document.getElementById('hero-grid-fg');
+    const gridFg = document.getElementById('heroGridFg');
+    const hero = document.getElementById('top');
+    if (!patBg || !patFg || !gridFg || !hero) return;
+
+    let gx = 0, gy = 0;
+
+    function animGrid() {
+        gx = (gx + 0.5) % 40;
+        gy = (gy + 0.5) % 40;
+        patBg.setAttribute('x', gx);
+        patBg.setAttribute('y', gy);
+        patFg.setAttribute('x', gx);
+        patFg.setAttribute('y', gy);
+        requestAnimationFrame(animGrid);
+    }
+    animGrid();
+
+    hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        const mx = e.clientX - rect.left;
+        const my = e.clientY - rect.top;
+        const mask = `radial-gradient(300px circle at ${mx}px ${my}px, black, transparent)`;
+        gridFg.style.maskImage = mask;
+        gridFg.style.webkitMaskImage = mask;
+    }, { passive: true });
+
+    hero.addEventListener('mouseleave', () => {
+        const mask = 'radial-gradient(300px circle at -999px -999px, black, transparent)';
+        gridFg.style.maskImage = mask;
+        gridFg.style.webkitMaskImage = mask;
+    });
+})();
 </script>
 </body>
 </html>
