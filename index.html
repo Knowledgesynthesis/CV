@@ -786,6 +786,49 @@ a { color: inherit; text-decoration: none; }
 }
 .teach-link-badge a:hover { background: var(--teal-light); }
 
+/* ===== WEB TOOLS ===== */
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.1rem;
+    margin-top: 2rem;
+}
+.tool-card {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1.4rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    border-left-width: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.tool-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+.tool-accent-teal     { border-left-color: var(--teal); }
+.tool-accent-coral    { border-left-color: var(--coral); }
+.tool-accent-lavender { border-left-color: var(--lavender); }
+.tool-accent-mint     { border-left-color: var(--mint); }
+.tool-accent-yellow   { border-left-color: var(--yellow); }
+.tool-title a {
+    font-family: var(--font-head);
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.tool-title a:hover { color: var(--teal); }
+.tool-desc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+}
+
 /* ===== MENTORSHIP ===== */
 .mentorship-card {
     background: var(--white);
@@ -1022,6 +1065,7 @@ a { color: inherit; text-decoration: none; }
                 <a href="#positions">Positions</a>
                 <a href="#publications">Publications</a>
                 <a href="#teaching">Teaching</a>
+                <a href="#tools">Tools</a>
                 <a href="#mentorship">Mentorship</a>
             </div>
         </div>
@@ -2176,6 +2220,131 @@ href="https://www.ncbi.nlm.nih.gov/books/NBK549046/">Link</a></li></ol><button c
                         <span class="teach-title">Anatomy and Function of the Rotator Cuff: Implications for Rotator Cuff Syndrome, Department of Orthopedics, Mayo Clinic, Rochester, MN</span>
                         <span class="teach-date">02/2016</span>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cv-section" id="tools">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Web Applications &amp; Tools</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="tools-grid">
+                <div class="tool-card tool-accent-teal reveal">
+                    <div class="tool-title">
+                        <a href="https://surgical-port-planner.vercel.app/" target="_blank" rel="noopener">Surgical Port Planner</a>
+                    </div>
+                    <div class="tool-desc">Interactive planning tool for laparoscopic and robotic surgery port placement. Allows users to customize, label, and export port configurations with an intuitive drag-and-drop interface.</div>
+                </div>
+                <div class="tool-card tool-accent-coral reveal">
+                    <div class="tool-title">
+                        <a href="https://easix-dri.netlify.app/" target="_blank" rel="noopener">Dynamic EASIX-DRI: 2-Year Mortality Predictor</a>
+                    </div>
+                    <div class="tool-desc">Calculates 2-year mortality risk by combining the Endothelial Activation and Stress Index (EASIX) with the Disease Risk Index (DRI), supporting clinical risk stratification and decision-making.</div>
+                </div>
+                <div class="tool-card tool-accent-lavender reveal">
+                    <div class="tool-title">
+                        <a href="https://hcc-recmet.streamlit.app/" target="_blank" rel="noopener">HCC Recurrence/Metastasis Risk Prediction Tool</a>
+                    </div>
+                    <div class="tool-desc">Predicts the risk of recurrence or metastasis in patients with hepatocellular carcinoma using validated histologic and clinical predictors.</div>
+                </div>
+                <div class="tool-card tool-accent-mint reveal">
+                    <div class="tool-title">
+                        <a href="https://hcc-os.streamlit.app/" target="_blank" rel="noopener">HCC Overall Survival Probability Calculator</a>
+                    </div>
+                    <div class="tool-desc">Estimates overall survival probabilities for hepatocellular carcinoma patients, integrating tumor and patient-level data.</div>
+                </div>
+                <div class="tool-card tool-accent-yellow reveal">
+                    <div class="tool-title">
+                        <a href="https://hcc-dfs.streamlit.app/" target="_blank" rel="noopener">HCC Any Event Probability Calculator</a>
+                    </div>
+                    <div class="tool-desc">Calculates disease-free survival and the likelihood of any adverse clinical event in hepatocellular carcinoma.</div>
+                </div>
+                <div class="tool-card tool-accent-teal reveal">
+                    <div class="tool-title">
+                        <a href="https://knowledgesynthesis.github.io/vaccination-schedule/" target="_blank" rel="noopener">2026 Childhood Vaccination Schedule</a>
+                    </div>
+                    <div class="tool-desc">An interactive visual timeline of the childhood immunization schedule, organized by age group with color-coded vaccine cards to make it immediately clear which doses are due at each developmental milestone.</div>
+                </div>
+                <div class="tool-card tool-accent-coral reveal">
+                    <div class="tool-title">
+                        <a href="https://knowledgesynthesis.github.io/k-spectrum-app/" target="_blank" rel="noopener">Potassium (K⁺) Interactive Spectrum</a>
+                    </div>
+                    <div class="tool-desc">Interactive spectrum for hypo-, normo-, and hyperkalemia. Users can adjust K⁺ levels to see mnemonics and clinical correlations.</div>
+                </div>
+                <div class="tool-card tool-accent-lavender reveal">
+                    <div class="tool-title">
+                        <a href="https://murmur-visualizer.netlify.app/" target="_blank" rel="noopener">Maneuvers → Preload/Afterload → Murmurs</a>
+                    </div>
+                    <div class="tool-desc">A dynamic visual and auditory simulator of cardiac murmurs. Demonstrates how bedside maneuvers affect preload, afterload, and murmur characteristics.</div>
+                </div>
+                <div class="tool-card tool-accent-mint reveal">
+                    <div class="tool-title">
+                        <a href="https://epi-calc.streamlit.app/" target="_blank" rel="noopener">Measures of Association Calculator</a>
+                    </div>
+                    <div class="tool-desc">Computes common epidemiological measures such as relative risk, odds ratio, and attributable risk.</div>
+                </div>
+                <div class="tool-card tool-accent-yellow reveal">
+                    <div class="tool-title">
+                        <a href="https://stat-test-selector.streamlit.app/" target="_blank" rel="noopener">Statistical Test Selector</a>
+                    </div>
+                    <div class="tool-desc">Guides users through a series of questions to determine the most appropriate statistical test for their dataset.</div>
+                </div>
+                <div class="tool-card tool-accent-teal reveal">
+                    <div class="tool-title">
+                        <a href="https://dx-test-calc.streamlit.app/" target="_blank" rel="noopener">Diagnostic Test Performance Calculator</a>
+                    </div>
+                    <div class="tool-desc">Takes total patient count, disease prevalence, sensitivity, and specificity to generate a 2x2 table and calculate all diagnostic test measures.</div>
+                </div>
+                <div class="tool-card tool-accent-coral reveal">
+                    <div class="tool-title">
+                        <a href="https://dx-test-analyze.streamlit.app/" target="_blank" rel="noopener">Diagnostic Test Performance Analyzer</a>
+                    </div>
+                    <div class="tool-desc">Takes a 2x2 table (true positives, true negatives, false positives, false negatives) and calculates all diagnostic test measures.</div>
+                </div>
+                <div class="tool-card tool-accent-lavender reveal">
+                    <div class="tool-title">
+                        <a href="https://knowledgesynthesis.github.io/combine-groups/" target="_blank" rel="noopener">Combine Mean & SD</a>
+                    </div>
+                    <div class="tool-desc">Merges group means and standard deviations with visual illustrations of resulting distributions.</div>
+                </div>
+                <div class="tool-card tool-accent-mint reveal">
+                    <div class="tool-title">
+                        <a href="https://epi-measures.vercel.app/" target="_blank" rel="noopener">Epidemiological Measures: An Interactive Explainer</a>
+                    </div>
+                    <div class="tool-desc">A comprehensive interactive resource covering fundamental concepts in epidemiology, with visual explainers and hands-on tools designed to build intuition around the core measures used in clinical research and public health.</div>
+                </div>
+                <div class="tool-card tool-accent-yellow reveal">
+                    <div class="tool-title">
+                        <a href="https://knowledgesynthesis.github.io/conf_effect_mod/" target="_blank" rel="noopener">Confounding vs Effect Modification Lab</a>
+                    </div>
+                    <div class="tool-desc">Interactive lab demonstrating the differences between confounding and effect modification in epidemiologic studies.</div>
+                </div>
+                <div class="tool-card tool-accent-teal reveal">
+                    <div class="tool-title">
+                        <a href="https://knowledgesynthesis.github.io/memorization-app/" target="_blank" rel="noopener">Text Memorization App</a>
+                    </div>
+                    <div class="tool-desc">Active recall tool for memorizing any text: paste content, hide it, record your recitation, and receive feedback on which parts were mastered and which still need work.</div>
+                </div>
+                <div class="tool-card tool-accent-coral reveal">
+                    <div class="tool-title">
+                        <a href="https://knowledgesynthesis.github.io/fraction-explorer/" target="_blank" rel="noopener">Fraction & Decimal Explorer</a>
+                    </div>
+                    <div class="tool-desc">An interactive math learning tool for elementary-age students, featuring multiple visual representations of fractions — pie charts, bar models, grids, and number lines — alongside a comparison tool, decimal slider, and quiz mode with adjustable difficulty.</div>
+                </div>
+                <div class="tool-card tool-accent-lavender reveal">
+                    <div class="tool-title">
+                        <a href="https://math-makes-sense.vercel.app/" target="_blank" rel="noopener">Math Makes Sense</a>
+                    </div>
+                    <div class="tool-desc">A visual math learning app for early elementary students covering addition, subtraction, multiplication, and division through game-based practice and progress tracking.</div>
+                </div>
+                <div class="tool-card tool-accent-mint reveal">
+                    <div class="tool-title">
+                        <a href="https://knowledgesynthesis.github.io/RPS_simulation/" target="_blank" rel="noopener">Rock-Paper-Scissors Population Simulation</a>
+                    </div>
+                    <div class="tool-desc">An agent-based simulation where emoji entities roam a canvas, convert opponents on contact, and produce emergent population dynamics — demonstrating non-transitive competition, cyclical dominance, and the role of randomness in simple rule-governed systems.</div>
                 </div>
             </div>
         </div>
